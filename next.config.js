@@ -5,4 +5,3 @@ const nextConfig = {
     trailingSlash: true // важливо для GitHub Pages
   }
 module.exports = nextConfig
-  
