@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    output: 'export',
-    basePath: '', // залиш пустим
-    trailingSlash: true // важливо для GitHub Pages
-  }
-module.exports = nextConfig
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
+module.exports = {
+  basePath: isGithubPages ? '/oleksandr-landing' : '',
+  assetPrefix: isGithubPages ? '/oleksandr-landing/' : '',
+  output: 'export',
+};
