@@ -7,7 +7,7 @@ export default function Home() {
       <Head>
         <title>Oleksandr Doroshenko – AQA Engineer</title>
       </Head>
-      <main className="flex flex-col items-center justify-center min-h-screen p-4 text-white bg-gray-900"/>
+      <main className="flex flex-col items-center justify-center min-h-screen p-4 text-white bg-gray-900">
         <img src="/oleksandr-landing/images/avatar.png" alt="Oleksandr" className="w-40 h-40 mb-4 border-4 border-white rounded-full" />
         <h1 className="mb-2 text-3xl font-bold">Привіт! Я Олександр Дорошенко</h1>
         <p className="max-w-xl text-lg text-center">
