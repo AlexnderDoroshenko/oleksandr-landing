@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const router = useRouter()
-  const [lang, setLang] = useState<'en' | 'uk'>('uk')
+  const [lang, setLang] = useState<'en' | 'uk'>('en')
 
   useEffect(() => {
-    // Пріоритет: query param > localStorage > default
+    // Пріоритет: query param > localStorage > default english
     const queryLang = router.query.lang
     if (queryLang === 'en' || queryLang === 'uk') {
       setLang(queryLang)
