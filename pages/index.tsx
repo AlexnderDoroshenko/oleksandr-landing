@@ -8,7 +8,14 @@ export default function Home() {
         <title>Oleksandr Doroshenko – AQA Engineer</title>
       </Head>
       <main className="flex flex-col items-center justify-center min-h-screen p-4 text-white bg-gray-900">
-        <img src="/oleksandr-landing/images/avatar.png" alt="Oleksandr" className="w-40 h-40 mb-4 border-4 border-white rounded-full" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/avatar.png"
+          alt="Oleksandr"
+          width={160}
+          height={160}
+          className="mb-4 border-4 border-white rounded-full w-160 h-160"
+        />
         <h1 className="mb-2 text-3xl font-bold">Привіт! Я Олександр Дорошенко</h1>
         <p className="max-w-xl text-lg text-center">
           AQA інженер з досвідом автоматизації, CI/CD, Python, Jenkins, Docker та лідерських функцій. Навчаюся також у сфері кібербезпеки.

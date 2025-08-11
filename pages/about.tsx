@@ -1,7 +1,14 @@
 export default function About() {
     return (
-      <div className="min-h-screen bg-gray-900 text-white p-6">
-        <h1 className="text-3xl font-bold mb-4">Про мене</h1>
+      <div className="min-h-screen p-6 text-white bg-gray-900">
+        <h1 className="mb-4 text-3xl font-bold">Про мене</h1>
+        <img
+          src="/images/avatar.png"
+          alt="Oleksandr"
+          width={160}
+          height={160}
+          className="mb-4 border-4 border-white rounded-full w-160 h-160"
+        />
         <p className="mb-2">
           Моє ім'я Олександр, я AQA Engineer з понад 6 роками досвіду у тестуванні.
           Працював у Capgemini, Nayax Retail, UPITec.
