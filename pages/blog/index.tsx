@@ -1,16 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { getAllPostMetas } from '../../lib/posts'
+import type { PostMeta } from '../../lib/posts'
 
-type Post = {
-  title: string
-  date: string
-  slug: string
-  lang: 'en' | 'uk'
-}
+type Post = PostMeta
 
 export default function Blog({ posts }: { posts: Post[] }) {
   const router = useRouter()
@@ -93,28 +87,6 @@ export default function Blog({ posts }: { posts: Post[] }) {
 }
 
 export async function getStaticProps() {
-  const postsDir = path.join(process.cwd(), 'posts')
-  const filenames = fs.readdirSync(postsDir)
-
-  const posts = filenames
-    .filter((filename) => filename.endsWith('-en.md') || filename.endsWith('-uk.md'))
-    .map((filename) => {
-      const filePath = path.join(postsDir, filename)
-      const fileContents = fs.readFileSync(filePath, 'utf8')
-      const { data } = matter(fileContents)
-      // Use lang based on filename ending
-      let lang: 'en' | 'uk' = 'en'
-      if (filename.endsWith('-uk.md')) lang = 'uk'
-      if (filename.endsWith('-en.md')) lang = 'en'
-      // Remove the language suffix for the slug
-      const slug = filename.replace(/-(en|uk)\.md$/, '')
-      return {
-        title: data.title,
-        date: data.date,
-        slug,
-        lang,
-      }
-    })
-
+  const posts = getAllPostMetas()
   return { props: { posts } }
 }

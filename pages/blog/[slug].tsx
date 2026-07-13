@@ -1,23 +1,13 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { marked } from 'marked'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
-type Language = 'en' | 'uk'
-
-type PostTranslation = {
-  title: string
-  date: string
-  content: string
-}
+import BlockRenderer from '../../components/BlockRenderer'
+import { getAllSlugs, getPostTranslations } from '../../lib/posts'
+import { isBlockPost } from '../../types/post'
+import type { Language, BlockPost, LegacyPost } from '../../types/post'
 
 type PostProps = {
-  translations: Partial<Record<Language, PostTranslation>>
+  translations: Partial<Record<Language, BlockPost | LegacyPost>>
 }
-
-const languages: Language[] = ['en', 'uk']
 
 export default function Post({ translations }: PostProps) {
   const router = useRouter()
@@ -51,64 +41,40 @@ export default function Post({ translations }: PostProps) {
     return null
   }
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
   return (
     <div className="min-h-screen p-6 text-white bg-gray-900">
       <h1 className="mb-2 text-3xl font-bold">{post.title}</h1>
       <div className="mb-4 text-sm text-gray-400">{post.date}</div>
-      <article
-        className="prose prose-invert max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      {isBlockPost(post) ? (
+        <BlockRenderer blocks={post.blocks} basePath={basePath} />
+      ) : (
+        <article
+          className="prose prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: (post as LegacyPost).content }}
+        />
+      )}
     </div>
   )
 }
 
 export async function getStaticPaths() {
-  const postsDir = path.join(process.cwd(), 'posts')
-  const files = fs.readdirSync(postsDir)
-
-  const slugs = Array.from(new Set(
-    files
-      .filter((filename) => filename.endsWith('-en.md') || filename.endsWith('-uk.md'))
-      .map((filename) => filename.replace(/-(en|uk)\.md$/, ''))
-  ))
+  const slugs = getAllSlugs()
 
   const paths = slugs.map((slug) => ({
-    params: { slug }
+    params: { slug },
   }))
 
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }: any) {
-  const postsDir = path.join(process.cwd(), 'posts')
-  const translations: Partial<Record<Language, PostTranslation>> = {}
-
-  for (const language of languages) {
-    const filePath = path.join(postsDir, `${params.slug}-${language}.md`)
-
-    if (!fs.existsSync(filePath)) {
-      continue
-    }
-    const markdown = fs.readFileSync(filePath, 'utf-8')
-    const { data, content } = matter(markdown)
-
-    translations[language] = {
-      title: data.title,
-      date: data.date,
-      content: marked(content, { async: false })
-    }
-  }
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const translations = getPostTranslations(params.slug)
 
   if (!translations.en && !translations.uk) {
-    return {
-      notFound: true
-    }
+    return { notFound: true }
   }
 
-  return {
-    props: {
-      translations
-    }
-  }
+  return { props: { translations } }
 }
