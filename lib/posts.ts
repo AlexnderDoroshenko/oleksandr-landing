@@ -115,7 +115,7 @@ export function getPostTranslations(
       translations[lang] = {
         title: data.title,
         date: data.date,
-        content: marked(content, { async: false }) as string,
+        content: marked.parse(content) as string,
       } as LegacyPost
     }
   }
