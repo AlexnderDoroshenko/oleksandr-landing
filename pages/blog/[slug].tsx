@@ -24,10 +24,6 @@ export default function Post({ translations }: PostProps) {
   const [lang, setLang] = useState<Language>('en')
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
     const queryLang = router.query.lang
 
     if (queryLang === 'en' || queryLang === 'uk') {
@@ -36,7 +32,7 @@ export default function Post({ translations }: PostProps) {
       return
     }
 
-    const storedLang = localStorage.getItem('lang') as Language | null
+    const storedLang = localStorage.getItem('lang')
 
     if (storedLang === 'en' || storedLang === 'uk') {
       setLang(storedLang)
@@ -93,12 +89,12 @@ export async function getStaticProps({ params }: any) {
 
     const markdown = fs.readFileSync(filePath, 'utf-8')
     const { data, content } = matter(markdown)
-    const renderedContent = marked.parse(content) as string
+    const renderedContent = marked.parse(content)
 
     translations[language] = {
       title: data.title,
       date: data.date,
-      content: renderedContent
+      content: typeof renderedContent === 'string' ? renderedContent : await renderedContent
     }
   }
 
