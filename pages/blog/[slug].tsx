@@ -45,9 +45,7 @@ export default function Post({ translations }: PostProps) {
     }
   }, [router.query.lang])
 
-  const fallbackLang = translations.en ? 'en' : 'uk'
-  const activeLang = translations[lang] ? lang : fallbackLang
-  const post = translations[activeLang]
+  const post = translations[lang] ?? translations.en ?? translations.uk
 
   if (!post) {
     return null
