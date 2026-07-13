@@ -28,7 +28,13 @@ export default function Post({ translations }: PostProps) {
 
     if (queryLang === 'en' || queryLang === 'uk') {
       setLang(queryLang)
-      localStorage.setItem('lang', queryLang)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('lang', queryLang)
+      }
+      return
+    }
+
+    if (typeof window === 'undefined') {
       return
     }
 
@@ -86,15 +92,13 @@ export async function getStaticProps({ params }: any) {
     if (!fs.existsSync(filePath)) {
       continue
     }
-
     const markdown = fs.readFileSync(filePath, 'utf-8')
     const { data, content } = matter(markdown)
-    const renderedContent = marked.parse(content)
 
     translations[language] = {
       title: data.title,
       date: data.date,
-      content: typeof renderedContent === 'string' ? renderedContent : await renderedContent
+      content: marked(content, { async: false })
     }
   }
 
