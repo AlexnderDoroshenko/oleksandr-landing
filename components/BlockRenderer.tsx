@@ -14,7 +14,7 @@ export default function BlockRenderer({ blocks, basePath = '' }: BlockRendererPr
           case 'paragraph':
             return (
               <div key={block.id} className="prose prose-invert max-w-none">
-                <p style={{ whiteSpace: 'pre-wrap' }}>{block.content}</p>
+                <p className="whitespace-pre-wrap">{block.content}</p>
               </div>
             )
 

@@ -16,8 +16,26 @@ type EditorBlock =
   | (PdfBlock & { previewUrl?: string; file?: File })
   | (VideoBlock & { previewUrl?: string; file?: File })
 
-function uid() {
+function generateBlockId() {
   return Math.random().toString(36).slice(2, 10)
+}
+
+/** Converts a title (including non-ASCII/Cyrillic characters) to a URL-safe slug. */
+function slugify(text: string): string {
+  return text
+    .normalize('NFD')                     // decompose accents/diacritics
+    .replace(/[\u0300-\u036f]/g, '')      // strip combining characters
+    .toLowerCase()
+    .replace(/[а-яіїєґ]/g, (ch) => cyrillicToLatin[ch] ?? ch)  // transliterate Cyrillic
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+const cyrillicToLatin: Record<string, string> = {
+  а:'a', б:'b', в:'v', г:'h', ґ:'g', д:'d', е:'e', є:'ye', ж:'zh', з:'z',
+  и:'y', і:'i', ї:'yi', й:'y', к:'k', л:'l', м:'m', н:'n', о:'o', п:'p',
+  р:'r', с:'s', т:'t', у:'u', ф:'f', х:'kh', ц:'ts', ч:'ch', ш:'sh', щ:'shch',
+  ю:'yu', я:'ya', ь:'', ъ:'',
 }
 
 interface BlockEditorProps {
@@ -78,7 +96,7 @@ export default function BlockEditor({
   }
 
   function addParagraph() {
-    setBlocks((prev) => [...prev, { id: uid(), type: 'paragraph', content: '' }])
+    setBlocks((prev) => [...prev, { id: generateBlockId(), type: 'paragraph', content: '' }])
   }
 
   function handleMediaFile(
@@ -112,21 +130,21 @@ export default function BlockEditor({
   function addImageBlock() {
     setBlocks((prev) => [
       ...prev,
-      { id: uid(), type: 'image', src: '', alt: '', caption: '' } as EditorBlock,
+      { id: generateBlockId(), type: 'image', src: '', alt: '', caption: '' } as EditorBlock,
     ])
   }
 
   function addPdfBlock() {
     setBlocks((prev) => [
       ...prev,
-      { id: uid(), type: 'pdf', src: '', filename: '', caption: '' } as EditorBlock,
+      { id: generateBlockId(), type: 'pdf', src: '', filename: '', caption: '' } as EditorBlock,
     ])
   }
 
   function addVideoBlock() {
     setBlocks((prev) => [
       ...prev,
-      { id: uid(), type: 'video', src: '', caption: '' } as EditorBlock,
+      { id: generateBlockId(), type: 'video', src: '', caption: '' } as EditorBlock,
     ])
   }
 
@@ -150,10 +168,7 @@ export default function BlockEditor({
 
     const post: BlockPost = { title, date, blocks: cleanBlocks }
     const json = JSON.stringify(post, null, 2)
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '') || 'post'
+    const slug = slugify(title) || 'post'
 
     // Download JSON file
     downloadText(json, `${slug}-${lang}.json`, 'application/json')
@@ -245,7 +260,9 @@ export default function BlockEditor({
         {/* Blocks */}
         <div className="mb-6 space-y-4">
           {blocks.length === 0 && (
-            <p className="text-gray-500 italic">No blocks yet. Add content below.</p>
+            <div role="status" aria-live="polite" className="text-gray-500 italic">
+              No blocks yet. Add content below.
+            </div>
           )}
 
           {blocks.map((block, index) => (

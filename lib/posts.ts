@@ -54,8 +54,13 @@ export function getAllPostMetas(): PostMeta[] {
         title = json.title
         date = json.date
       }
-    } catch {
-      // skip unreadable files
+    } catch (err) {
+      // Silently skip files that cannot be read or parsed (e.g. permission errors,
+      // malformed JSON). The file will still appear in the listing with a fallback
+      // title derived from its filename.
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(`[posts] could not read metadata from ${file}:`, err)
+      }
     }
 
     metas.push({ title, date, slug: slugBase, lang })
@@ -93,8 +98,12 @@ export function getPostTranslations(
         const raw = fs.readFileSync(jsonPath, 'utf-8')
         translations[lang] = JSON.parse(raw) as BlockPost
         continue
-      } catch {
-        // fall through to markdown
+      } catch (err) {
+        // JSON is malformed – fall through to markdown fallback so the post can
+        // still be rendered. Warn in development to help authors spot broken files.
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(`[posts] malformed JSON in ${slug}-${lang}.json:`, err)
+        }
       }
     }
 
