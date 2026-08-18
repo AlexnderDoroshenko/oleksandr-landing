@@ -1,28 +1,13 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { getAllPostMetas } from '../../lib/posts'
 import type { PostMeta } from '../../lib/posts'
+import { useLanguage } from '../../hooks/useLanguage'
+import LanguageSelector from '../../components/LanguageSelector'
 
 type Post = PostMeta
 
 export default function Blog({ posts }: { posts: Post[] }) {
-  const router = useRouter()
-  const [lang, setLang] = useState<'en' | 'uk'>('uk')
-
-  useEffect(() => {
-    const queryLang = router.query.lang
-    if (queryLang === 'en' || queryLang === 'uk') {
-      setLang(queryLang)
-      localStorage.setItem('lang', queryLang)
-    } else {
-      const storedLang = localStorage.getItem('lang') as 'en' | 'uk' | null
-      if (storedLang === 'en' || storedLang === 'uk') {
-        setLang(storedLang)
-      }
-    }
-  }, [router.query.lang])
-
+  const { lang, setLang } = useLanguage('uk')
   const texts = {
     en: {
       title: "Blog",
@@ -48,18 +33,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
         >
           {texts[lang].home}
         </Link>
-        <select
-          value={lang}
-          onChange={(e) => {
-            setLang(e.target.value as 'en' | 'uk')
-            localStorage.setItem('lang', e.target.value)
-          }}
-          className="px-3 py-1 text-gray-900 rounded"
-          aria-label="Select language"
-        >
-          <option value="en">English</option>
-          <option value="uk">Українська</option>
-        </select>
+        <LanguageSelector value={lang} onChange={setLang} />
       </div>
       <h1 className="mb-6 text-3xl font-bold">{texts[lang].title}</h1>
       {filteredPosts.length === 0 ? (

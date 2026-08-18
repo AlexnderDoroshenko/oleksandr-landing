@@ -41,6 +41,8 @@ export async function createUser(
   role: User['role'] = 'user'
 ): Promise<User> {
   const result = writeQueue.then(async () => {
+    // Read inside the locked chain so concurrent requests always see the
+    // latest state and cannot overwrite each other's writes.
     const users = readUsers()
     if (users.find((u) => u.email.toLowerCase() === email.toLowerCase())) {
       throw new Error('Email already registered')

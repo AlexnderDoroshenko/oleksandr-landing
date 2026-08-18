@@ -1,6 +1,11 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { findUserByEmail, verifyPassword } from './users'
 import type { NextAuthOptions } from 'next-auth'
+import '../types/next-auth.d'
+
+if (!process.env.NEXTAUTH_SECRET) {
+  throw new Error('NEXTAUTH_SECRET environment variable is required')
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,19 +21,23 @@ export const authOptions: NextAuthOptions = {
         if (!user) return null
         const valid = await verifyPassword(credentials.password, user.passwordHash)
         if (!valid) return null
-        return { id: user.id, email: user.email, role: user.role } as unknown as import('next-auth').User
+        return { id: user.id, email: user.email, role: user.role }
       },
     }),
   ],
   session: { strategy: 'jwt' },
   callbacks: {
     jwt({ token, user }) {
-      if (user) token.role = ((user as unknown) as { role: string }).role
+      if (user) {
+        token.id = user.id
+        token.role = user.role
+      }
       return token
     },
     session({ session, token }) {
       if (session.user) {
-        (session.user as { role?: string }).role = token.role as string
+        session.user.id = token.id
+        session.user.role = token.role
       }
       return session
     },

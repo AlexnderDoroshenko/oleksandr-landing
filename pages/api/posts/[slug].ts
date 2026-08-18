@@ -3,31 +3,30 @@ import { getServerSession } from 'next-auth/next'
 import fs from 'fs'
 import path from 'path'
 import { authOptions } from '../../../lib/authOptions'
+import { isValidSlug, isValidLang } from '../../../lib/validation'
+import { successResponse, errorResponse } from '../../../lib/apiResponse'
 import type { BlockPost } from '../../../types/post'
 
 const postsDir = path.join(process.cwd(), 'posts')
 
-function requireAdmin(req: NextApiRequest, res: NextApiResponse) {
-  // Inline check so we can early-return
-  return getServerSession(req, res, authOptions).then((session) => {
-    if (!session) {
-      res.status(401).json({ error: 'Authentication required' })
-      return null
-    }
-    const role = (session.user as { role?: string })?.role
-    if (role !== 'admin') {
-      res.status(403).json({ error: 'Admin access required' })
-      return null
-    }
-    return session
-  })
+async function requireAdmin(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getServerSession(req, res, authOptions)
+  if (!session) {
+    errorResponse(res, 'Authentication required', 401, 'UNAUTHENTICATED')
+    return null
+  }
+  if (session.user.role !== 'admin') {
+    errorResponse(res, 'Admin access required', 403, 'FORBIDDEN')
+    return null
+  }
+  return session
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query as { slug: string }
 
-  if (!/^[a-z0-9-]+$/.test(slug)) {
-    return res.status(400).json({ error: 'Invalid slug format' })
+  if (!isValidSlug(slug)) {
+    return errorResponse(res, 'Invalid slug format', 400, 'INVALID_SLUG')
   }
 
   if (req.method === 'PUT') {
@@ -35,14 +34,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!session) return
 
     const { lang, post } = req.body as { lang?: string; post?: BlockPost }
-    if (!lang || !post) return res.status(400).json({ error: 'lang and post are required' })
-    if (lang !== 'en' && lang !== 'uk') return res.status(400).json({ error: 'lang must be "en" or "uk"' })
+    if (!lang || !post) return errorResponse(res, 'lang and post are required', 400, 'MISSING_FIELDS')
+    if (!isValidLang(lang)) return errorResponse(res, 'lang must be "en" or "uk"', 400, 'INVALID_LANG')
 
     const filePath = path.join(postsDir, `${slug}-${lang}.json`)
-    if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Post not found' })
+    if (!fs.existsSync(filePath)) return errorResponse(res, 'Post not found', 404, 'NOT_FOUND')
 
     fs.writeFileSync(filePath, JSON.stringify(post, null, 2), 'utf-8')
-    return res.status(200).json({ slug, lang })
+    return successResponse(res, { slug, lang })
   }
 
   if (req.method === 'DELETE') {
@@ -50,15 +49,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!session) return
 
     const { lang } = req.query as { lang?: string }
-    if (!lang) return res.status(400).json({ error: 'lang query parameter is required' })
-    if (lang !== 'en' && lang !== 'uk') return res.status(400).json({ error: 'lang must be "en" or "uk"' })
+    if (!lang) return errorResponse(res, 'lang query parameter is required', 400, 'MISSING_FIELDS')
+    if (!isValidLang(lang)) return errorResponse(res, 'lang must be "en" or "uk"', 400, 'INVALID_LANG')
 
     const filePath = path.join(postsDir, `${slug}-${lang}.json`)
-    if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Post not found' })
+    if (!fs.existsSync(filePath)) return errorResponse(res, 'Post not found', 404, 'NOT_FOUND')
 
     fs.unlinkSync(filePath)
-    return res.status(200).json({ deleted: true })
+    return successResponse(res, { deleted: true })
   }
 
-  return res.status(405).json({ error: 'Method not allowed' })
+  return errorResponse(res, 'Method not allowed', 405, 'METHOD_NOT_ALLOWED')
 }

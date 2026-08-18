@@ -1,7 +1,9 @@
+import DOMPurify from 'isomorphic-dompurify'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import BlockRenderer from '../../components/BlockRenderer'
+import { useLanguage } from '../../hooks/useLanguage'
 import { getAllSlugs, getPostTranslations } from '../../lib/posts'
 import { isBlockPost } from '../../types/post'
 import type { Language, BlockPost, LegacyPost } from '../../types/post'
@@ -14,32 +16,10 @@ type PostProps = {
 export default function Post({ slug, translations }: PostProps) {
   const router = useRouter()
   const { data: session } = useSession()
-  const [lang, setLang] = useState<Language>('en')
+  const { lang } = useLanguage()
   const [deleting, setDeleting] = useState(false)
 
-  const isAdmin = (session?.user as { role?: string })?.role === 'admin'
-
-  useEffect(() => {
-    const queryLang = router.query.lang
-
-    if (queryLang === 'en' || queryLang === 'uk') {
-      setLang(queryLang)
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('lang', queryLang)
-      }
-      return
-    }
-
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    const storedLang = localStorage.getItem('lang')
-
-    if (storedLang === 'en' || storedLang === 'uk') {
-      setLang(storedLang)
-    }
-  }, [router.query.lang])
+  const isAdmin = session?.user?.role === 'admin'
 
   const post = translations[lang] ?? translations.en ?? translations.uk
 
@@ -90,7 +70,7 @@ export default function Post({ slug, translations }: PostProps) {
       ) : (
         <article
           className="prose prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: (post as LegacyPost).content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize((post as LegacyPost).content) }}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useId } from 'react'
+import React, { useState, useRef, useId, useEffect } from 'react'
 import type {
   ContentBlock,
   ParagraphBlock,
@@ -63,6 +63,17 @@ export default function BlockEditor({
   const [publishError, setPublishError] = useState('')
   const formId = useId()
 
+  // Revoke all object URLs when the editor unmounts to avoid memory leaks.
+  useEffect(() => {
+    return () => {
+      blocks.forEach((block) => {
+        const b = block as EditorBlock & { previewUrl?: string }
+        if (b.previewUrl) URL.revokeObjectURL(b.previewUrl)
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // ─── Block mutations ──────────────────────────────────────────────────────
 
   function moveUp(index: number) {
@@ -120,12 +131,14 @@ export default function BlockEditor({
     })
 
     const previewUrl = URL.createObjectURL(file)
-    const src = `/uploads/${file.name}`
+    const ext = file.name.includes('.') ? file.name.slice(file.name.lastIndexOf('.')) : ''
+    const safeFilename = `${crypto.randomUUID()}${ext}`
+    const src = `/uploads/${safeFilename}`
 
     if (blockType === 'image') {
       updateBlock(index, { src, previewUrl, file } as Partial<EditorBlock>)
     } else if (blockType === 'pdf') {
-      updateBlock(index, { src, filename: file.name, previewUrl, file } as Partial<EditorBlock>)
+      updateBlock(index, { src, filename: safeFilename, previewUrl, file } as Partial<EditorBlock>)
     } else {
       updateBlock(index, { src, previewUrl, file } as Partial<EditorBlock>)
     }
