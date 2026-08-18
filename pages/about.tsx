@@ -1,32 +1,9 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useLanguage } from '../hooks/useLanguage'
+import LanguageSelector from '../components/LanguageSelector'
 
 export default function About() {
-  const router = useRouter()
-  const [lang, setLang] = useState<'en' | 'uk'>('uk')
-
-  useEffect(() => {
-    const queryLang = router.query.lang
-    if (queryLang === 'en' || queryLang === 'uk') {
-      setLang(queryLang)
-      localStorage.setItem('lang', queryLang)
-    } else {
-      const storedLang = localStorage.getItem('lang') as 'en' | 'uk' | null
-      if (storedLang === 'en' || storedLang === 'uk') {
-        setLang(storedLang)
-      }
-    }
-  }, [router.query.lang])
-
-  const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLang = e.target.value as 'en' | 'uk'
-    setLang(newLang)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('lang', newLang)
-    }
-  }
-
+  const { lang, setLang } = useLanguage('uk')
   const texts = {
     en: {
       title: "About me",
@@ -63,15 +40,7 @@ export default function About() {
         >
           {texts[lang].home}
         </Link>
-        <select
-          value={lang}
-          onChange={handleLangChange}
-          className="px-3 py-1 text-gray-900 rounded"
-          aria-label="Select language"
-        >
-          <option value="en">English</option>
-          <option value="uk">Українська</option>
-        </select>
+        <LanguageSelector value={lang} onChange={setLang} />
       </div>
       <h1 className="mb-4 text-3xl font-bold">{texts[lang].title}</h1>
       <img src="/oleksandr-landing/images/avatar.png" alt="Oleksandr" className="mb-4 border-4 border-white rounded-full w-160 h-160" />

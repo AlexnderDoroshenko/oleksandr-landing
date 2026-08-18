@@ -1,30 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useLanguage } from '../hooks/useLanguage'
+import LanguageSelector from '../components/LanguageSelector'
 
 export default function Home() {
-  const router = useRouter()
-  const [lang, setLang] = useState<'en' | 'uk'>('en')
-
-  useEffect(() => {
-    // Пріоритет: query param > localStorage > default english
-    const queryLang = router.query.lang
-    if (queryLang === 'en' || queryLang === 'uk') {
-      setLang(queryLang)
-      localStorage.setItem('lang', queryLang)
-    } else {
-      const storedLang = localStorage.getItem('lang') as 'en' | 'uk' | null
-      if (storedLang === 'en' || storedLang === 'uk') {
-        setLang(storedLang)
-      }
-    }
-  }, [router.query.lang])
-
-  const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLang(e.target.value as 'en' | 'uk')
-  }
-
+  const { lang, setLang } = useLanguage('en')
   // Texts for both languages
   const texts = {
     en: {
@@ -52,15 +32,7 @@ export default function Home() {
       </Head>
       <main className="flex flex-col items-center justify-center min-h-screen p-4 text-white bg-gray-900">
         <div className="absolute top-4 right-4">
-          <select
-            value={lang}
-            onChange={handleLangChange}
-            className="px-3 py-1 text-gray-900 rounded"
-            aria-label="Select language"
-          >
-            <option value="en">English</option>
-            <option value="uk">Українська</option>
-          </select>
+          <LanguageSelector value={lang} onChange={setLang} />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/oleksandr-landing/images/avatar.png" alt="Oleksandr" className="mb-4 border-4 border-white rounded-full w-160 h-160" />

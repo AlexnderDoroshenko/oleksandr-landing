@@ -1,0 +1,16 @@
+{
+  "title": "Block-based post demo",
+  "date": "2025-07-01",
+  "blocks": [
+    {
+      "id": "1",
+      "type": "paragraph",
+      "content": "This post demonstrates the new block-based content format. You can mix text, images, PDFs, and videos in any order."
+    },
+    {
+      "id": "2",
+      "type": "paragraph",
+      "content": "Use the admin editor at /admin/new-post to compose a post, then download the JSON file and place it in the posts/ directory alongside any media files in public/uploads/."
+    }
+  ]
+}
