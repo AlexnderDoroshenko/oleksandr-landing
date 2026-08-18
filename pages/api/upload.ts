@@ -5,6 +5,7 @@ import path from 'path'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../../lib/authOptions'
 import { errorResponse, successResponse } from '../../lib/apiResponse'
+import { MAX_VIDEO_SIZE } from '../../types/post'
 
 export const config = { api: { bodyParser: false } }
 
@@ -25,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   fs.mkdirSync(uploadsDir, { recursive: true })
 
-  const form = formidable({ uploadDir: uploadsDir, keepExtensions: true, maxFileSize: 50 * 1024 * 1024 })
+  const form = formidable({ uploadDir: uploadsDir, keepExtensions: true, maxFileSize: MAX_VIDEO_SIZE })
 
   return new Promise<void>((resolve) => {
     form.parse(req, (err, _fields, files) => {
@@ -41,12 +42,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return resolve()
       }
 
-      // Rename to the original filename supplied by the client (UUID-based, safe)
-      const originalName = fileEntry.originalFilename ?? path.basename(fileEntry.filepath)
-      const dest = path.join(uploadsDir, path.basename(originalName))
-      fs.renameSync(fileEntry.filepath, dest)
+      // Keep the server-generated UUID filename from formidable (keepExtensions: true)
+      // rather than trusting the client-supplied originalFilename, to prevent collisions.
+      const serverFilename = path.basename(fileEntry.filepath)
 
-      successResponse(res, { path: `/uploads/${path.basename(dest)}` }, 201)
+      successResponse(res, { path: `/uploads/${serverFilename}` }, 201)
       resolve()
     })
   })
