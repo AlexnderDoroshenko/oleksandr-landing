@@ -36,8 +36,8 @@ export default function Post({ slug, translations }: PostProps) {
     if (res.ok) {
       router.push('/blog')
     } else {
-      const data = (await res.json()) as { error?: string }
-      alert(data.error ?? 'Delete failed')
+      const data = (await res.json()) as { error?: { message?: string } }
+      alert(data.error?.message ?? 'Delete failed')
       setDeleting(false)
     }
   }

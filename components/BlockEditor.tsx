@@ -215,8 +215,8 @@ export default function BlockEditor({
     })
 
     if (!res.ok) {
-      const data = (await res.json()) as { error?: string }
-      setPublishError(data.error ?? 'Failed to publish')
+      const data = (await res.json()) as { error?: { message?: string } }
+      setPublishError(data.error?.message ?? 'Failed to publish')
       return
     }
 

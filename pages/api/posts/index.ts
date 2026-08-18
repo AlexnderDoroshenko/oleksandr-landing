@@ -19,6 +19,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return errorResponse(res, 'Authentication required', 401, 'UNAUTHENTICATED')
   }
 
+  if (session.user.role !== 'admin') {
+    return errorResponse(res, 'Admin access required', 403, 'FORBIDDEN')
+  }
+
   const { slug, lang, post } = req.body as {
     slug?: string
     lang?: string
