@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  # ── Development ─────────────────────────────────────────────────────────────
+  dev:
+    build:
+      context: .
+      target: builder
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    profiles: ["dev"]
+
+  # ── Production ───────────────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      target: runner
+    ports:
+      - "3000:3000"
+    volumes:
+      - uploads:/app/public/uploads
+    environment:
+      - NODE_ENV=production
+      # Set NEXTAUTH_URL and NEXTAUTH_SECRET via a .env file or shell env
+      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+    restart: unless-stopped
+    profiles: ["prod"]
+
+volumes:
+  uploads:
