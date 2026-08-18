@@ -154,8 +154,8 @@ export default function BlockEditor({
 
   // ─── Export ───────────────────────────────────────────────────────────────
 
-  function exportPost() {
-    const cleanBlocks: ContentBlock[] = blocks.map((b) => {
+  function toCleanBlocks(editorBlocks: EditorBlock[]): ContentBlock[] {
+    return editorBlocks.map((b) => {
       if (b.type === 'paragraph') return { id: b.id, type: 'paragraph', content: b.content }
       if (b.type === 'image') {
         const { previewUrl: _p, file: _f, ...rest } = b as ImageBlock & { previewUrl?: string; file?: File }
@@ -169,8 +169,10 @@ export default function BlockEditor({
       const { previewUrl: _p, file: _f, ...rest } = b as VideoBlock & { previewUrl?: string; file?: File }
       return rest
     })
+  }
 
-    const post: BlockPost = { title, date, blocks: cleanBlocks }
+  function exportPost() {
+    const post: BlockPost = { title, date, blocks: toCleanBlocks(blocks) }
     const json = JSON.stringify(post, null, 2)
     const slug = slugify(title) || 'post'
 
@@ -190,21 +192,7 @@ export default function BlockEditor({
 
   async function publishPost() {
     setPublishError('')
-    const cleanBlocks: ContentBlock[] = blocks.map((b) => {
-      if (b.type === 'paragraph') return { id: b.id, type: 'paragraph', content: b.content }
-      if (b.type === 'image') {
-        const { previewUrl: _p, file: _f, ...rest } = b as ImageBlock & { previewUrl?: string; file?: File }
-        return rest
-      }
-      if (b.type === 'pdf') {
-        const { previewUrl: _p, file: _f, ...rest } = b as PdfBlock & { previewUrl?: string; file?: File }
-        return rest
-      }
-      const { previewUrl: _p, file: _f, ...rest } = b as VideoBlock & { previewUrl?: string; file?: File }
-      return rest
-    })
-
-    const post: BlockPost = { title, date, blocks: cleanBlocks }
+    const post: BlockPost = { title, date, blocks: toCleanBlocks(blocks) }
     const slug = slugify(title) || 'post'
 
     const res = await fetch('/api/posts', {

@@ -5,6 +5,10 @@ import type { User } from '../types/user'
 
 const usersFile = path.join(process.cwd(), 'data', 'users.json')
 
+// Serialise writes through a promise chain to avoid a race condition where
+// two concurrent requests both read stale data and one write overwrites the other.
+let writeQueue: Promise<void> = Promise.resolve()
+
 function readUsers(): User[] {
   try {
     if (!fs.existsSync(usersFile)) return []
@@ -36,19 +40,25 @@ export async function createUser(
   password: string,
   role: User['role'] = 'user'
 ): Promise<User> {
-  const users = readUsers()
-  if (users.find((u) => u.email.toLowerCase() === email.toLowerCase())) {
-    throw new Error('Email already registered')
-  }
-  const passwordHash = await bcrypt.hash(password, 12)
-  const user: User = {
-    id: crypto.randomUUID(),
-    email: email.toLowerCase(),
-    passwordHash,
-    role,
-  }
-  writeUsers([...users, user])
-  return user
+  const result = writeQueue.then(async () => {
+    const users = readUsers()
+    if (users.find((u) => u.email.toLowerCase() === email.toLowerCase())) {
+      throw new Error('Email already registered')
+    }
+    const passwordHash = await bcrypt.hash(password, 12)
+    const user: User = {
+      id: crypto.randomUUID(),
+      email: email.toLowerCase(),
+      passwordHash,
+      role,
+    }
+    writeUsers([...users, user])
+    return user
+  })
+  // Attach the new task to the queue; suppress errors from earlier tasks
+  // so that a failed registration doesn't permanently break the queue.
+  writeQueue = result.then(() => undefined).catch(() => undefined)
+  return result
 }
 
 export async function verifyPassword(

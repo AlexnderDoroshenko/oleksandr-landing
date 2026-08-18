@@ -6,7 +6,12 @@ import Link from 'next/link'
 
 export default function LoginPage() {
   const router = useRouter()
-  const callbackUrl = (router.query.callbackUrl as string) ?? '/admin/new-post'
+  const rawCallback = router.query.callbackUrl as string | undefined
+  // Restrict to same-origin relative URLs to prevent open-redirect attacks.
+  const callbackUrl =
+    typeof rawCallback === 'string' && rawCallback.startsWith('/') && !rawCallback.startsWith('//')
+      ? rawCallback
+      : '/admin/new-post'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
