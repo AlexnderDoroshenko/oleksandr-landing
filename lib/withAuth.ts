@@ -2,7 +2,6 @@ import type { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './authOptions'
 import type { UserRole } from '../types/user'
-import '../types/next-auth.d'
 
 /** Wraps getServerSideProps with an auth check. Redirects to /auth/login when
  *  the user is not authenticated, or returns 403 when the role is insufficient. */
