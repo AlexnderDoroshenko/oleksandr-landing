@@ -4,7 +4,7 @@
  * Usage:
  *   ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD=secret npx ts-node -P tsconfig.json scripts/seed-admin.ts
  */
-import { createUser, findUserByEmail } from '../lib/users'
+import { createUser } from '../lib/users'
 
 async function main() {
   const email = process.env.ADMIN_EMAIL
@@ -15,13 +15,16 @@ async function main() {
     process.exit(1)
   }
 
-  if (findUserByEmail(email)) {
-    console.log(`Admin user ${email} already exists, skipping.`)
-    return
+  try {
+    const user = await createUser(email, password, 'admin')
+    console.log(`Created admin user: ${user.email} (id: ${user.id})`)
+  } catch (err: unknown) {
+    if (err instanceof Error && err.message === 'Email already registered') {
+      console.log(`Admin user ${email} already exists, skipping.`)
+      return
+    }
+    throw err
   }
-
-  const user = await createUser(email, password, 'admin')
-  console.log(`Created admin user: ${user.email} (id: ${user.id})`)
 }
 
 main().catch((err) => {

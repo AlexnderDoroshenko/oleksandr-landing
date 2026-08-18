@@ -14,7 +14,9 @@
     },
     "dependencies": {
         "@types/bcryptjs": "^2.4.6",
+        "@types/formidable": "^3.5.1",
         "bcryptjs": "^3.0.3",
+        "formidable": "^3.5.4",
         "gray-matter": "^4.0.3",
         "isomorphic-dompurify": "^3.22.0",
         "marked": "^15.0.11",

@@ -24,6 +24,6 @@ export default function NewPostPage({ role }: Props) {
   )
 }
 
-export const getServerSideProps = withAuth('user', async (_ctx, _userId, role) => {
+export const getServerSideProps = withAuth('admin', async (_ctx, _userId, role) => {
   return { props: { role } }
 })

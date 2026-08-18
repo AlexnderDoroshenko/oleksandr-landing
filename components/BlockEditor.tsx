@@ -205,8 +205,24 @@ export default function BlockEditor({
 
   async function publishPost() {
     setPublishError('')
-    const post: BlockPost = { title, date, blocks: toCleanBlocks(blocks) }
     const slug = slugify(title) || 'post'
+
+    // Upload each media file first
+    for (const block of blocks) {
+      const b = block as EditorBlock & { file?: File; src?: string }
+      if (b.file && b.src) {
+        const formData = new FormData()
+        formData.append('file', b.file, b.src.replace('/uploads/', ''))
+        const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData })
+        if (!uploadRes.ok) {
+          const data = (await uploadRes.json()) as { error?: { message?: string } }
+          setPublishError(data.error?.message ?? 'Failed to upload media')
+          return
+        }
+      }
+    }
+
+    const post: BlockPost = { title, date, blocks: toCleanBlocks(blocks) }
 
     const res = await fetch('/api/posts', {
       method: 'POST',
