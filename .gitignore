@@ -401,3 +401,9 @@ FodyWeavers.xsd
 # next
 .next/
 ./vscode/
+# Auth & environment
+.env.local
+data/users.json
+
+# Next.js output
+out/

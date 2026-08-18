@@ -43,6 +43,7 @@ interface BlockEditorProps {
   initialDate?: string
   initialLang?: 'en' | 'uk'
   initialBlocks?: ContentBlock[]
+  role?: string
 }
 
 export default function BlockEditor({
@@ -50,6 +51,7 @@ export default function BlockEditor({
   initialDate = new Date().toISOString().slice(0, 10),
   initialLang = 'en',
   initialBlocks = [],
+  role,
 }: BlockEditorProps) {
   const [title, setTitle] = useState(initialTitle)
   const [date, setDate] = useState(initialDate)
@@ -57,6 +59,8 @@ export default function BlockEditor({
   const [blocks, setBlocks] = useState<EditorBlock[]>(initialBlocks as EditorBlock[])
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [exported, setExported] = useState(false)
+  const [published, setPublished] = useState(false)
+  const [publishError, setPublishError] = useState('')
   const formId = useId()
 
   // ─── Block mutations ──────────────────────────────────────────────────────
@@ -182,6 +186,40 @@ export default function BlockEditor({
     }
 
     setExported(true)
+  }
+
+  async function publishPost() {
+    setPublishError('')
+    const cleanBlocks: ContentBlock[] = blocks.map((b) => {
+      if (b.type === 'paragraph') return { id: b.id, type: 'paragraph', content: b.content }
+      if (b.type === 'image') {
+        const { previewUrl: _p, file: _f, ...rest } = b as ImageBlock & { previewUrl?: string; file?: File }
+        return rest
+      }
+      if (b.type === 'pdf') {
+        const { previewUrl: _p, file: _f, ...rest } = b as PdfBlock & { previewUrl?: string; file?: File }
+        return rest
+      }
+      const { previewUrl: _p, file: _f, ...rest } = b as VideoBlock & { previewUrl?: string; file?: File }
+      return rest
+    })
+
+    const post: BlockPost = { title, date, blocks: cleanBlocks }
+    const slug = slugify(title) || 'post'
+
+    const res = await fetch('/api/posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug, lang, post }),
+    })
+
+    if (!res.ok) {
+      const data = (await res.json()) as { error?: string }
+      setPublishError(data.error ?? 'Failed to publish')
+      return
+    }
+
+    setPublished(true)
   }
 
   function downloadText(content: string, filename: string, mimeType: string) {
@@ -398,6 +436,26 @@ export default function BlockEditor({
             <p className="mt-2 text-sm text-green-400">
               ✓ Files downloaded. Commit them to publish the post.
             </p>
+          )}
+          {role && (
+            <div className="mt-4 border-t border-gray-600 pt-4">
+              <p className="mb-3 text-sm text-gray-400">
+                Publish directly to the server (saves to <code className="text-yellow-300">posts/</code> on the server).
+              </p>
+              <button
+                onClick={publishPost}
+                disabled={!title.trim() || blocks.length === 0}
+                className="px-6 py-3 text-sm font-semibold text-white bg-green-600 rounded hover:bg-green-500 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                Publish Post
+              </button>
+              {published && (
+                <p className="mt-2 text-sm text-green-400">✓ Post published successfully.</p>
+              )}
+              {publishError && (
+                <p className="mt-2 text-sm text-red-400">{publishError}</p>
+              )}
+            </div>
           )}
         </div>
       </div>
