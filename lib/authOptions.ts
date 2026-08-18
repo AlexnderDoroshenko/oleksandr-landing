@@ -1,7 +1,6 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { findUserByEmail, verifyPassword } from './users'
 import type { NextAuthOptions } from 'next-auth'
-import '../types/next-auth.d'
 
 if (!process.env.NEXTAUTH_SECRET) {
   throw new Error('NEXTAUTH_SECRET environment variable is required')
