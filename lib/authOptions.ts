@@ -2,8 +2,19 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { findUserByEmail, verifyPassword } from './users'
 import type { NextAuthOptions } from 'next-auth'
 
-if (!process.env.NEXTAUTH_SECRET) {
-  throw new Error('NEXTAUTH_SECRET environment variable is required')
+const nextAuthSecret = process.env.NEXTAUTH_SECRET;
+
+if (!nextAuthSecret) {
+    // Fail hard if running in a presumed production/CI environment
+    if (process.env.NODE_ENV === 'production' || process.env.CI) {
+        throw new Error(
+            "NEXTAUTH_SECRET is required for production builds. Please set it in your CI/CD environment variables (e.g., GitHub Secrets)."
+        );
+    }
+    // Log a warning but continue if running in an assumed development environment
+    console.warn("⚠️ WARNING: NEXTAUTH_SECRET is not set. Using a placeholder/dummy key for local development. This is insecure for production.");
+    // Set a dummy secret for local runs to prevent immediate crash, but ensure developer knows it's a warning.
+    process.env.NEXTAUTH_SECRET = 'development-placeholder-key';
 }
 
 export const authOptions: NextAuthOptions = {
