@@ -19,7 +19,7 @@
         "formidable": "^3.5.4",
         "gray-matter": "^4.0.3",
         "isomorphic-dompurify": "^3.22.0",
-        "marked": "^15.0.11",
+        "marked": "^18.0.10",
         "next": ">=15.5.18",
         "next-auth": "^4.24.15",
         "react": "18.2.0",
