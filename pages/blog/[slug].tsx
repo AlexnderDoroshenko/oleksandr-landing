@@ -1,8 +1,11 @@
 import DOMPurify from 'isomorphic-dompurify'
+import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import BlockRenderer from '../../components/BlockRenderer'
+import SiteHeader from '../../components/SiteHeader'
 import { useLanguage } from '../../hooks/useLanguage'
 import { getAllSlugs, getPostTranslations } from '../../lib/posts'
 import { isBlockPost } from '../../types/post'
@@ -16,7 +19,7 @@ type PostProps = {
 export default function Post({ slug, translations }: PostProps) {
   const router = useRouter()
   const { data: session } = useSession()
-  const { lang } = useLanguage()
+  const { lang, setLang } = useLanguage()
   const [deleting, setDeleting] = useState(false)
 
   const isAdmin = session?.user?.role === 'admin'
@@ -43,37 +46,32 @@ export default function Post({ slug, translations }: PostProps) {
   }
 
   return (
-    <div className="min-h-screen p-6 text-white bg-gray-900">
-      <div className="flex items-start justify-between mb-2">
-        <h1 className="text-3xl font-bold">{post.title}</h1>
+    <><Head><title>{post.title} | Oleksandr Doroshenko</title></Head><main className="inner-page article-page">
+      <SiteHeader lang={lang} onLanguageChange={setLang} section="blog" />
+      <article className="article-shell">
+        <Link className="article-back" href={{ pathname: '/blog', query: { lang } }}>← {lang === 'uk' ? 'До блогу' : 'Back to blog'}</Link>
+        <div className="article-title-row"><div><p className="section-index">BLOG / {post.date}</p><h1>{post.title}</h1></div>
         {isAdmin && (
-          <div className="flex gap-2 ml-4 shrink-0">
+          <div className="article-admin-actions">
             <button
               onClick={() => router.push(`/admin/new-post?edit=${slug}&lang=${lang}`)}
-              className="px-3 py-1 text-sm rounded bg-yellow-600 hover:bg-yellow-700 text-white transition-colors"
+              className="admin-button"
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
               disabled={deleting}
-              className="px-3 py-1 text-sm rounded bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white transition-colors"
+              className="admin-button danger-button"
             >
               {deleting ? 'Deleting…' : 'Delete'}
             </button>
           </div>
         )}
-      </div>
-      <div className="mb-4 text-sm text-gray-400">{post.date}</div>
-      {isBlockPost(post) ? (
-        <BlockRenderer blocks={post.blocks} basePath={basePath} />
-      ) : (
-        <article
-          className="prose prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize((post as LegacyPost).content) }}
-        />
-      )}
-    </div>
+        </div>
+        <div className="article-body">{isBlockPost(post) ? <BlockRenderer blocks={post.blocks} basePath={basePath} /> : <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize((post as LegacyPost).content) }} />}</div>
+      </article>
+    </main></>
   )
 }
 

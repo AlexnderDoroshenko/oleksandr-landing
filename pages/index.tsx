@@ -17,8 +17,8 @@ const profile = {
     experienceTitle: 'Experience built across products and platforms',
     experienceIntro: 'I connect engineering detail with delivery goals: practical automation, fast feedback, and processes teams actually use.',
     jobs: [
-      { company: 'Capgemini', role: 'AQA Engineer / Automation Team Lead', detail: 'Automation architecture, team leadership, technical interviews, mentoring, and delivery quality for international products.' },
-      { company: 'Nayax Retail', role: 'AQA Engineer', detail: 'Web and API automation, CI pipelines, observability, and reliable regression coverage for retail technology.' },
+      { company: 'Capgemini', role: 'AQA Engineer', detail: 'Test automation, framework maintenance, technical interviews, mentoring, and delivery quality for international products.' },
+      { company: 'Nayax Retail', role: 'Automation Team Lead / AQA Engineer', detail: 'Team leadership, web and API automation, CI pipelines, observability, and reliable regression coverage for retail technology.' },
       { company: 'UPITec', role: 'QA Automation Engineer', detail: 'Helped establish testing processes from the ground up and grew maintainable automated coverage.' },
     ],
     expertiseTitle: 'What I bring to a team',
@@ -52,8 +52,8 @@ const profile = {
     experienceTitle: 'Досвід, сформований на продуктах і платформах',
     experienceIntro: 'Поєдную інженерні деталі з цілями доставки: практична автоматизація, швидкий зворотний зв’язок і процеси, якими команда справді користується.',
     jobs: [
-      { company: 'Capgemini', role: 'AQA Engineer / Automation Team Lead', detail: 'Архітектура автоматизації, лідерство команди, технічні співбесіди, менторство та якість доставки міжнародних продуктів.' },
-      { company: 'Nayax Retail', role: 'AQA Engineer', detail: 'Автоматизація web та API, CI-пайплайни, спостережуваність і надійне регресійне покриття retail-рішень.' },
+      { company: 'Capgemini', role: 'AQA Engineer', detail: 'Автоматизація тестування, підтримка фреймворку, технічні співбесіди, менторство та якість доставки міжнародних продуктів.' },
+      { company: 'Nayax Retail', role: 'Automation Team Lead / AQA Engineer', detail: 'Лідерство команди, автоматизація web та API, CI-пайплайни, спостережуваність і надійне регресійне покриття retail-рішень.' },
       { company: 'UPITec', role: 'QA Automation Engineer', detail: 'Допомагав будувати тестові процеси з нуля та розвивати підтримуване автоматизоване покриття.' },
     ],
     expertiseTitle: 'Що я додаю команді',
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
         <div className="portrait-wrap">
           {/* eslint-disable-next-line @next/next/no-img-element */}<img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/avatar.png`} alt="Oleksandr Doroshenko" />
-          <div className="portrait-caption"><span>Oleksandr Doroshenko</span><small>Quality engineering · Kyiv, UA</small></div>
+          <div className="portrait-caption"><span>Oleksandr Doroshenko</span><small>Quality engineering · Odesa, UA</small></div>
         </div>
       </section>
 
