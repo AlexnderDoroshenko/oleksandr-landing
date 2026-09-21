@@ -21,7 +21,7 @@ concurrency:
 jobs:
   quality:
     name: Typecheck, test, and build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Checkout repository
@@ -45,7 +45,7 @@ jobs:
   dependency-review:
     name: Dependency review
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout repository
@@ -58,7 +58,7 @@ jobs:
 
   codeql:
     name: CodeQL SAST
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout repository
@@ -75,7 +75,7 @@ jobs:
 
   secret-scan:
     name: Secret scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout complete history
@@ -85,11 +85,12 @@ jobs:
       - name: Detect verified or uncertain secrets
         uses: trufflesecurity/trufflehog@v3.97.5
         with:
-          extra_args: --results=verified,unknown --fail
+          version: 3.97.5
+          extra_args: --results=verified,unknown
 
   trivy:
     name: SCA, secrets, and configuration scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Checkout repository
@@ -127,7 +128,7 @@ jobs:
         run: npm audit --json > npm-audit.json || true
       - name: Upload security reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: security-reports
           path: |
@@ -138,7 +139,7 @@ jobs:
   dast:
     name: OWASP ZAP baseline DAST
     needs: quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout repository
@@ -175,7 +176,7 @@ jobs:
             -J zap-report.json
       - name: Upload ZAP reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: zap-baseline-report
           path: |
