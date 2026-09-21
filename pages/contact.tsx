@@ -1,40 +1,24 @@
-import Link from 'next/link'
+import Head from 'next/head'
+import SiteHeader from '../components/SiteHeader'
 import { useLanguage } from '../hooks/useLanguage'
-import LanguageSelector from '../components/LanguageSelector'
 
 export default function Contact() {
-  const { lang, setLang } = useLanguage('uk')
-  const texts = {
-    en: {
-      title: "Contact",
-      email: "Email",
-      linkedin: "LinkedIn",
-      home: "Home"
-    },
-    uk: {
-      title: "Контакти",
-      email: "Електронна пошта",
-      linkedin: "LinkedIn",
-      home: "Головна"
-    }
+  const { lang, setLang } = useLanguage('en')
+  const copy = lang === 'uk' ? {
+    eyebrow: 'КОНТАКТИ', title: 'Поговорімо про якість вашого продукту.',
+    text: 'Відкритий до Senior AQA та Automation Lead ролей, продуктових колаборацій і обміну інженерним досвідом.',
+    location: 'Одеса, Україна · Віддалена співпраця', email: 'Електронна пошта', social: 'Професійні профілі',
+  } : {
+    eyebrow: 'CONTACT', title: 'Let’s talk about your product’s quality.',
+    text: 'Open to Senior AQA and Automation Lead roles, product collaborations, and thoughtful engineering exchange.',
+    location: 'Odesa, Ukraine · Remote collaboration', email: 'Email', social: 'Professional profiles',
   }
-
-  return (
-    <div className="min-h-screen p-6 text-white bg-gray-900">
-      <div className="absolute flex gap-2 top-4 right-4">
-        <Link
-          href={lang === 'en' ? '/?lang=en' : '/?lang=uk'}
-          className="px-3 py-1 text-gray-900 bg-white rounded hover:bg-gray-300"
-        >
-          {texts[lang].home}
-        </Link>
-        <LanguageSelector value={lang} onChange={setLang} />
-      </div>
-      <h1 className="mb-4 text-3xl font-bold">{texts[lang].title}</h1>
-      <ul className="text-lg">
-        <li>{texts[lang].email}: <a href="mailto:doroshenkoaldm@gmail.com" className="underline">doroshenkoaldm@gmail.com</a></li>
-        <li>{texts[lang].linkedin}: <a href="https://www.linkedin.com/in/oleksandr-doroshenko-3a426a134" className="underline">oleksandr-doroshenko</a></li>
-      </ul>
-    </div>
-  )
+  return <><Head><title>{copy.eyebrow} | Oleksandr Doroshenko</title></Head><main className="inner-page contact-page">
+    <SiteHeader lang={lang} onLanguageChange={setLang} section="contact" />
+    <section className="contact-hero"><p className="section-index">03 / {copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.text}</p><span>{copy.location}</span></section>
+    <section className="contact-directory">
+      <div><p>{copy.email}</p><a href="mailto:doroshenkoaldm@gmail.com">doroshenkoaldm@gmail.com <span>↗</span></a></div>
+      <div><p>{copy.social}</p><a href="https://www.linkedin.com/in/oleksandr-doroshenko-3a426a134" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/AlexnderDoroshenko" target="_blank" rel="noreferrer">GitHub <span>↗</span></a></div>
+    </section>
+  </main></>
 }
