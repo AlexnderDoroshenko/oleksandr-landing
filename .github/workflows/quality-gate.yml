@@ -135,6 +135,43 @@ jobs:
             npm-audit.json
           retention-days: 30
 
+  container-security:
+    name: Container image and SBOM
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Build production image
+        run: docker build --tag oleksandr-landing:${{ github.sha }} .
+      - name: Scan image for high and critical vulnerabilities
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: image
+          image-ref: oleksandr-landing:${{ github.sha }}
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: table
+          exit-code: '1'
+      - name: Generate CycloneDX SBOM
+        if: always()
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: image
+          image-ref: oleksandr-landing:${{ github.sha }}
+          format: cyclonedx
+          output: container-sbom.cdx.json
+          exit-code: '0'
+          skip-setup-trivy: true
+      - name: Upload container SBOM
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-sbom
+          path: container-sbom.cdx.json
+          retention-days: 30
+
   dast:
     name: OWASP ZAP baseline DAST
     needs: quality
