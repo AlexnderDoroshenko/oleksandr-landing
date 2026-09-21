@@ -31,16 +31,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Exclude server-only admin page from static export
-        run: |
-          mkdir -p /tmp/oleksandr-landing-server-pages
-          mv pages/admin/new-post.tsx /tmp/oleksandr-landing-server-pages/new-post.tsx
-
       - name: Build static public site
         env:
           GITHUB_PAGES: 'true'
-          NEXTAUTH_SECRET: github-pages-static-build
-          NODE_ENV: production
         run: npm run build
 
       - name: Deploy to GitHub Pages

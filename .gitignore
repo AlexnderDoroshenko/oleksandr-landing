@@ -10,12 +10,6 @@ out/
 .env.local
 .env.*.local
 
-# ─── Runtime data ─────────────────────────────────────────────────────────────
-# User accounts stored on disk — regenerate via seed-admin.ts
-data/users.json
-# Uploaded media files — populated at runtime
-public/uploads/
-
 # ─── TypeScript build cache ───────────────────────────────────────────────────
 tsconfig.tsbuildinfo
 
