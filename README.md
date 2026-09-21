@@ -1,122 +1,84 @@
-# Oleksandr Doroshenko – AQA Engineer Landing Page
+# Oleksandr Doroshenko — personal website
 
-Personal website showcasing the professional profile of an AQA Engineer, with a structured block-based blog, bilingual support (English / Ukrainian), authentication, and a Docker-ready setup.
+A bilingual static portfolio and engineering blog built with Next.js. The published website is generated entirely from files in this repository and deployed to GitHub Pages.
 
-## 🛠 Stack
+## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js (React) |
-| Styling | TailwindCSS |
-| Auth | NextAuth.js (credentials) |
-| Blog content | JSON block posts + Markdown |
-| Password hashing | bcryptjs |
-| File uploads | formidable |
-| Testing | Jest + React Testing Library |
-| CI/CD | GitHub Actions |
-| Containerisation | Docker / Docker Compose |
+- Next.js and React
+- TypeScript and Tailwind CSS
+- JSON block posts and legacy Markdown posts
+- Jest and React Testing Library
+- GitHub Actions and GitHub Pages
 
-## 📁 Project Structure
+There is no database, authentication, admin panel, upload API, or persistent application server.
 
-```
-.
-├── components/          # Reusable UI components (BlockEditor, BlockRenderer, …)
-├── hooks/               # Custom React hooks
-├── lib/                 # Server-side utilities (auth, users, API helpers, validation)
-├── pages/
-│   ├── admin/           # Admin-only pages (new-post editor)
-│   ├── api/
-│   │   ├── auth/        # NextAuth endpoints
-│   │   ├── posts/       # CRUD endpoints for blog posts
-│   │   └── upload.ts    # Media file upload endpoint
-│   ├── auth/            # Sign-in page
-│   ├── blog/            # Blog listing and post pages
-│   ├── about.tsx
-│   ├── contact.tsx
-│   └── index.tsx
-├── posts/               # Published blog post JSON files
-├── public/
-│   ├── images/          # Static images and icons
-│   └── uploads/         # Uploaded media files (runtime)
-├── scripts/
-│   └── seed-admin.ts    # One-time admin user seed script
-├── styles/              # Global CSS
-├── types/               # TypeScript type definitions
-└── __tests__/           # Jest test suites
-```
+## Local development
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js ≥ 18
-- npm
-
-### 1. Install dependencies
+Requirements: Node.js 24 and npm.
 
 ```bash
-npm install
-```
-
-### 2. Configure environment variables
-
-Copy the example file and fill in the values:
-
-```bash
-cp .env.example .env.local
-```
-
-| Variable | Description |
-|---|---|
-| `NEXTAUTH_SECRET` | Random secret for NextAuth — generate with `openssl rand -base64 32` |
-| `NEXTAUTH_URL` | Public URL of the app (e.g. `http://localhost:3000`) |
-| `ADMIN_EMAIL` | Email for the initial admin account (used by seed script) |
-| `ADMIN_PASSWORD` | Password for the initial admin account |
-
-### 3. Seed the admin user
-
-```bash
-ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD=yourpassword npx ts-node -P tsconfig.json scripts/seed-admin.ts
-```
-
-### 4. Run the development server
-
-```bash
+npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open <http://localhost:3000>.
 
-## 🐳 Docker
-
-```bash
-docker-compose up --build
-```
-
-The app will be available at [http://localhost:3000](http://localhost:3000).
-
-## 🧪 Testing
+Run the checks used by the quality gate:
 
 ```bash
-# Run all tests
-npm test
-
-# Run with coverage report
-npm run test:coverage
+npx tsc --noEmit
+npm test -- --runInBand
+GITHUB_PAGES=true npm run build
 ```
 
-## 📜 Available Scripts
+The production build is written to `out/`.
 
-| Script | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm start` | Start production server |
-| `npm run export` | Export static site |
-| `npm run lint` | Run ESLint |
-| `npm test` | Run Jest test suite |
-| `npm run test:coverage` | Run tests with coverage |
+## Publishing a blog post
 
-## 📄 License
+Blog content is Git-based. Publishing means changing files, opening a pull request, and merging it after review.
 
-MIT
+1. Add an English or Ukrainian post to `posts/` using `<slug>-en.json` or `<slug>-uk.json`.
+2. Put referenced images, PDFs, or videos in `public/uploads/` and use paths such as `/uploads/example.webp` in the post blocks.
+3. Run the checks locally.
+4. Commit the content and open a pull request.
+5. After merge to `main`, the deployment workflow rebuilds and publishes GitHub Pages.
+
+Example block post:
+
+```json
+{
+  "title": "Post title",
+  "date": "2026-09-21",
+  "blocks": [
+    {
+      "id": "intro",
+      "type": "paragraph",
+      "content": "Post text"
+    },
+    {
+      "id": "diagram",
+      "type": "image",
+      "src": "/uploads/example.webp",
+      "alt": "Diagram description"
+    }
+  ]
+}
+```
+
+## Quality and security gate
+
+Pull requests run TypeScript checks, unit tests, a static production build, dependency review, CodeQL SAST, TruffleHog secret scanning, Trivy dependency/configuration scanning, and an OWASP ZAP baseline scan against the exported site.
+
+## Project structure
+
+```text
+components/       Shared interface and post rendering components
+hooks/            Client-side language preference
+lib/posts.ts      Build-time content loader
+pages/            Statically exported website routes
+posts/            Version-controlled blog posts
+public/uploads/   Version-controlled blog media
+styles/           Global styles
+types/            Blog content types
+__tests__/        Jest test suites
+```

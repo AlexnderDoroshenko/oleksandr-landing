@@ -10,7 +10,7 @@
     {
       "id": "2",
       "type": "paragraph",
-      "content": "Use the admin editor at /admin/new-post to compose a post, then download the JSON file and place it in the posts/ directory alongside any media files in public/uploads/."
+      "content": "Create or edit the JSON file in the posts/ directory, keep any referenced media in public/uploads/, and publish the change through a reviewed pull request."
     }
   ]
 }

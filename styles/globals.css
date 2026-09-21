@@ -119,9 +119,6 @@ footer { color:var(--muted); display:flex; font-size:.75rem; justify-content:spa
 .article-back { color:var(--muted); font-size:.85rem; font-weight:750; }
 .article-title-row { align-items:start; border-bottom:1px solid var(--ink); display:flex; gap:2rem; justify-content:space-between; margin-top:4rem; padding-bottom:3rem; }
 .article-title-row h1 { font-size:clamp(3rem,6vw,6rem); letter-spacing:-.065em; line-height:1; margin:1rem 0 0; }
-.article-admin-actions { display:flex; gap:.5rem; }
-.admin-button { background:var(--ink); border:0; color:white; cursor:pointer; font-weight:750; padding:.7rem 1rem; }
-.danger-button { background:#a42020; }
 .article-body { font-size:1.08rem; line-height:1.8; margin:3rem auto 0; max-width:780px; }
 .article-body h2,.article-body h3 { letter-spacing:-.035em; line-height:1.15; margin:2.5rem 0 1rem; }
 .article-body h2 { font-size:2rem; }

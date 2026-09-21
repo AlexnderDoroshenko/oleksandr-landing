@@ -1,15 +1,16 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react'
-import type { Session } from 'next-auth'
+import Head from 'next/head'
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps<{ session?: Session }>) {
+export default function App({ Component, pageProps }: AppProps) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
   return (
-    <SessionProvider session={pageProps.session}>
+    <>
+      <Head>
+        <link rel="icon" type="image/png" sizes="64x64" href={`${basePath}/favicon.png`} />
+      </Head>
       <Component {...pageProps} />
-    </SessionProvider>
+    </>
   )
 }
