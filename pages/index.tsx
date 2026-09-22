@@ -2,12 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import LanguageSelector from '../components/LanguageSelector'
 import { useLanguage } from '../hooks/useLanguage'
+import { getAllPostMetas } from '../lib/posts'
+import type { PostMeta } from '../lib/posts'
 
 const profile = {
   en: {
     metaTitle: 'Oleksandr Doroshenko | Senior AQA Engineer',
     metaDescription: 'Senior AQA Engineer and Automation Team Lead focused on reliable delivery, test architecture, and secure software.',
-    nav: ['Experience', 'Expertise', 'Projects', 'Contact'],
+    nav: ['Experience', 'Expertise', 'Projects', 'Blog', 'Contact'],
     eyebrow: 'Senior AQA Engineer · Automation Team Lead',
     headline: 'I build quality systems that help teams ship with confidence.',
     intro: 'Over 6 years in software quality — from hands-on automation and CI/CD to test strategy, mentoring, and technical leadership.',
@@ -29,6 +31,7 @@ const profile = {
       { number: '04', title: 'Security-minded testing', detail: 'Master’s studies in cybersecurity with a focus on bringing security thinking into everyday software quality.' },
     ],
     projectsTitle: 'Building beyond the test suite', projectsIntro: 'Selected work where automation, developer experience, and product thinking meet.',
+    blogTitle: 'Notes from the workbench', blogIntro: 'Practical ideas about quality engineering, automation, security, and the systems behind reliable delivery.', blogCta: 'View all notes', blogEmpty: 'The first article is being prepared.',
     projects: [
       { name: 'NiceDice', label: 'Volunteer product', detail: 'A collaborative platform where I contribute test architecture, automation, and engineering quality practices.' },
       { name: 'QualityForge', label: 'AI-assisted QA platform', detail: 'An evolving quality engineering workspace for structured requirements, test design, and automation workflows.' },
@@ -42,7 +45,7 @@ const profile = {
   uk: {
     metaTitle: 'Олександр Дорошенко | Senior AQA Engineer',
     metaDescription: 'Senior AQA Engineer та Automation Team Lead: архітектура автоматизації, якісна доставка й безпека програмного забезпечення.',
-    nav: ['Досвід', 'Експертиза', 'Проєкти', 'Контакти'],
+    nav: ['Досвід', 'Експертиза', 'Проєкти', 'Блог', 'Контакти'],
     eyebrow: 'Senior AQA Engineer · Automation Team Lead',
     headline: 'Будую системи якості, з якими команди впевнено випускають продукт.',
     intro: 'Понад 6 років у якості програмного забезпечення — від автоматизації та CI/CD до тестової стратегії, менторства й технічного лідерства.',
@@ -64,6 +67,7 @@ const profile = {
       { number: '04', title: 'Безпека в тестуванні', detail: 'Магістратура з кібербезпеки та фокус на впровадженні security-мислення в щоденну роботу з якістю.' },
     ],
     projectsTitle: 'За межами тестового набору', projectsIntro: 'Вибрані напрями, де зустрічаються автоматизація, developer experience і продуктове мислення.',
+    blogTitle: 'Нотатки з практики', blogIntro: 'Практичні ідеї про інженерію якості, автоматизацію, безпеку та системи надійної доставки.', blogCta: 'Усі нотатки', blogEmpty: 'Перша стаття готується.',
     projects: [
       { name: 'NiceDice', label: 'Волонтерський продукт', detail: 'Спільна платформа, де я розвиваю тестову архітектуру, автоматизацію та інженерні практики якості.' },
       { name: 'QualityForge', label: 'AI-assisted QA platform', detail: 'Середовище для структурованих вимог, тест-дизайну й автоматизаційних workflow, що постійно розвивається.' },
@@ -76,17 +80,23 @@ const profile = {
   },
 }
 
-export default function Home() {
+export default function Home({ posts }: { posts: PostMeta[] }) {
   const { lang, setLang } = useLanguage('en')
   const copy = profile[lang]
-  const anchors = ['#experience', '#expertise', '#projects', '#contact']
+  const visiblePosts = posts.filter(post => post.lang === lang).slice(0, 3)
 
   return <>
     <Head><title>{copy.metaTitle}</title><meta name="description" content={copy.metaDescription} /></Head>
     <main className="portfolio-shell">
       <header className="site-header">
         <a className="monogram" href="#top" aria-label="Oleksandr Doroshenko — home">OD<span>.</span></a>
-        <nav className="desktop-nav" aria-label="Primary navigation">{copy.nav.map((item, i) => <a key={item} href={anchors[i]}>{item}</a>)}</nav>
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          <a href="#experience">{copy.nav[0]}</a>
+          <a href="#expertise">{copy.nav[1]}</a>
+          <a href="#projects">{copy.nav[2]}</a>
+          <Link href={{ pathname: '/blog', query: { lang } }}>{copy.nav[3]}</Link>
+          <a href="#contact">{copy.nav[4]}</a>
+        </nav>
         <LanguageSelector value={lang} onChange={setLang} className="language-select" />
       </header>
 
@@ -119,12 +129,33 @@ export default function Home() {
         <div className="project-list">{copy.projects.map(project => <article className="project-row" key={project.name}><div><p>{project.label}</p><h3>{project.name}</h3></div><p>{project.detail}</p><span aria-hidden="true">↗</span></article>)}</div>
       </section>
 
+      <section className="section home-blog-section" id="blog">
+        <div className="section-heading">
+          <p className="section-index">04 / BLOG</p>
+          <div><h2>{copy.blogTitle}</h2><p>{copy.blogIntro}</p></div>
+        </div>
+        <div className="home-blog-list">
+          {visiblePosts.length === 0 ? <p className="empty-state">{copy.blogEmpty}</p> : visiblePosts.map((post, index) => (
+            <article key={post.slug}>
+              <span>0{index + 1}</span>
+              <div><p>{post.date}</p><h3><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h3></div>
+              <Link aria-label={post.title} href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>↗</Link>
+            </article>
+          ))}
+        </div>
+        <Link className="blog-index-link" href={{ pathname: '/blog', query: { lang } }}>{copy.blogCta}<span aria-hidden="true">↗</span></Link>
+      </section>
+
       <section className="contact-section" id="contact">
-        <p className="section-index">04 / CONTACT</p><p className="contact-eyebrow">{copy.contactEyebrow}</p><h2>{copy.contactTitle}</h2><p className="contact-copy">{copy.contactText}</p>
+        <p className="section-index">05 / CONTACT</p><p className="contact-eyebrow">{copy.contactEyebrow}</p><h2>{copy.contactTitle}</h2><p className="contact-copy">{copy.contactText}</p>
         <div className="contact-links"><a href="mailto:doroshenkoaldm@gmail.com">{copy.email}<span>↗</span></a><a href="https://www.linkedin.com/in/oleksandr-doroshenko-3a426a134" target="_blank" rel="noreferrer">{copy.linkedin}<span>↗</span></a><a href="https://github.com/AlexnderDoroshenko" target="_blank" rel="noreferrer">{copy.github}<span>↗</span></a><Link href={{ pathname: '/blog', query: { lang } }}>{copy.blog}<span>↗</span></Link></div>
       </section>
 
       <footer><span>© {new Date().getFullYear()} Oleksandr Doroshenko</span><span>{copy.footer}</span></footer>
     </main>
   </>
+}
+
+export async function getStaticProps() {
+  return { props: { posts: getAllPostMetas() } }
 }
