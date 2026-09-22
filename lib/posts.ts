@@ -66,7 +66,7 @@ export function getAllPostMetas(): PostMeta[] {
     metas.push({ title, date, slug: slugBase, lang })
   }
 
-  return metas
+  return metas.sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
 }
 
 export function getAllSlugs(): string[] {
