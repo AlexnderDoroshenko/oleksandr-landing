@@ -67,8 +67,9 @@ a { color:inherit; text-decoration:none; }
 .home-blog-section { background:var(--surface); }
 .home-blog-list { border-top:1px solid var(--ink); }
 .home-blog-list article { align-items:center; border-bottom:1px solid var(--line); display:grid; gap:2rem; grid-template-columns:60px 1fr 40px; padding:2rem 0; }
-.home-blog-list article>span,.home-blog-list article p { color:var(--muted); font-size:.72rem; font-weight:800; letter-spacing:.08em; margin:0; text-transform:uppercase; }
+.home-blog-list article>span,.home-blog-list .post-date { color:var(--muted); font-size:.72rem; font-weight:800; letter-spacing:.08em; margin:0; text-transform:uppercase; }
 .home-blog-list h3 { font-size:clamp(1.55rem,3vw,2.65rem); letter-spacing:-.04em; line-height:1.1; margin:.45rem 0 0; }
+.home-blog-list .post-summary { color:var(--muted); font-size:.95rem; line-height:1.55; margin:.8rem 0 0; max-width:70ch; }
 .home-blog-list h3 a:hover { text-decoration:underline; text-decoration-color:var(--accent-dark); text-underline-offset:.2em; }
 .home-blog-list article>a { font-size:1.5rem; text-align:right; }
 .blog-index-link { align-items:center; border:1px solid var(--ink); display:inline-flex; font-size:.9rem; font-weight:800; gap:2rem; margin-top:2rem; min-height:52px; padding:.75rem 1.25rem; }
@@ -109,8 +110,9 @@ footer { color:var(--muted); display:flex; font-size:.75rem; justify-content:spa
 .blog-hero { padding-bottom:5rem; }
 .article-list { border-top:1px solid var(--ink); margin:0 auto 8rem; max-width:1296px; width:90%; }
 .article-list article { align-items:center; border-bottom:1px solid var(--line); display:grid; gap:2rem; grid-template-columns:60px 1fr 40px; padding:2.2rem 0; }
-.article-list article>span,.article-list article>div>p { color:var(--muted); font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.article-list article>span,.article-list .post-date { color:var(--muted); font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 .article-list h2 { font-size:clamp(1.6rem,3vw,2.7rem); letter-spacing:-.04em; line-height:1.1; margin:.4rem 0 0; }
+.article-list .post-summary { color:var(--muted); font-size:1rem; line-height:1.55; margin:.8rem 0 0; max-width:75ch; }
 .article-list h2 a:hover { text-decoration:underline; text-decoration-color:var(--accent-dark); text-underline-offset:.2em; }
 .article-list article>a { font-size:1.5rem; text-align:right; }
 .empty-state { color:var(--muted); padding:3rem 0; }

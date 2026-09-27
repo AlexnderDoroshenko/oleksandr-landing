@@ -1,6 +1,7 @@
 ---
 title: "QualityForge Lab: why a QA engineer needs a testing playground"
 date: "2026-09-21"
+summary: "Why a QA portfolio should demonstrate more than code and tests by tracing each risk to a verifiable engineering result."
 ---
 
 A typical pet project mostly demonstrates finished code. That is not enough for a QA portfolio: it should also show how an engineer reviews requirements, identifies risk, designs coverage, builds quality gates, and communicates evidence. This is the idea behind **QualityForge Lab** — a controlled QA playground where every skill ends with something verifiable.

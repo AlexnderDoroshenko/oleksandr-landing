@@ -138,7 +138,7 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
           {visiblePosts.length === 0 ? <p className="empty-state">{copy.blogEmpty}</p> : visiblePosts.map((post, index) => (
             <article key={post.slug}>
               <span>0{index + 1}</span>
-              <div><p>{post.date}</p><h3><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h3></div>
+              <div><p className="post-date">{post.date}</p><h3><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h3>{post.summary && <p className="post-summary">{post.summary}</p>}</div>
               <Link aria-label={post.title} href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>↗</Link>
             </article>
           ))}

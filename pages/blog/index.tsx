@@ -16,7 +16,7 @@ export default function Blog({ posts }: { posts: PostMeta[] }) {
     <SiteHeader lang={lang} onLanguageChange={setLang} section="blog" />
     <section className="inner-hero blog-hero"><p className="section-index">02 / BLOG</p><h1>{copy.title}</h1><p>{copy.intro}</p></section>
     <section className="article-list">{filteredPosts.length === 0 ? <p className="empty-state">{copy.empty}</p> : filteredPosts.map((post, index) => <article key={post.slug}>
-      <span>0{index + 1}</span><div><p>{post.date}</p><h2><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h2></div><Link aria-label={post.title} href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>↗</Link>
+      <span>0{index + 1}</span><div><p className="post-date">{post.date}</p><h2><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h2>{post.summary && <p className="post-summary">{post.summary}</p>}</div><Link aria-label={post.title} href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>↗</Link>
     </article>)}</section>
   </main></>
 }

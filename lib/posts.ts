@@ -9,6 +9,7 @@ const postsDir = path.join(process.cwd(), 'posts')
 export type PostMeta = {
   title: string
   date: string
+  summary: string
   slug: string
   lang: Language
 }
@@ -41,6 +42,7 @@ export function getAllPostMetas(): PostMeta[] {
     const filePath = path.join(postsDir, file)
     let title = slugBase
     let date = ''
+    let summary = ''
 
     try {
       if (file.endsWith('.md')) {
@@ -48,11 +50,13 @@ export function getAllPostMetas(): PostMeta[] {
         const { data } = matter(raw)
         title = data.title ?? slugBase
         date = data.date ?? ''
+        summary = data.summary ?? ''
       } else {
         const raw = fs.readFileSync(filePath, 'utf-8')
         const json = JSON.parse(raw) as BlockPost
         title = json.title
         date = json.date
+        summary = json.summary ?? ''
       }
     } catch (err) {
       // Silently skip files that cannot be read or parsed (e.g. permission errors,
@@ -63,10 +67,22 @@ export function getAllPostMetas(): PostMeta[] {
       }
     }
 
-    metas.push({ title, date, slug: slugBase, lang })
+    metas.push({ title, date, summary, slug: slugBase, lang })
   }
 
-  return metas.sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
+  return metas.sort((a, b) => {
+    const dateOrder = b.date.localeCompare(a.date)
+    if (dateOrder) return dateOrder
+
+    const aSeriesNumber = a.title.match(/#(\d+)/)?.[1]
+    const bSeriesNumber = b.title.match(/#(\d+)/)?.[1]
+    if (aSeriesNumber && bSeriesNumber) {
+      const seriesOrder = Number(bSeriesNumber) - Number(aSeriesNumber)
+      if (seriesOrder) return seriesOrder
+    }
+
+    return a.title.localeCompare(b.title)
+  })
 }
 
 export function getAllSlugs(): string[] {
@@ -115,6 +131,7 @@ export function getPostTranslations(
       translations[lang] = {
         title: data.title,
         date: data.date,
+        summary: data.summary,
         content: marked.parse(content) as string,
       } as LegacyPost
     }
