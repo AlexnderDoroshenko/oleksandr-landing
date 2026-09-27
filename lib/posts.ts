@@ -97,7 +97,7 @@ export function getAllPostMetas(): PostMeta[] {
 
     return a.title.localeCompare(b.title)
   })
-  return cachedPostMetas
+  return [...cachedPostMetas]
 }
 
 export function getAllSlugs(): string[] {
