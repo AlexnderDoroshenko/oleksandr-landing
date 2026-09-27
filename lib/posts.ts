@@ -6,6 +6,8 @@ import type { Language, BlockPost, LegacyPost } from '../types/post'
 
 const postsDir = path.join(process.cwd(), 'posts')
 
+let cachedPostMetas: PostMeta[] | null = null
+
 export type PostMeta = {
   title: string
   date: string
@@ -19,6 +21,7 @@ export type PostMeta = {
 export type PostLink = Pick<PostMeta, 'title' | 'slug'>
 
 export function getAllPostMetas(): PostMeta[] {
+  if (cachedPostMetas) return cachedPostMetas
   if (!fs.existsSync(postsDir)) return []
   const files = fs.readdirSync(postsDir)
   const metas: PostMeta[] = []
@@ -80,7 +83,7 @@ export function getAllPostMetas(): PostMeta[] {
     metas.push({ title, date, summary, slug: slugBase, lang, series, seriesOrder })
   }
 
-  return metas.sort((a, b) => {
+  cachedPostMetas = metas.sort((a, b) => {
     const dateOrder = b.date.localeCompare(a.date)
     if (dateOrder) return dateOrder
 
@@ -91,6 +94,7 @@ export function getAllPostMetas(): PostMeta[] {
 
     return a.title.localeCompare(b.title)
   })
+  return cachedPostMetas
 }
 
 export function getAllSlugs(): string[] {
