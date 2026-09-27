@@ -21,7 +21,10 @@ export type PostMeta = {
 export type PostLink = Pick<PostMeta, 'title' | 'slug'>
 
 export function getAllPostMetas(): PostMeta[] {
-  if (cachedPostMetas) return cachedPostMetas
+  // Cache the result in production (static builds) to avoid re-reading every post
+  // file for each call. In development the cache is skipped so edits are reflected
+  // immediately without restarting the server.
+  if (cachedPostMetas && process.env.NODE_ENV === 'production') return cachedPostMetas
   if (!fs.existsSync(postsDir)) return []
   const files = fs.readdirSync(postsDir)
   const metas: PostMeta[] = []
