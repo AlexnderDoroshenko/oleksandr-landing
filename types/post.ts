@@ -34,12 +34,14 @@ export type ContentBlock = ParagraphBlock | ImageBlock | PdfBlock | VideoBlock
 export type BlockPost = {
   title: string
   date: string
+  summary?: string
   blocks: ContentBlock[]
 }
 
 export type LegacyPost = {
   title: string
   date: string
+  summary?: string
   content: string
 }
 
