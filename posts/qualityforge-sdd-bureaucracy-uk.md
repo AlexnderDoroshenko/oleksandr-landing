@@ -2,6 +2,8 @@
 title: "QualityForge Lab #5: коли SDD став бюрократією"
 date: "2026-09-27"
 summary: "Як hosted CI, portability evidence та повторні review перетворили корисні controls SDD v1 на помітний process overhead."
+series: "qualityforge"
+seriesOrder: 5
 ---
 
 Strict SDD workflow дав Feature 001 контроль і traceability. А потім ті самі правила почали заважати отримувати evidence, заради якого їх створили.

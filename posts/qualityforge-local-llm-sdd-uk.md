@@ -2,6 +2,8 @@
 title: "QualityForge Lab #2: локальна LLM, Ollama, OpenCode та Spec Kit — перші граблі SDD"
 date: "2026-09-27"
 summary: "Як спроба побудувати local-first SDD на Ollama, OpenCode та Spec Kit перетворила інфраструктуру моделі на окремий експеримент."
+series: "qualityforge"
+seriesOrder: 2
 ---
 
 У [першому дописі](/blog/qualityforge-qa-polygon) я пояснив, навіщо QA-інженеру власний полігон. Логічним наступним кроком здавалося взяти першу фічу й почати будувати продукт.

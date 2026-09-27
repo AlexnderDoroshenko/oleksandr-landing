@@ -2,6 +2,8 @@
 title: "QualityForge Lab #8: де агент повинен зупинитися"
 date: "2026-09-27"
 summary: "Три security-рішення з AUTH-T01, T02 і T04, які агент мав винести на human gate, а не вигадувати самостійно."
+series: "qualityforge"
+seriesOrder: 8
 ---
 
 SDD v2 дозволяв агенту самостійно виправляти in-scope defects. Але security task може бути технічно зрозумілим і водночас не мати правильної відповіді без продуктового рішення.

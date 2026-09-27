@@ -2,6 +2,8 @@
 title: "QualityForge Lab #9: zero human interventions — what actually happened in AUTH-T03"
 date: "2026-09-27"
 summary: "What zero human interventions really meant in HIGH-risk AUTH-T03, and why that is not the same as full autonomy."
+series: "qualityforge"
+seriesOrder: 9
 ---
 
 The `AUTH-T03` task record contains an attractive number: **Human interventions — 0**. It would make an excellent headline about an autonomous agent and an equally poor description of what happened.

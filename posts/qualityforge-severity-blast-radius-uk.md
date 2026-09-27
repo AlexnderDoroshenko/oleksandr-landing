@@ -2,6 +2,8 @@
 title: "QualityForge Lab #6: Severity ≠ blast radius"
 date: "2026-09-27"
 summary: "Чому severity finding визначає важливість проблеми, але не обсяг correction, validation і повторного review."
+series: "qualityforge"
+seriesOrder: 6
 ---
 
 У Feature 001 ми кілька разів потрапляли в одну пастку: якщо finding має severity Major, значить після correction треба повторити майже все. Логічно звучить — і часто марнує час.
