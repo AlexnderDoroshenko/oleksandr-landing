@@ -19,7 +19,7 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
   const { lang, setLang } = useLanguage()
 
   const post = translations[lang] ?? translations.en ?? translations.uk
-  const nextPost = nextPosts[lang] ?? nextPosts.en ?? nextPosts.uk
+  const nextPost = nextPosts[lang]
 
   if (!post) {
     return null
