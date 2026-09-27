@@ -14,6 +14,14 @@ export type PostMeta = {
   lang: Language
 }
 
+export type PostLink = Pick<PostMeta, 'title' | 'slug'>
+
+function getQualityForgeSeriesOrder(post: Pick<PostMeta, 'title' | 'slug'>): number | null {
+  if (post.slug === 'qualityforge-qa-polygon') return 1
+  const match = post.title.match(/QualityForge Lab #(\d+)/)
+  return match ? Number(match[1]) : null
+}
+
 export function getAllPostMetas(): PostMeta[] {
   if (!fs.existsSync(postsDir)) return []
   const files = fs.readdirSync(postsDir)
@@ -98,6 +106,18 @@ export function getAllSlugs(): string[] {
   }
 
   return Array.from(slugs)
+}
+
+export function getNextSeriesPost(slug: string, lang: Language): PostLink | null {
+  const localizedPosts = getAllPostMetas().filter(post => post.lang === lang)
+  const currentPost = localizedPosts.find(post => post.slug === slug)
+  if (!currentPost) return null
+
+  const currentOrder = getQualityForgeSeriesOrder(currentPost)
+  if (currentOrder === null) return null
+
+  const nextPost = localizedPosts.find(post => getQualityForgeSeriesOrder(post) === currentOrder + 1)
+  return nextPost ? { title: nextPost.title, slug: nextPost.slug } : null
 }
 
 export function getPostTranslations(
