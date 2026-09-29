@@ -2,6 +2,8 @@
 title: "QualityForge Lab #8: where the agent must stop"
 date: "2026-09-27"
 summary: "Three security decisions from AUTH-T01, T02, and T04 that required a human gate instead of agent improvisation."
+series: "qualityforge"
+seriesOrder: 8
 ---
 
 SDD v2 allowed an agent to correct in-scope defects without constant permission. A security task, however, can be technically clear while lacking a correct answer until a product decision is made.

@@ -2,6 +2,8 @@
 title: "QualityForge Lab #5: when SDD became bureaucracy"
 date: "2026-09-27"
 summary: "How hosted CI, portability evidence, and repeated reviews turned useful SDD v1 controls into substantial process overhead."
+series: "qualityforge"
+seriesOrder: 5
 ---
 
 The strict workflow gave Feature 001 control and traceability. Then those same rules began to obstruct the evidence they were designed to protect.

@@ -2,6 +2,8 @@
 title: "QualityForge Lab #10: AUTH-T01–T04 у цифрах"
 date: "2026-09-27"
 summary: "Перші чотири HIGH-risk SDD v2 tasks у цифрах: passes, corrections, human interventions, findings і чесні межі порівняння."
+series: "qualityforge"
+seriesOrder: 10
 ---
 
 Після чотирьох HIGH-risk identity tasks у нас з’явився перший невеликий набір process records. Він ще не доводить, що SDD v2 швидший або дешевший, але вже дозволяє говорити не лише враженнями.

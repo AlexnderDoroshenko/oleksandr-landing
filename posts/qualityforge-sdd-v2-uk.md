@@ -2,6 +2,8 @@
 title: "QualityForge Lab #7: SDD v2 — Orchestrator, Builder і Reviewer"
 date: "2026-09-27"
 summary: "Як risk-based SDD v2 розділив Orchestrator, Builder і Reviewer, обмежив correction cycles та дозволив чесний validation reuse."
+series: "qualityforge"
+seriesOrder: 7
 ---
 
 SDD v2 не мав «автоматизувати людину». Його мета була скромнішою: залишити human authority для рішень, але прибрати ручне керування кожним переходом процесу.
