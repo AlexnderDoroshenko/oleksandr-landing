@@ -115,8 +115,11 @@ export function getAllSlugs(): string[] {
   return Array.from(slugs)
 }
 
+const localizedPostsCache: Partial<Record<Language, PostMeta[]>> = {}
+
 export function getNextSeriesPost(slug: string, lang: Language): PostLink | null {
-  const localizedPosts = getAllPostMetas().filter(post => post.lang === lang)
+  const localizedPosts =
+    localizedPostsCache[lang] ?? (localizedPostsCache[lang] = getAllPostMetas().filter(post => post.lang === lang))
   const currentPost = localizedPosts.find(post => post.slug === slug)
   if (!currentPost || currentPost.series == null || currentPost.seriesOrder == null) return null
 
