@@ -1,0 +1,43 @@
+import { getDirectionTranslation, getKnowledgeDirections, getKnowledgeMaterials, getMaterialTranslation } from '../lib/knowledge'
+import type { KnowledgeMaterial } from '../types/knowledge'
+
+describe('Knowledge Base content', () => {
+  it('contains the twelve requested directions in a stable order', () => {
+    const directions = getKnowledgeDirections()
+
+    expect(directions).toHaveLength(12)
+    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    expect(new Set(directions.map(direction => direction.slug)).size).toBe(12)
+  })
+
+  it('localizes every catalog direction in English and Ukrainian', () => {
+    for (const direction of getKnowledgeDirections()) {
+      expect(getDirectionTranslation(direction, 'en')?.title).toBeTruthy()
+      expect(getDirectionTranslation(direction, 'uk')?.title).toBeTruthy()
+      expect(getDirectionTranslation(direction, 'en')?.description).toBeTruthy()
+      expect(getDirectionTranslation(direction, 'uk')?.description).toBeTruthy()
+    }
+  })
+
+  it('loads three bilingual starter materials for every direction', () => {
+    for (const direction of getKnowledgeDirections()) {
+      const materials = getKnowledgeMaterials(direction.slug)
+      expect(materials).toHaveLength(3)
+      expect(materials.every(material => getMaterialTranslation(material, 'en'))).toBe(true)
+      expect(materials.every(material => getMaterialTranslation(material, 'uk'))).toBe(true)
+    }
+  })
+
+  it('does not silently fall back when a material translation is missing', () => {
+    const material: KnowledgeMaterial = {
+      id: 'missing-uk',
+      direction: 'testing-theory',
+      translations: {
+        en: { question: 'Question', answer: 'Answer', examples: [], exercises: [] },
+      },
+    }
+
+    expect(getMaterialTranslation(material, 'uk')).toBeNull()
+    expect(getMaterialTranslation(material, 'en')?.answer).toBe('Answer')
+  })
+})
