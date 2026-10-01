@@ -68,7 +68,7 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
             {translation ? <>
               <h3>{translation.title}</h3>
               <p>{translation.description}</p>
-              {materialCount > 0 && <small>{materialCount} {materialCount === 1 ? copy.material : copy.materials}</small>}
+              {materialCount > 0 && <small>{materialCount} {getMaterialCountLabel(materialCount, lang, copy.material, copy.materials)}</small>}
               <Link href={{ pathname: `/knowledge/${direction.slug}`, query: { lang } }}>{copy.open}<span aria-hidden="true">→</span></Link>
             </> : <p className="translation-status">{copy.unavailable}</p>}
           </article>
@@ -85,4 +85,15 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
 
 export async function getStaticProps() {
   return { props: { directions: getKnowledgeDirections() } }
+}
+
+function getMaterialCountLabel(count: number, lang: 'en' | 'uk', singular: string, plural: string) {
+  if (lang === 'en') return count === 1 ? singular : plural
+
+  const lastTwoDigits = count % 100
+  const lastDigit = count % 10
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return 'матеріалів'
+  if (lastDigit === 1) return singular
+  if (lastDigit >= 2 && lastDigit <= 4) return plural
+  return 'матеріалів'
 }

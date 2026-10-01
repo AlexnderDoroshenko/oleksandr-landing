@@ -19,12 +19,33 @@ describe('Knowledge Base content', () => {
     }
   })
 
-  it('loads three bilingual starter materials for every direction', () => {
+  it('loads bilingual starter materials for every direction', () => {
     for (const direction of getKnowledgeDirections()) {
       const materials = getKnowledgeMaterials(direction.slug)
-      expect(materials).toHaveLength(3)
+      expect(materials.length).toBeGreaterThanOrEqual(3)
       expect(materials.every(material => getMaterialTranslation(material, 'en'))).toBe(true)
       expect(materials.every(material => getMaterialTranslation(material, 'uk'))).toBe(true)
+    }
+  })
+
+  it('provides a broad testing-theory foundation without project-specific examples', () => {
+    const materials = getKnowledgeMaterials('testing-theory')
+    const serialized = JSON.stringify(materials)
+
+    expect(materials).toHaveLength(27)
+    expect(new Set(materials.map(material => material.id)).size).toBe(27)
+    expect(materials.some(material => material.level === 'Junior')).toBe(true)
+    expect(materials.some(material => material.level === 'Middle')).toBe(true)
+    expect(materials.some(material => material.level === 'Senior')).toBe(true)
+    expect(serialized).not.toMatch(/NiceDice/i)
+
+    for (const material of materials) {
+      for (const lang of ['en', 'uk'] as const) {
+        const translation = getMaterialTranslation(material, lang)
+        expect(translation?.answer).toBeTruthy()
+        expect(translation?.examples.length).toBeGreaterThan(0)
+        expect(translation?.exercises.length).toBeGreaterThan(0)
+      }
     }
   })
 
