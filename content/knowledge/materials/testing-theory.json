@@ -1,0 +1,80 @@
+[
+  {
+    "id": "verification-validation",
+    "direction": "testing-theory",
+    "translations": {
+      "uk": {
+        "question": "Чим verification відрізняється від validation?",
+        "answer": "Verification перевіряє відповідність специфікації; validation — придатність продукту для потреб користувача.",
+        "examples": [
+          "Форма може точно відповідати описаним полям, але не давати користувачу завершити реальну задачу."
+        ],
+        "exercises": [
+          "Для checkout наведи окремий приклад verification і validation."
+        ]
+      },
+      "en": {
+        "question": "How does verification differ from validation?",
+        "answer": "Verification checks conformance to a specification; validation checks whether the product is suitable for the user’s needs.",
+        "examples": [
+          "A form may match every specified field yet still prevent the user from completing the real task."
+        ],
+        "exercises": [
+          "Give one verification and one validation example for a checkout."
+        ]
+      }
+    }
+  },
+  {
+    "id": "regression-retest",
+    "direction": "testing-theory",
+    "translations": {
+      "uk": {
+        "question": "Чим regression відрізняється від retest?",
+        "answer": "Retest перевіряє конкретне виправлення; regression шукає побічні зміни в іншій поведінці.",
+        "examples": [
+          "Після виправлення промокоду retest повторює дефектний сценарій, а regression перевіряє інші розрахунки checkout."
+        ],
+        "exercises": [
+          "Для виправленого дефекту склади одну retest-перевірку і три ризик-орієнтовані regression-перевірки."
+        ]
+      },
+      "en": {
+        "question": "How does regression testing differ from retesting?",
+        "answer": "Retesting checks a specific fix; regression testing looks for unintended changes in other behaviour.",
+        "examples": [
+          "After a promo-code fix, retesting repeats the failing scenario while regression checks other checkout calculations."
+        ],
+        "exercises": [
+          "For a fixed defect, design one retest and three risk-based regression checks."
+        ]
+      }
+    }
+  },
+  {
+    "id": "risk-based-testing",
+    "direction": "testing-theory",
+    "translations": {
+      "uk": {
+        "question": "Що означає risk-based testing?",
+        "answer": "Обсяг і пріоритет перевірок визначають імовірність проблеми, її наслідки та доступні ресурси.",
+        "examples": [
+          "Зміна в оплаті отримує глибші й ранніші перевірки, ніж косметична зміна в рідко відвідуваному розділі."
+        ],
+        "exercises": [
+          "Побудуй стратегію checkout NiceDice: scope, ризики, test levels, середовище, дані та exit criteria."
+        ]
+      },
+      "en": {
+        "question": "What does risk-based testing mean?",
+        "answer": "The scope and priority of testing are guided by the likelihood and impact of a problem, together with the available resources.",
+        "examples": [
+          "A payment change receives deeper and earlier testing than a cosmetic change in a rarely visited section."
+        ],
+        "exercises": [
+          "Build a strategy for the NiceDice checkout: scope, risks, test levels, environment, data, and exit criteria."
+        ]
+      }
+    }
+  }
+]

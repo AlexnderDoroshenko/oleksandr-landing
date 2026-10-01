@@ -6,12 +6,13 @@ type Props = { lang: Language; onLanguageChange: (lang: Language) => void; secti
 
 export default function SiteHeader({ lang, onLanguageChange, section }: Props) {
   const labels = lang === 'uk'
-    ? { home: 'Головна', about: 'Про мене', blog: 'Блог', contact: 'Контакти' }
-    : { home: 'Home', about: 'About', blog: 'Blog', contact: 'Contact' }
+    ? { home: 'Головна', about: 'Про мене', knowledge: 'База знань', blog: 'Блог', contact: 'Контакти' }
+    : { home: 'Home', about: 'About', knowledge: 'Knowledge Base', blog: 'Blog', contact: 'Contact' }
   return <header className="site-header inner-header">
     <Link className="monogram" href={{ pathname: '/', query: { lang } }} aria-label={labels.home}>OD<span>.</span></Link>
     <nav className="desktop-nav" aria-label="Primary navigation">
       <Link className={section === 'about' ? 'active' : ''} href={{ pathname: '/about', query: { lang } }}>{labels.about}</Link>
+      <Link className={section === 'knowledge' ? 'active' : ''} href={{ pathname: '/knowledge', query: { lang } }}>{labels.knowledge}</Link>
       <Link className={section === 'blog' ? 'active' : ''} href={{ pathname: '/blog', query: { lang } }}>{labels.blog}</Link>
       <Link className={section === 'contact' ? 'active' : ''} href={{ pathname: '/contact', query: { lang } }}>{labels.contact}</Link>
     </nav>

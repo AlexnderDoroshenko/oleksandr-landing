@@ -1,0 +1,860 @@
+[
+  {
+    "id": "equivalence-partitioning",
+    "direction": "test-design",
+    "translations": {
+      "uk": {
+        "question": "Навіщо equivalence partitioning?",
+        "answer": "Ділить вхідні дані на класи з очікувано однаковою поведінкою, щоб зменшити кількість перевірок.",
+        "examples": [
+          "Поле віку 18–65 можна перевірити представниками валідного класу та класів нижче і вище меж."
+        ],
+        "exercises": [
+          "Для правила кількості 1–99 визнач класи еквівалентності й вибери представників."
+        ]
+      },
+      "en": {
+        "question": "Why use equivalence partitioning?",
+        "answer": "It divides input data into classes expected to behave alike, reducing the number of checks.",
+        "examples": [
+          "For an age field accepting 18–65, test representatives of the valid class and the classes below and above the limits."
+        ],
+        "exercises": [
+          "For a quantity rule of 1–99, identify equivalence classes and choose representatives."
+        ]
+      }
+    }
+  },
+  {
+    "id": "decision-table",
+    "direction": "test-design",
+    "translations": {
+      "uk": {
+        "question": "Коли потрібна decision table?",
+        "answer": "Коли результат залежить від комбінацій умов і бізнес-правил.",
+        "examples": [
+          "Знижка може залежати одночасно від ролі користувача, суми замовлення та промокоду."
+        ],
+        "exercises": [
+          "Побудуй decision table для знижки за роллю, сумою та наявністю промокоду."
+        ]
+      },
+      "en": {
+        "question": "When is a decision table useful?",
+        "answer": "When an outcome depends on combinations of conditions and business rules.",
+        "examples": [
+          "A discount may depend on the user role, order total, and promo code at the same time."
+        ],
+        "exercises": [
+          "Build a decision table for a discount based on role, total, and promo code."
+        ]
+      }
+    }
+  },
+  {
+    "id": "pairwise-limits",
+    "direction": "test-design",
+    "translations": {
+      "uk": {
+        "question": "Чи гарантує pairwise відсутність дефектів?",
+        "answer": "Ні. Він покриває пари значень факторів, але може пропустити взаємодії трьох і більше факторів.",
+        "examples": [
+          "Помилка може виникати лише для Safari, гостьового користувача та конкретної валюти разом."
+        ],
+        "exercises": [
+          "Візьми чотири фактори checkout і поясни, який ризик залишиться після pairwise-набору."
+        ]
+      },
+      "en": {
+        "question": "Does pairwise testing guarantee an absence of defects?",
+        "answer": "No. It covers pairs of factor values but may miss interactions among three or more factors.",
+        "examples": [
+          "A defect may occur only for Safari, a guest user, and one currency together."
+        ],
+        "exercises": [
+          "Take four checkout factors and explain which risk remains after a pairwise set."
+        ]
+      }
+    }
+  },
+  {
+    "id": "automation-priority",
+    "direction": "automation-architecture",
+    "translations": {
+      "uk": {
+        "question": "Що автоматизувати першочергово?",
+        "answer": "Стабільні, повторювані й ризикові сценарії з надійним oracle та прийнятною вартістю підтримки.",
+        "examples": [
+          "Критичний checkout із чітким API-результатом зазвичай кращий кандидат, ніж мінливий візуальний прототип."
+        ],
+        "exercises": [
+          "Порівняй два сценарії за ризиком, повторюваністю, oracle і вартістю підтримки."
+        ]
+      },
+      "en": {
+        "question": "What should be automated first?",
+        "answer": "Stable, repeatable, high-risk scenarios with a reliable oracle and acceptable maintenance cost.",
+        "examples": [
+          "A critical checkout with a clear API outcome is usually a better candidate than a changing visual prototype."
+        ],
+        "exercises": [
+          "Compare two scenarios by risk, repeatability, oracle quality, and maintenance cost."
+        ]
+      }
+    }
+  },
+  {
+    "id": "flaky-test",
+    "direction": "automation-architecture",
+    "translations": {
+      "uk": {
+        "question": "Що таке flaky test?",
+        "answer": "Це тест із нестабільним результатом за суттєво однакових умов; причина може бути в тесті, середовищі або продукті.",
+        "examples": [
+          "Тест іноді падає через гонку запитів, хоча код і тестові дані не змінювалися."
+        ],
+        "exercises": [
+          "Для нестабільного тесту склади план збору evidence до додавання retry."
+        ]
+      },
+      "en": {
+        "question": "What is a flaky test?",
+        "answer": "A test with unstable outcomes under materially identical conditions; the cause may be in the test, environment, or product.",
+        "examples": [
+          "A test sometimes fails because of a request race even though code and test data did not change."
+        ],
+        "exercises": [
+          "For an unstable test, plan the evidence to collect before adding a retry."
+        ]
+      }
+    }
+  },
+  {
+    "id": "automation-layers",
+    "direction": "automation-architecture",
+    "translations": {
+      "uk": {
+        "question": "Навіщо розділяти test logic і client/page layers?",
+        "answer": "Щоб сценарії описували поведінку, а деталі протоколів та UI змінювалися локально.",
+        "examples": [
+          "Зміна API endpoint має вимагати правки клієнта, а не кожного бізнес-сценарію."
+        ],
+        "exercises": [
+          "Спроєктуй checkout: API setup → UI action → API assertion → cleanup і познач межі шарів."
+        ]
+      },
+      "en": {
+        "question": "Why separate test logic from client and page layers?",
+        "answer": "So scenarios describe behaviour while protocol and UI details change locally.",
+        "examples": [
+          "An API endpoint change should require updating the client, not every business scenario."
+        ],
+        "exercises": [
+          "Design a checkout flow—API setup, UI action, API assertion, cleanup—and mark the layer boundaries."
+        ]
+      }
+    }
+  },
+  {
+    "id": "mutable-default",
+    "direction": "python-coding-whiteboard",
+    "translations": {
+      "uk": {
+        "question": "Чому mutable default argument небезпечний?",
+        "answer": "Default-об’єкт створюється під час визначення функції та повторно використовується між викликами.",
+        "examples": [
+          "Список за замовчуванням може зберегти елемент із попереднього виклику функції."
+        ],
+        "exercises": [
+          "Напиши мінімальний приклад помилки й виправ його через значення None."
+        ]
+      },
+      "en": {
+        "question": "Why is a mutable default argument dangerous?",
+        "answer": "The default object is created when the function is defined and reused across calls.",
+        "examples": [
+          "A default list may retain an item from a previous function call."
+        ],
+        "exercises": [
+          "Write a minimal failing example and fix it by using None."
+        ]
+      }
+    }
+  },
+  {
+    "id": "generator-vs-list",
+    "direction": "python-coding-whiteboard",
+    "translations": {
+      "uk": {
+        "question": "Чим generator відрізняється від list?",
+        "answer": "Generator видає значення поступово; list зберігає всі елементи. Generator зазвичай одноразовий і не підтримує довільний індексний доступ.",
+        "examples": [
+          "Потік великого файлу можна обробляти генератором без завантаження всіх рядків у пам’ять."
+        ],
+        "exercises": [
+          "Реалізуй генератор читання даних пакетами й порівняй використання пам’яті зі списком."
+        ]
+      },
+      "en": {
+        "question": "How does a generator differ from a list?",
+        "answer": "A generator yields values gradually; a list stores every item. A generator is usually single-use and has no arbitrary index access.",
+        "examples": [
+          "A large file can be streamed with a generator without loading every row into memory."
+        ],
+        "exercises": [
+          "Implement batched data reading as a generator and compare memory use with a list."
+        ]
+      }
+    }
+  },
+  {
+    "id": "asyncio-cpu",
+    "direction": "python-coding-whiteboard",
+    "translations": {
+      "uk": {
+        "question": "Чи прискорює asyncio CPU-heavy код?",
+        "answer": "Сам по собі — ні. Він корисний для конкурентного очікування I/O; CPU-heavy роботу слід планувати окремо.",
+        "examples": [
+          "Паралельне очікування HTTP-відповідей виграє від asyncio, а важке обчислення хешів блокує event loop."
+        ],
+        "exercises": [
+          "Класифікуй п’ять задач як I/O-bound або CPU-bound і запропонуй модель виконання."
+        ]
+      },
+      "en": {
+        "question": "Does asyncio speed up CPU-heavy code?",
+        "answer": "Not by itself. It helps with concurrent I/O waiting; CPU-heavy work needs a different execution strategy.",
+        "examples": [
+          "Waiting for HTTP responses can benefit from asyncio, while heavy hash calculation blocks the event loop."
+        ],
+        "exercises": [
+          "Classify five tasks as I/O-bound or CPU-bound and propose an execution model."
+        ]
+      }
+    }
+  },
+  {
+    "id": "isolated-browser-context",
+    "direction": "typescript-playwright-bdd",
+    "translations": {
+      "uk": {
+        "question": "Навіщо ізольований browser context?",
+        "answer": "Він розділяє cookies і browser state між тестами; backend-дані потрібно ізолювати окремо.",
+        "examples": [
+          "Два тести можуть мати окремі сесії браузера, але конфліктувати через спільний запис користувача в базі."
+        ],
+        "exercises": [
+          "Запусти два сценарії паралельно та познач browser і backend state, які треба ізолювати."
+        ]
+      },
+      "en": {
+        "question": "Why use an isolated browser context?",
+        "answer": "It separates cookies and browser state between tests; backend data must be isolated separately.",
+        "examples": [
+          "Two tests may have separate browser sessions but still collide on one user record in the database."
+        ],
+        "exercises": [
+          "Run two scenarios in parallel and identify browser and backend state that must be isolated."
+        ]
+      }
+    }
+  },
+  {
+    "id": "await-promises",
+    "direction": "typescript-playwright-bdd",
+    "translations": {
+      "uk": {
+        "question": "Чому await важливий?",
+        "answer": "Без очікування Promise наступна дія може початися до завершення попередньої, а помилка — залишитися поза потрібним обробником.",
+        "examples": [
+          "Клік без await може перетнутися з перевіркою навігації та створити гонку."
+        ],
+        "exercises": [
+          "Знайди пропущений await у короткому тесті й поясни можливий порядок подій."
+        ]
+      },
+      "en": {
+        "question": "Why is await important?",
+        "answer": "Without awaiting a Promise, the next action may start before the previous one finishes and an error may escape the intended handler.",
+        "examples": [
+          "A click without await may race with a navigation assertion."
+        ],
+        "exercises": [
+          "Find a missing await in a short test and explain the possible event order."
+        ]
+      }
+    }
+  },
+  {
+    "id": "gherkin-scope",
+    "direction": "typescript-playwright-bdd",
+    "translations": {
+      "uk": {
+        "question": "Що має описувати Gherkin?",
+        "answer": "Спостережувану бізнес-поведінку й очікуваний результат; дрібні технічні дії краще ховати в реалізації steps.",
+        "examples": [
+          "Крок «клієнт завершує оплату» стабільніший за перелік кожного CSS-селектора й кліку."
+        ],
+        "exercises": [
+          "Опиши checkout у Gherkin і винеси API setup та технічні деталі в reusable steps."
+        ]
+      },
+      "en": {
+        "question": "What should Gherkin describe?",
+        "answer": "Observable business behaviour and the expected outcome; small technical actions belong in step implementations.",
+        "examples": [
+          "A step such as “the customer completes payment” is more stable than listing every CSS selector and click."
+        ],
+        "exercises": [
+          "Describe checkout in Gherkin and move API setup and technical details into reusable steps."
+        ]
+      }
+    }
+  },
+  {
+    "id": "idempotent-method",
+    "direction": "web-http-networking",
+    "translations": {
+      "uk": {
+        "question": "Що означає idempotent method?",
+        "answer": "Кілька однакових запитів мають той самий очікуваний ефект на стан сервера, що й один. Відповіді можуть відрізнятися.",
+        "examples": [
+          "Повторний PUT того самого стану не створює ще один ресурс, хоча timestamp у відповіді може змінитися."
+        ],
+        "exercises": [
+          "Перевір повторення PUT і сформулюй окремо очікування до стану та відповіді."
+        ]
+      },
+      "en": {
+        "question": "What does an idempotent method mean?",
+        "answer": "Several identical requests have the same expected effect on server state as one request. Responses may differ.",
+        "examples": [
+          "Repeating a PUT for the same state does not create another resource, although a response timestamp may change."
+        ],
+        "exercises": [
+          "Repeat a PUT and define separate expectations for state and response."
+        ]
+      }
+    }
+  },
+  {
+    "id": "http-401-403",
+    "direction": "web-http-networking",
+    "translations": {
+      "uk": {
+        "question": "Чим 401 відрізняється від 403?",
+        "answer": "401 означає відсутність придатних authentication credentials; 403 — сервер зрозумів запит, але відмовляє в доступі.",
+        "examples": [
+          "Запит без токена отримує 401, а автентифікований користувач без потрібної ролі — 403."
+        ],
+        "exercises": [
+          "Склади негативні API-перевірки для відсутнього, невалідного й недостатньо привілейованого токена."
+        ]
+      },
+      "en": {
+        "question": "How does 401 differ from 403?",
+        "answer": "401 means suitable authentication credentials are missing; 403 means the server understood the request but refuses access.",
+        "examples": [
+          "A request without a token gets 401, while an authenticated user lacking the required role gets 403."
+        ],
+        "exercises": [
+          "Design negative API checks for missing, invalid, and insufficiently privileged tokens."
+        ]
+      }
+    }
+  },
+  {
+    "id": "cors",
+    "direction": "web-http-networking",
+    "translations": {
+      "uk": {
+        "question": "Що робить CORS?",
+        "answer": "Керує дозволом браузеру читати cross-origin responses; це не заміна серверної авторизації.",
+        "examples": [
+          "curl може прочитати відповідь, яку браузерний JavaScript блокує через CORS."
+        ],
+        "exercises": [
+          "Порівняй той самий cross-origin запит у браузері та curl і досліди preflight."
+        ]
+      },
+      "en": {
+        "question": "What does CORS do?",
+        "answer": "It controls whether a browser may read cross-origin responses; it does not replace server-side authorization.",
+        "examples": [
+          "curl may read a response that browser JavaScript blocks because of CORS."
+        ],
+        "exercises": [
+          "Compare the same cross-origin request in a browser and curl, and inspect the preflight."
+        ]
+      }
+    }
+  },
+  {
+    "id": "database-transaction",
+    "direction": "api-sql-data",
+    "translations": {
+      "uk": {
+        "question": "Навіщо транзакція?",
+        "answer": "Щоб пов’язані операції завершилися як одна логічна одиниця з commit або rollback.",
+        "examples": [
+          "Створення замовлення й резервування залишку мають або завершитися разом, або разом відкотитися."
+        ],
+        "exercises": [
+          "Змоделюй помилку між двома SQL-операціями й перевір rollback."
+        ]
+      },
+      "en": {
+        "question": "Why use a transaction?",
+        "answer": "So related operations complete as one logical unit with either commit or rollback.",
+        "examples": [
+          "Creating an order and reserving stock should either both complete or both roll back."
+        ],
+        "exercises": [
+          "Simulate a failure between two SQL operations and verify the rollback."
+        ]
+      }
+    }
+  },
+  {
+    "id": "database-index",
+    "direction": "api-sql-data",
+    "translations": {
+      "uk": {
+        "question": "Чому index не завжди прискорює систему?",
+        "answer": "Він може пришвидшити читання, але коштує місця та роботи під час запису; користь залежить від query plan і розподілу даних.",
+        "examples": [
+          "Індекс на низькоселективному полі може не використовуватися, але все одно сповільнювати вставки."
+        ],
+        "exercises": [
+          "Порівняй EXPLAIN до й після індексу та виміряй вплив на читання і запис."
+        ]
+      },
+      "en": {
+        "question": "Why does an index not always make a system faster?",
+        "answer": "It may speed up reads but costs storage and work on writes; value depends on the query plan and data distribution.",
+        "examples": [
+          "An index on a low-selectivity field may be ignored while still slowing inserts."
+        ],
+        "exercises": [
+          "Compare EXPLAIN before and after an index, and measure its effect on reads and writes."
+        ]
+      }
+    }
+  },
+  {
+    "id": "api-beyond-status",
+    "direction": "api-sql-data",
+    "translations": {
+      "uk": {
+        "question": "Що перевіряти крім HTTP status?",
+        "answer": "Схему й семантику response, зміни стану, авторизацію, побічні ефекти та поведінку повторного запиту.",
+        "examples": [
+          "201 не гарантує, що ресурс збережений правильно або подія була опублікована рівно один раз."
+        ],
+        "exercises": [
+          "Для create endpoint склади перевірки контракту, стану, прав доступу, side effects та повтору."
+        ]
+      },
+      "en": {
+        "question": "What should be checked beyond the HTTP status?",
+        "answer": "Response schema and semantics, state changes, authorization, side effects, and repeated-request behaviour.",
+        "examples": [
+          "A 201 does not prove that the resource was stored correctly or that an event was published exactly once."
+        ],
+        "exercises": [
+          "For a create endpoint, design checks for contract, state, access, side effects, and retries."
+        ]
+      }
+    }
+  },
+  {
+    "id": "continuous-delivery-deployment",
+    "direction": "cicd-docker-kubernetes",
+    "translations": {
+      "uk": {
+        "question": "Чим continuous delivery відрізняється від deployment?",
+        "answer": "Delivery підтримує готовність змін до випуску; deployment автоматично доставляє придатні зміни в production.",
+        "examples": [
+          "У delivery реліз може вимагати ручного рішення, тоді як deployment випускає успішну зміну автоматично."
+        ],
+        "exercises": [
+          "Намалюй pipeline для обох моделей і познач місце людського approval."
+        ]
+      },
+      "en": {
+        "question": "How does continuous delivery differ from continuous deployment?",
+        "answer": "Delivery keeps changes ready for release; deployment automatically releases suitable changes to production.",
+        "examples": [
+          "With delivery, release may require a human decision; deployment releases a successful change automatically."
+        ],
+        "exercises": [
+          "Draw a pipeline for both models and mark the human approval point."
+        ]
+      }
+    }
+  },
+  {
+    "id": "image-vs-container",
+    "direction": "cicd-docker-kubernetes",
+    "translations": {
+      "uk": {
+        "question": "Чим image відрізняється від container?",
+        "answer": "Image — шаблон файлової системи й конфігурації; container — його запущений або зупинений екземпляр із власним станом.",
+        "examples": [
+          "З одного immutable image можна запустити кілька контейнерів із різними змінними середовища."
+        ],
+        "exercises": [
+          "Збери image, запусти два контейнери й порівняй їхню конфігурацію та writable state."
+        ]
+      },
+      "en": {
+        "question": "How does an image differ from a container?",
+        "answer": "An image is a filesystem and configuration template; a container is its running or stopped instance with its own state.",
+        "examples": [
+          "One immutable image can start multiple containers with different environment variables."
+        ],
+        "exercises": [
+          "Build an image, run two containers, and compare their configuration and writable state."
+        ]
+      }
+    }
+  },
+  {
+    "id": "readiness-liveness",
+    "direction": "cicd-docker-kubernetes",
+    "translations": {
+      "uk": {
+        "question": "Чим readiness відрізняється від liveness?",
+        "answer": "Readiness визначає готовність приймати трафік; liveness — чи слід перезапустити контейнер через непрацездатність.",
+        "examples": [
+          "Під час warm-up pod може бути живим, але ще не готовим отримувати запити."
+        ],
+        "exercises": [
+          "Спроєктуй окремі probes для сервісу, що довго прогріває cache."
+        ]
+      },
+      "en": {
+        "question": "How does readiness differ from liveness?",
+        "answer": "Readiness decides whether a workload can receive traffic; liveness decides whether it should be restarted as unhealthy.",
+        "examples": [
+          "During warm-up, a pod may be alive but not ready to receive requests."
+        ],
+        "exercises": [
+          "Design separate probes for a service with a long cache warm-up."
+        ]
+      }
+    }
+  },
+  {
+    "id": "authentication-authorization",
+    "direction": "security-devsecops",
+    "translations": {
+      "uk": {
+        "question": "Чим authentication відрізняється від authorization?",
+        "answer": "Authentication встановлює, хто виконує дію; authorization визначає, чи дозволена йому конкретна дія над ресурсом.",
+        "examples": [
+          "Валідний користувач може увійти в систему, але не мати права читати чуже замовлення."
+        ],
+        "exercises": [
+          "Негативно перевір доступ до чужого order у навчальному локальному середовищі."
+        ]
+      },
+      "en": {
+        "question": "How does authentication differ from authorization?",
+        "answer": "Authentication establishes who performs an action; authorization decides whether that identity may act on a resource.",
+        "examples": [
+          "A valid user may sign in but still lack permission to read another user’s order."
+        ],
+        "exercises": [
+          "Negatively test access to another user’s order in a local training environment."
+        ]
+      }
+    }
+  },
+  {
+    "id": "sast-dast",
+    "direction": "security-devsecops",
+    "translations": {
+      "uk": {
+        "question": "Чому SAST і DAST доповнюють одне одного?",
+        "answer": "SAST аналізує код без запуску; DAST перевіряє поведінку запущеної системи. Обидва мають прогалини й false positives.",
+        "examples": [
+          "SAST бачить небезпечний data flow, а DAST — помилкову конфігурацію, що проявляється лише в runtime."
+        ],
+        "exercises": [
+          "Для одного сервісу визнач findings, які очікуєш від SAST, DAST і ручної перевірки."
+        ]
+      },
+      "en": {
+        "question": "Why do SAST and DAST complement each other?",
+        "answer": "SAST analyses code without running it; DAST tests a running system’s behaviour. Both have gaps and false positives.",
+        "examples": [
+          "SAST may see an unsafe data flow, while DAST finds a misconfiguration visible only at runtime."
+        ],
+        "exercises": [
+          "For one service, identify findings expected from SAST, DAST, and manual review."
+        ]
+      }
+    }
+  },
+  {
+    "id": "trust-boundary",
+    "direction": "security-devsecops",
+    "translations": {
+      "uk": {
+        "question": "Що таке trust boundary?",
+        "answer": "Межа між зонами з різними рівнями довіри, через яку проходять дані або керування.",
+        "examples": [
+          "Перехід від публічного API до внутрішньої черги потребує валідації, авторизації та аудиту."
+        ],
+        "exercises": [
+          "Побудуй STRIDE для test server і познач усі trust boundaries."
+        ]
+      },
+      "en": {
+        "question": "What is a trust boundary?",
+        "answer": "A boundary between zones with different trust levels through which data or control passes.",
+        "examples": [
+          "Moving from a public API to an internal queue requires validation, authorization, and auditing."
+        ],
+        "exercises": [
+          "Build a STRIDE model for a test server and mark every trust boundary."
+        ]
+      }
+    }
+  },
+  {
+    "id": "queue-long-runs",
+    "direction": "system-design-cloud",
+    "translations": {
+      "uk": {
+        "question": "Навіщо queue для довгих test runs?",
+        "answer": "Вона відділяє прийом задач від виконання й допомагає керувати навантаженням і workers; потрібні правила retries та duplicate handling.",
+        "examples": [
+          "API швидко приймає запуск, а workers забирають задачі відповідно до доступної місткості."
+        ],
+        "exercises": [
+          "Спроєктуй Autotest Server із queue, workers і правилами повторної доставки."
+        ]
+      },
+      "en": {
+        "question": "Why use a queue for long test runs?",
+        "answer": "It separates task intake from execution and helps manage load and workers; retry and duplicate-handling rules are still required.",
+        "examples": [
+          "An API accepts a run quickly while workers consume jobs according to available capacity."
+        ],
+        "exercises": [
+          "Design an Autotest Server with a queue, workers, and redelivery rules."
+        ]
+      }
+    }
+  },
+  {
+    "id": "rto-rpo",
+    "direction": "system-design-cloud",
+    "translations": {
+      "uk": {
+        "question": "Чим RTO відрізняється від RPO?",
+        "answer": "RTO — цільовий час відновлення; RPO — допустиме вікно втрати даних у часі.",
+        "examples": [
+          "RTO у 30 хвилин і RPO у 5 хвилин означають різні вимоги до відновлення сервісу та резервних копій."
+        ],
+        "exercises": [
+          "Для evidence storage запропонуй RTO/RPO й поясни вартість вибору."
+        ]
+      },
+      "en": {
+        "question": "How does RTO differ from RPO?",
+        "answer": "RTO is the target recovery time; RPO is the acceptable data-loss window measured in time.",
+        "examples": [
+          "An RTO of 30 minutes and RPO of 5 minutes create different service recovery and backup requirements."
+        ],
+        "exercises": [
+          "Propose an RTO and RPO for evidence storage and explain the cost of your choice."
+        ]
+      }
+    }
+  },
+  {
+    "id": "retry-outage",
+    "direction": "system-design-cloud",
+    "translations": {
+      "uk": {
+        "question": "Чому retries можуть погіршити outage?",
+        "answer": "Повторні спроби збільшують навантаження; потрібні ліміти, backoff, jitter і перевірка безпечності повторення.",
+        "examples": [
+          "Тисячі клієнтів із миттєвими retries можуть створити retry storm для вже перевантаженого сервісу."
+        ],
+        "exercises": [
+          "Спроєктуй retry policy для нестабільного API та вкажи stop conditions."
+        ]
+      },
+      "en": {
+        "question": "Why can retries make an outage worse?",
+        "answer": "Repeated attempts add load; they need limits, backoff, jitter, and a check that repetition is safe.",
+        "examples": [
+          "Thousands of clients retrying immediately can create a retry storm against an overloaded service."
+        ],
+        "exercises": [
+          "Design a retry policy for an unstable API and define its stop conditions."
+        ]
+      }
+    }
+  },
+  {
+    "id": "rag-purpose",
+    "direction": "ai-llm-rag-agents",
+    "translations": {
+      "uk": {
+        "question": "Що додає RAG до LLM?",
+        "answer": "RAG витягує релевантні зовнішні матеріали й додає їх у контекст генерації; це не гарантує правильність або повноту відповіді.",
+        "examples": [
+          "Асистент може відповісти за актуальною специфікацією, але все одно неправильно її інтерпретувати."
+        ],
+        "exercises": [
+          "Порівняй відповіді з правильним, відсутнім і суперечливим retrieval-контекстом."
+        ]
+      },
+      "en": {
+        "question": "What does RAG add to an LLM?",
+        "answer": "RAG retrieves relevant external material and adds it to the generation context; it does not guarantee a correct or complete answer.",
+        "examples": [
+          "An assistant may answer from a current specification and still interpret it incorrectly."
+        ],
+        "exercises": [
+          "Compare answers with correct, missing, and conflicting retrieval context."
+        ]
+      }
+    }
+  },
+  {
+    "id": "agent-not-needed",
+    "direction": "ai-llm-rag-agents",
+    "translations": {
+      "uk": {
+        "question": "Коли agent не потрібен?",
+        "answer": "Коли послідовність дій відома й може бути виконана звичайним workflow із чіткими правилами та validators.",
+        "examples": [
+          "Фіксований pipeline parse → validate → publish не потребує автономного вибору наступного кроку."
+        ],
+        "exercises": [
+          "Перетвори один детермінований agent-сценарій на workflow і порівняй ризики."
+        ]
+      },
+      "en": {
+        "question": "When is an agent unnecessary?",
+        "answer": "When the action sequence is known and a normal workflow with clear rules and validators can perform it.",
+        "examples": [
+          "A fixed parse, validate, then publish pipeline does not need autonomous next-step selection."
+        ],
+        "exercises": [
+          "Convert one deterministic agent scenario into a workflow and compare the risks."
+        ]
+      }
+    }
+  },
+  {
+    "id": "embeddings-permissions",
+    "direction": "ai-llm-rag-agents",
+    "translations": {
+      "uk": {
+        "question": "Чому embeddings не замінюють permissions?",
+        "answer": "Векторна схожість визначає релевантність; право доступу потрібно перевіряти окремо до передачі контексту моделі.",
+        "examples": [
+          "Семантично близький документ іншого клієнта не стає дозволеним джерелом."
+        ],
+        "exercises": [
+          "Спроєктуй retrieval із фільтрацією tenant і перевір спробу cross-tenant доступу."
+        ]
+      },
+      "en": {
+        "question": "Why do embeddings not replace permissions?",
+        "answer": "Vector similarity measures relevance; access must be checked separately before context reaches the model.",
+        "examples": [
+          "A semantically similar document belonging to another customer does not become an authorised source."
+        ],
+        "exercises": [
+          "Design retrieval with tenant filtering and test a cross-tenant access attempt."
+        ]
+      }
+    }
+  },
+  {
+    "id": "evaluation-vs-demo",
+    "direction": "llmops-evaluation-observability",
+    "translations": {
+      "uk": {
+        "question": "Чим evaluation відрізняється від одного demo?",
+        "answer": "Evaluation оцінює систему на наборі репрезентативних випадків за визначеними правилами; demo показує окремий сценарій.",
+        "examples": [
+          "Одна вдала відповідь не показує recall, стабільність або поведінку на edge cases."
+        ],
+        "exercises": [
+          "Створи невеликий набір типових, негативних і граничних задач для одного LLM workflow."
+        ]
+      },
+      "en": {
+        "question": "How does evaluation differ from a single demo?",
+        "answer": "Evaluation assesses a system on representative cases with defined rules; a demo shows one scenario.",
+        "examples": [
+          "One successful answer does not reveal recall, stability, or edge-case behaviour."
+        ],
+        "exercises": [
+          "Create a small set of typical, negative, and boundary tasks for one LLM workflow."
+        ]
+      }
+    }
+  },
+  {
+    "id": "llm-as-judge",
+    "direction": "llmops-evaluation-observability",
+    "translations": {
+      "uk": {
+        "question": "Чому LLM-as-judge не є абсолютним oracle?",
+        "answer": "Judge теж може помилятися й мати bias; його треба калібрувати на людських оцінках і доповнювати deterministic checks.",
+        "examples": [
+          "Judge може стабільно віддавати перевагу довшим відповідям незалежно від їх точності."
+        ],
+        "exercises": [
+          "Порівняй оцінки judge з людською розміткою та знайди систематичні розбіжності."
+        ]
+      },
+      "en": {
+        "question": "Why is LLM-as-judge not an absolute oracle?",
+        "answer": "The judge can also be wrong and biased; it needs calibration against human ratings and deterministic checks.",
+        "examples": [
+          "A judge may consistently prefer longer answers regardless of accuracy."
+        ],
+        "exercises": [
+          "Compare judge scores with human labels and identify systematic disagreements."
+        ]
+      }
+    }
+  },
+  {
+    "id": "traces-and-logs",
+    "direction": "llmops-evaluation-observability",
+    "translations": {
+      "uk": {
+        "question": "Навіщо traces поряд із logs?",
+        "answer": "Trace пов’язує кроки одного виконання й показує їх тривалість та залежності; logs фіксують окремі події.",
+        "examples": [
+          "Trace дозволяє побачити, що latency виникла в retrieval, а не під час model inference."
+        ],
+        "exercises": [
+          "Для одного запиту визнач correlation id, spans, ключові events і поля, які не можна логувати."
+        ]
+      },
+      "en": {
+        "question": "Why use traces alongside logs?",
+        "answer": "A trace connects the steps of one execution and shows timing and dependencies; logs record individual events.",
+        "examples": [
+          "A trace can reveal that latency came from retrieval rather than model inference."
+        ],
+        "exercises": [
+          "For one request, define a correlation ID, spans, key events, and fields that must not be logged."
+        ]
+      }
+    }
+  }
+]

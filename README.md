@@ -33,9 +33,11 @@ GITHUB_PAGES=true npm run build
 
 The production build is written to `out/`.
 
-## Publishing a blog post
+## Publishing content
 
-Blog content is Git-based. Publishing means changing files, opening a pull request, and merging it after review.
+Blog and Knowledge Base content are Git-based. Publishing means changing files, opening a pull request, and merging it after review.
+
+### Blog posts
 
 1. Add an English or Ukrainian post to `posts/` using `<slug>-en.json` or `<slug>-uk.json`.
 2. Put referenced images, PDFs, or videos in `public/uploads/` and use paths such as `/uploads/example.webp` in the post blocks.
@@ -65,6 +67,14 @@ Example block post:
 }
 ```
 
+### Knowledge Base materials
+
+- Direction metadata and localized descriptions live in `content/knowledge/catalog.json`.
+- Question sets live in `content/knowledge/materials/`, separately from the UI.
+- Every published entry should contain equivalent `en` and `uk` translations. The UI deliberately shows a missing-translation status instead of silently substituting another language.
+- `level` is optional and accepts `Junior`, `Middle`, or `Senior`; the interface displays it only when it is set.
+- New direction files must be registered in `lib/knowledge.ts` so they are included in the static export.
+
 ## Quality and security gate
 
 Pull requests run TypeScript checks, unit tests, a static production build, dependency review, CodeQL SAST, TruffleHog secret scanning, Trivy dependency/configuration scanning, and an OWASP ZAP baseline scan against the exported site.
@@ -73,7 +83,9 @@ Pull requests run TypeScript checks, unit tests, a static production build, depe
 
 ```text
 components/       Shared interface and post rendering components
+content/knowledge/ Version-controlled Knowledge Base catalog and materials
 hooks/            Client-side language preference
+lib/knowledge.ts  Build-time Knowledge Base content loader
 lib/posts.ts      Build-time content loader
 pages/            Statically exported website routes
 posts/            Version-controlled blog posts
