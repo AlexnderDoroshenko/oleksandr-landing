@@ -31,9 +31,12 @@ describe('Knowledge Base content', () => {
   it('provides a broad testing-theory foundation without project-specific examples', () => {
     const materials = getKnowledgeMaterials('testing-theory')
     const serialized = JSON.stringify(materials)
+    const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
+    const materialLevels = materials.map(material => material.level ? levelOrder[material.level] : 3)
 
     expect(materials).toHaveLength(27)
     expect(new Set(materials.map(material => material.id)).size).toBe(27)
+    expect(materialLevels).toEqual([...materialLevels].sort((a, b) => a - b))
     expect(materials.some(material => material.level === 'Junior')).toBe(true)
     expect(materials.some(material => material.level === 'Middle')).toBe(true)
     expect(materials.some(material => material.level === 'Senior')).toBe(true)

@@ -5,6 +5,7 @@ import type { Language } from '../types/post'
 import type { KnowledgeDirection, KnowledgeMaterial, LocalizedDirection, LocalizedMaterial } from '../types/knowledge'
 
 const directions = catalogData as KnowledgeDirection[]
+const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
 const allMaterials = [
   ...(testingTheoryData as KnowledgeMaterial[]),
   ...(starterPackData as KnowledgeMaterial[]),
@@ -19,7 +20,9 @@ export function getKnowledgeDirection(slug: string): KnowledgeDirection | undefi
 }
 
 export function getKnowledgeMaterials(direction: string): KnowledgeMaterial[] {
-  return allMaterials.filter(material => material.direction === direction)
+  return allMaterials
+    .filter(material => material.direction === direction)
+    .sort((a, b) => (a.level ? levelOrder[a.level] : 3) - (b.level ? levelOrder[b.level] : 3))
 }
 
 export function getDirectionTranslation(direction: KnowledgeDirection, lang: Language): LocalizedDirection | null {
