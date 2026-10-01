@@ -2,6 +2,8 @@
 title: "QualityForge Lab #2: local LLMs, Ollama, OpenCode, and Spec Kit — our first SDD traps"
 date: "2026-09-27"
 summary: "How a local-first SDD setup with Ollama, OpenCode, and Spec Kit turned model infrastructure into an experiment of its own."
+series: "qualityforge"
+seriesOrder: 2
 ---
 
 In the [first post](/blog/qualityforge-qa-polygon), I explained why a QA engineer might want a dedicated testing playground. The obvious next step seemed to be picking the first feature and starting to build the product.

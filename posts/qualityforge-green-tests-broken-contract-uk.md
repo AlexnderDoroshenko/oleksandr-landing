@@ -2,6 +2,8 @@
 title: "QualityForge Lab #4: Green tests, broken contract"
 date: "2026-09-27"
 summary: "Як PLAT-T05 і PLAT-T06 пройшли автоматизовані checks, але незалежний review усе одно знайшов порушення контракту."
+series: "qualityforge"
+seriesOrder: 4
 ---
 
 У першому SDD workflow автоматизовані перевірки були обов’язковими, але не останніми. Feature 001 швидко пояснила чому: тест може бути зеленим і водночас доводити не той контракт, який ми думаємо.

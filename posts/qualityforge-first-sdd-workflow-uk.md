@@ -2,6 +2,8 @@
 title: "QualityForge Lab #3: від специфікації до acceptance — наш перший SDD workflow"
 date: "2026-09-27"
 summary: "Перший суворий SDD baseline: канонічна специфікація, human gates, незалежний acceptance review та traceability до evidence."
+series: "qualityforge"
+seriesOrder: 3
 ---
 
 У [попередньому дописі](/blog/qualityforge-local-llm-sdd) ми прибрали з експерименту local-first inference як обов’язкову умову. Після цього можна було перевіряти вже не склейку Ollama, OpenCode і Spec Kit, а сам engineering workflow.

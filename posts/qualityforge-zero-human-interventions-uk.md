@@ -2,6 +2,8 @@
 title: "QualityForge Lab #9: zero human interventions — що насправді сталося в AUTH-T03"
 date: "2026-09-27"
 summary: "Що насправді означають zero human interventions у HIGH-risk AUTH-T03 — і чому це не дорівнює повній автономності."
+series: "qualityforge"
+seriesOrder: 9
 ---
 
 У task record `AUTH-T03` є приваблива цифра: **Human interventions — 0**. Її дуже легко перетворити на рекламний headline про автономного агента. І так само легко неправильно зрозуміти.

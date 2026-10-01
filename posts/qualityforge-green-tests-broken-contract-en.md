@@ -2,6 +2,8 @@
 title: "QualityForge Lab #4: Green tests, broken contract"
 date: "2026-09-27"
 summary: "How PLAT-T05 and PLAT-T06 passed automated checks while independent review still found contract violations."
+series: "qualityforge"
+seriesOrder: 4
 ---
 
 Automated checks were mandatory in our first SDD workflow, but they were not the final gate. Feature 001 quickly explained why: a test can be green while proving a different contract from the one we think it proves.
