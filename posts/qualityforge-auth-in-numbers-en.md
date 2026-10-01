@@ -2,6 +2,8 @@
 title: "QualityForge Lab #10: AUTH-T01–T04 in numbers"
 date: "2026-09-27"
 summary: "The first four HIGH-risk SDD v2 tasks in numbers: passes, corrections, human interventions, findings, and honest comparison limits."
+series: "qualityforge"
+seriesOrder: 10
 ---
 
 After four HIGH-risk identity tasks, we had our first small collection of process records. It does not prove that SDD v2 is faster or cheaper, but it lets us discuss more than impressions.

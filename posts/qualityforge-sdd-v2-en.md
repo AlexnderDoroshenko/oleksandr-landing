@@ -2,6 +2,8 @@
 title: "QualityForge Lab #7: SDD v2 — Orchestrator, Builder, and Reviewer"
 date: "2026-09-27"
 summary: "How risk-based SDD v2 separated Orchestrator, Builder, and Reviewer, bounded correction cycles, and enabled honest validation reuse."
+series: "qualityforge"
+seriesOrder: 7
 ---
 
 SDD v2 was not meant to automate the human out of development. Its smaller goal was to preserve human authority for decisions while removing manual control of every process transition.

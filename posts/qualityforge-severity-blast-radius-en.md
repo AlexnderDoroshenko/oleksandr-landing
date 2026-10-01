@@ -2,6 +2,8 @@
 title: "QualityForge Lab #6: Severity ≠ blast radius"
 date: "2026-09-27"
 summary: "Why finding severity determines importance but does not determine the scope of correction, validation, or repeated review."
+series: "qualityforge"
+seriesOrder: 6
 ---
 
 Feature 001 repeatedly exposed the same trap: if a finding is Major, repeat almost everything after the correction. It sounds responsible and often wastes time.

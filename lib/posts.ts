@@ -6,23 +6,25 @@ import type { Language, BlockPost, LegacyPost } from '../types/post'
 
 const postsDir = path.join(process.cwd(), 'posts')
 
+let cachedPostMetas: PostMeta[] | null = null
+
 export type PostMeta = {
   title: string
   date: string
   summary: string
   slug: string
   lang: Language
+  series?: string
+  seriesOrder?: number
 }
 
 export type PostLink = Pick<PostMeta, 'title' | 'slug'>
 
-function getQualityForgeSeriesOrder(post: Pick<PostMeta, 'title' | 'slug'>): number | null {
-  if (post.slug === 'qualityforge-qa-polygon') return 1
-  const match = post.title.match(/QualityForge Lab #(\d+)/)
-  return match ? Number(match[1]) : null
-}
-
 export function getAllPostMetas(): PostMeta[] {
+  // Cache the result in production (static builds) to avoid re-reading every post
+  // file for each call. In development the cache is skipped so edits are reflected
+  // immediately without restarting the server.
+  if (cachedPostMetas && process.env.NODE_ENV === 'production') return [...cachedPostMetas]
   if (!fs.existsSync(postsDir)) return []
   const files = fs.readdirSync(postsDir)
   const metas: PostMeta[] = []
@@ -51,6 +53,8 @@ export function getAllPostMetas(): PostMeta[] {
     let title = slugBase
     let date = ''
     let summary = ''
+    let series: string | undefined
+    let seriesOrder: number | undefined
 
     try {
       if (file.endsWith('.md')) {
@@ -59,12 +63,16 @@ export function getAllPostMetas(): PostMeta[] {
         title = data.title ?? slugBase
         date = data.date ?? ''
         summary = data.summary ?? ''
+        series = data.series
+        seriesOrder = data.seriesOrder != null ? Number(data.seriesOrder) : undefined
       } else {
         const raw = fs.readFileSync(filePath, 'utf-8')
         const json = JSON.parse(raw) as BlockPost
         title = json.title
         date = json.date
         summary = json.summary ?? ''
+        series = (json as BlockPost & { series?: string }).series
+        seriesOrder = (json as BlockPost & { seriesOrder?: number }).seriesOrder
       }
     } catch (err) {
       // Silently skip files that cannot be read or parsed (e.g. permission errors,
@@ -75,22 +83,21 @@ export function getAllPostMetas(): PostMeta[] {
       }
     }
 
-    metas.push({ title, date, summary, slug: slugBase, lang })
+    metas.push({ title, date, summary, slug: slugBase, lang, series, seriesOrder })
   }
 
-  return metas.sort((a, b) => {
+  cachedPostMetas = metas.sort((a, b) => {
     const dateOrder = b.date.localeCompare(a.date)
     if (dateOrder) return dateOrder
 
-    const aSeriesNumber = a.title.match(/#(\d+)/)?.[1]
-    const bSeriesNumber = b.title.match(/#(\d+)/)?.[1]
-    if (aSeriesNumber && bSeriesNumber) {
-      const seriesOrder = Number(bSeriesNumber) - Number(aSeriesNumber)
+    if (a.seriesOrder != null && b.seriesOrder != null) {
+      const seriesOrder = b.seriesOrder - a.seriesOrder
       if (seriesOrder) return seriesOrder
     }
 
     return a.title.localeCompare(b.title)
   })
+  return [...cachedPostMetas]
 }
 
 export function getAllSlugs(): string[] {
@@ -108,15 +115,17 @@ export function getAllSlugs(): string[] {
   return Array.from(slugs)
 }
 
+const localizedPostsCache: Partial<Record<Language, PostMeta[]>> = {}
+
 export function getNextSeriesPost(slug: string, lang: Language): PostLink | null {
-  const localizedPosts = getAllPostMetas().filter(post => post.lang === lang)
+  const localizedPosts =
+    localizedPostsCache[lang] ?? (localizedPostsCache[lang] = getAllPostMetas().filter(post => post.lang === lang))
   const currentPost = localizedPosts.find(post => post.slug === slug)
-  if (!currentPost) return null
+  if (!currentPost || currentPost.series == null || currentPost.seriesOrder == null) return null
 
-  const currentOrder = getQualityForgeSeriesOrder(currentPost)
-  if (currentOrder === null) return null
-
-  const nextPost = localizedPosts.find(post => getQualityForgeSeriesOrder(post) === currentOrder + 1)
+  const nextPost = localizedPosts.find(
+    post => post.series === currentPost.series && post.seriesOrder === currentPost.seriesOrder! + 1
+  )
   return nextPost ? { title: nextPost.title, slug: nextPost.slug } : null
 }
 
