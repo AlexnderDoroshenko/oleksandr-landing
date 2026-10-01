@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "homepage": "https://alexnderdoroshenko.github.io/oleksandr-landing",
+    "engines": {
+        "node": ">=24"
+    },
     "scripts": {
         "dev": "next dev",
         "build": "next build",
