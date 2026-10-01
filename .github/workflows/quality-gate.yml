@@ -128,7 +128,7 @@ jobs:
         run: npm audit --json > npm-audit.json || true
       - name: Upload security reports
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: security-reports
           path: |
@@ -176,7 +176,7 @@ jobs:
             -J zap-report.json
       - name: Upload ZAP reports
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: zap-baseline-report
           path: |
