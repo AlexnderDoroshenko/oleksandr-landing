@@ -19,13 +19,41 @@ describe('Knowledge Base content', () => {
     }
   })
 
-  it('loads bilingual starter materials for every direction', () => {
+  it('loads a bilingual, levelled learning path for every direction', () => {
+    const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
+
     for (const direction of getKnowledgeDirections()) {
       const materials = getKnowledgeMaterials(direction.slug)
-      expect(materials.length).toBeGreaterThanOrEqual(3)
+      const levels = materials.map(material => material.level ? levelOrder[material.level] : 3)
+
+      expect(materials.length).toBeGreaterThanOrEqual(9)
       expect(materials.every(material => getMaterialTranslation(material, 'en'))).toBe(true)
       expect(materials.every(material => getMaterialTranslation(material, 'uk'))).toBe(true)
+      expect(materials.every(material => material.level)).toBe(true)
+      expect(levels).toEqual([...levels].sort((a, b) => a - b))
+      expect(materials.filter(material => material.level === 'Junior').length).toBeGreaterThanOrEqual(3)
+      expect(materials.filter(material => material.level === 'Middle').length).toBeGreaterThanOrEqual(3)
+      expect(materials.filter(material => material.level === 'Senior').length).toBeGreaterThanOrEqual(3)
+
+      for (const material of materials) {
+        for (const lang of ['en', 'uk'] as const) {
+          const translation = getMaterialTranslation(material, lang)
+          expect(translation?.question).toBeTruthy()
+          expect(translation?.answer).toBeTruthy()
+          expect(translation?.examples.length).toBeGreaterThan(0)
+          expect(translation?.exercises.length).toBeGreaterThan(0)
+        }
+      }
     }
+  })
+
+  it('uses globally unique material ids', () => {
+    const ids = getKnowledgeDirections().flatMap(direction =>
+      getKnowledgeMaterials(direction.slug).map(material => material.id),
+    )
+
+    expect(ids).toHaveLength(126)
+    expect(new Set(ids).size).toBe(ids.length)
   })
 
   it('provides a broad testing-theory foundation without project-specific examples', () => {

@@ -1,0 +1,458 @@
+[
+  {
+    "id": "boundary-value-analysis",
+    "direction": "test-design",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як працює аналіз граничних значень?",
+        "answer": "Boundary Value Analysis перевіряє значення на межі допустимого діапазону та безпосередньо поруч із нею, бо саме там часто виникають помилки порівняння й округлення. Для діапазону 1–100 базовий набір містить 0, 1, 2, 99, 100 і 101, але реальні межі можуть залежати також від типу даних і бізнес-правил.",
+        "examples": ["Поле кількості квитків приймає від 1 до 10: перевіряємо 0, 1, 2, 9, 10 та 11."],
+        "exercises": ["Визначте межі для дати бронювання від сьогодні до 90 днів і складіть мінімальний набір перевірок."]
+      },
+      "en": {
+        "question": "How does boundary value analysis work?",
+        "answer": "Boundary Value Analysis checks values at the edge of an allowed range and immediately around it because comparison and rounding defects often appear there. For a range of 1–100, a basic set includes 0, 1, 2, 99, 100, and 101, but real boundaries may also depend on data types and business rules.",
+        "examples": ["A ticket quantity accepts 1 through 10, so we check 0, 1, 2, 9, 10, and 11."],
+        "exercises": ["Identify the boundaries for a booking date from today through 90 days and create a minimal test set."]
+      }
+    }
+  },
+  {
+    "id": "error-guessing",
+    "direction": "test-design",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Коли корисне error guessing і чого воно не замінює?",
+        "answer": "Error guessing використовує досвід із типовими дефектами: порожні значення, повторні дії, неправильний формат, timeout або зміна стану між кроками. Техніка швидка й добре доповнює формальний дизайн, але її покриття залежить від досвіду людини, тому вона не замінює систематичного аналізу вимог і ризиків.",
+        "examples": ["Для форми оплати перевіряємо подвійний клік, повернення Back після підтвердження та повторне надсилання запиту."],
+        "exercises": ["Складіть десять error-guessing ідей для завантаження файлу та згрупуйте їх за джерелом ризику."]
+      },
+      "en": {
+        "question": "When is error guessing useful, and what does it not replace?",
+        "answer": "Error guessing applies experience with common failures such as empty values, repeated actions, invalid formats, timeouts, or state changes between steps. It is fast and complements formal design, but its coverage depends on the tester’s experience, so it does not replace systematic requirement and risk analysis.",
+        "examples": ["For a payment form, check a double click, browser Back after confirmation, and resubmitting the request."],
+        "exercises": ["Create ten error-guessing ideas for file upload and group them by risk source."]
+      }
+    }
+  },
+  {
+    "id": "state-transition-testing",
+    "direction": "test-design",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як проєктувати перевірки для state machine?",
+        "answer": "Спочатку фіксують стани, події, дозволені переходи та guard conditions. Потім перевіряють валідні шляхи, заборонені переходи, повторення подій, відновлення після помилки й досяжність станів. Важливо тестувати не лише кінцевий статус, а й побічні ефекти переходу.",
+        "examples": ["Замовлення може перейти Draft → Paid → Shipped, але перехід Draft → Shipped має бути відхилений без створення shipment."],
+        "exercises": ["Побудуйте модель станів для password reset token і створіть перевірки прострочення, повторного використання та скасування."]
+      },
+      "en": {
+        "question": "How do you design tests for a state machine?",
+        "answer": "Start by identifying states, events, allowed transitions, and guard conditions. Then test valid paths, forbidden transitions, repeated events, recovery after failure, and state reachability. Verify not only the final status but also every transition’s side effects.",
+        "examples": ["An order may move Draft → Paid → Shipped, while Draft → Shipped must be rejected without creating a shipment."],
+        "exercises": ["Model the states of a password-reset token and test expiry, reuse, and cancellation."]
+      }
+    }
+  },
+  {
+    "id": "exploratory-charter",
+    "direction": "test-design",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Що робить exploratory testing керованим?",
+        "answer": "Exploratory testing поєднує навчання, дизайн і виконання перевірок у межах сесії. Керованість дають charter із фокусом і ризиком, timebox, нотатки про покриття та findings, а також короткий debrief. Це не випадкове натискання кнопок, а адаптивне дослідження з видимим результатом.",
+        "examples": ["Charter: дослідити відновлення checkout після втрати мережі, фокусуючись на дублюванні платежів, стані кошика та повідомленнях."],
+        "exercises": ["Напишіть 30-хвилинний charter для пошуку проблем доступності у формі реєстрації й визначте evidence сесії."]
+      },
+      "en": {
+        "question": "What makes exploratory testing manageable?",
+        "answer": "Exploratory testing combines learning, test design, and execution within a session. A charter with a focus and risk, a timebox, notes about coverage and findings, and a short debrief make it manageable. It is adaptive investigation with visible outcomes, not random clicking.",
+        "examples": ["Charter: explore checkout recovery after network loss, focusing on duplicate charges, cart state, and user messages."],
+        "exercises": ["Write a 30-minute charter for accessibility risks in a registration form and define the session evidence."]
+      }
+    }
+  },
+  {
+    "id": "property-based-testing",
+    "direction": "test-design",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Коли property-based testing сильніше за набір прикладів?",
+        "answer": "Property-based testing генерує багато вхідних даних і перевіряє загальні інваріанти замість кількох заздалегідь вибраних відповідей. Воно корисне для парсерів, перетворень, серіалізації та математичних правил. Якість залежить від властивостей, генераторів і shrinking; хибна властивість лише масштабуватиме хибну впевненість.",
+        "examples": ["Після serialize → deserialize об’єкт має зберігати значущі поля для широкого набору згенерованих значень."],
+        "exercises": ["Сформулюйте три properties для сортування та поясніть, які дефекти не зловить перевірка лише на sorted output."]
+      },
+      "en": {
+        "question": "When is property-based testing stronger than example-based tests?",
+        "answer": "Property-based testing generates many inputs and checks general invariants instead of a few predefined answers. It works well for parsers, transformations, serialization, and mathematical rules. Its value depends on sound properties, generators, and shrinking; a wrong property only scales false confidence.",
+        "examples": ["After serialize → deserialize, an object should preserve its meaningful fields across a broad set of generated values."],
+        "exercises": ["Define three properties for sorting and explain which defects a check for sorted output alone would miss."]
+      }
+    }
+  },
+  {
+    "id": "model-based-testing",
+    "direction": "test-design",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Що дає model-based testing і де його межі?",
+        "answer": "Model-based testing виводить сценарії з абстрактної моделі станів, правил або потоків. Це допомагає системно покривати переходи та генерувати послідовності, які важко складати вручну. Але модель є окремим артефактом із власними помилками й вартістю підтримки, тому її доцільність залежить від стабільності домену та цінності покриття.",
+        "examples": ["Модель протоколу підписки генерує шляхи активації, паузи, відновлення, скасування та заборонені переходи."],
+        "exercises": ["Порівняйте ручний набір сценаріїв і модель станів для workflow погодження документа; визначте maintenance cost."]
+      },
+      "en": {
+        "question": "What does model-based testing provide, and where are its limits?",
+        "answer": "Model-based testing derives scenarios from an abstract model of states, rules, or flows. It systematically covers transitions and can generate sequences that are hard to design manually. The model is another artefact with its own defects and maintenance cost, so its value depends on domain stability and the importance of coverage.",
+        "examples": ["A subscription protocol model generates activation, pause, resume, cancellation, and forbidden transition paths."],
+        "exercises": ["Compare a manual scenario set with a state model for document approval and estimate the maintenance cost."]
+      }
+    }
+  },
+  {
+    "id": "test-pyramid-feedback",
+    "direction": "automation-architecture",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Навіщо автоматизації test pyramid, якщо це не сувора формула?",
+        "answer": "Test pyramid нагадує розміщувати більшість перевірок на швидких і локальних рівнях, а дорогі end-to-end сценарії залишати для ризиків, які не можна покрити нижче. Форма залежить від архітектури продукту; мета — короткий feedback, діагностичність і прийнятна вартість підтримки, а не правильна кількість тестів у кожному шарі.",
+        "examples": ["Правило розрахунку перевіряється unit-тестами, контракт інтеграції — API-тестами, а один критичний шлях — через UI."],
+        "exercises": ["Розкладіть десять перевірок знайомої функції за рівнями й обґрунтуйте найдорожчі end-to-end сценарії."]
+      },
+      "en": {
+        "question": "Why use the test pyramid if it is not a strict formula?",
+        "answer": "The test pyramid encourages most checks to live at fast, local levels while expensive end-to-end scenarios cover risks that cannot be addressed below. Its shape depends on the product architecture; the goal is fast feedback, useful diagnostics, and sustainable maintenance rather than a prescribed test count per layer.",
+        "examples": ["A calculation rule is covered by unit tests, an integration contract by API tests, and one critical journey through the UI."],
+        "exercises": ["Place ten checks for a familiar feature across test levels and justify the most expensive end-to-end cases."]
+      }
+    }
+  },
+  {
+    "id": "deterministic-waits",
+    "direction": "automation-architecture",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чому fixed sleep робить автоматизацію нестабільною?",
+        "answer": "Фіксована пауза не знає, коли система справді готова: короткий sleep дає flaky failures, довгий сповільнює suite. Краще чекати на спостережувану умову з обмеженим timeout — відповідь API, стан елемента, завершення job або появу події — і зберігати діагностику при перевищенні часу.",
+        "examples": ["Замість sleep(5000) тест очікує, доки статус операції стане Completed, але не довше 10 секунд."],
+        "exercises": ["Знайдіть три fixed sleeps у тестовому сценарії та замініть кожен на конкретну умову готовності."]
+      },
+      "en": {
+        "question": "Why does a fixed sleep make automation unstable?",
+        "answer": "A fixed delay does not know when the system is actually ready: a short sleep causes flaky failures, while a long one slows the suite. Wait for an observable condition with a bounded timeout—an API response, element state, completed job, or emitted event—and preserve diagnostics when the timeout expires.",
+        "examples": ["Instead of sleep(5000), the test waits until the operation status becomes Completed, for at most ten seconds."],
+        "exercises": ["Find three fixed sleeps in a test scenario and replace each with a specific readiness condition."]
+      }
+    }
+  },
+  {
+    "id": "fixtures-and-test-data",
+    "direction": "automation-architecture",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як fixtures допомагають ізолювати автоматизовані тести?",
+        "answer": "Fixture готує контрольований стан, надає ресурс тесту й виконує cleanup. Хороша fixture має явний scope, створює мінімальні дані, не приховує важливі передумови та безпечно працює паралельно. Спільний mutable state між тестами породжує залежність від порядку й складні для відтворення падіння.",
+        "examples": ["Кожен тест створює користувача з унікальним namespace через API та видаляє його після завершення, навіть якщо assertion впав."],
+        "exercises": ["Спроєктуйте fixture для паралельних tests замовлення: setup, унікальність, cleanup і поведінка при частковому падінні."]
+      },
+      "en": {
+        "question": "How do fixtures help isolate automated tests?",
+        "answer": "A fixture prepares controlled state, provides a resource to the test, and performs cleanup. A good fixture has explicit scope, creates minimal data, does not hide important preconditions, and is safe under parallel execution. Shared mutable state creates order dependence and failures that are difficult to reproduce.",
+        "examples": ["Each test creates a user in a unique namespace through the API and deletes it afterwards, even when an assertion fails."],
+        "exercises": ["Design a fixture for parallel order tests, including setup, uniqueness, cleanup, and partial-failure behaviour."]
+      }
+    }
+  },
+  {
+    "id": "service-virtualization",
+    "direction": "automation-architecture",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Коли service virtualization корисніша за реальну залежність?",
+        "answer": "Віртуальний сервіс дає контрольовані відповіді, помилки, latency та рідкісні послідовності без залежності від доступності зовнішньої системи. Він пришвидшує feedback і робить негативні сценарії відтворюваними. Але virtual service не доводить реальну сумісність, тому його потрібно доповнювати contract tests і вибраними інтеграційними перевірками.",
+        "examples": ["Stub платіжного провайдера послідовно повертає timeout, duplicate callback і success, щоб перевірити retry logic."],
+        "exercises": ["Оберіть одну нестабільну інтеграцію й опишіть, що симулювати, а що обов’язково залишити для real-environment test."]
+      },
+      "en": {
+        "question": "When is service virtualization more useful than a real dependency?",
+        "answer": "A virtual service provides controlled responses, failures, latency, and rare sequences without depending on an external system’s availability. It speeds feedback and makes negative scenarios reproducible. It does not prove real compatibility, so combine it with contract tests and selected integration checks.",
+        "examples": ["A payment-provider stub returns a timeout, duplicate callback, and success in sequence to test retry logic."],
+        "exercises": ["Choose one unstable integration and define what to simulate and what must remain a real-environment test."]
+      }
+    }
+  },
+  {
+    "id": "contract-testing-boundaries",
+    "direction": "automation-architecture",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Яку проблему розв’язує contract testing між сервісами?",
+        "answer": "Contract testing перевіряє, що provider і consumer узгоджено розуміють запити, відповіді та сумісні зміни на межі сервісів. Consumer-driven підхід фіксує реально потрібну поведінку, а schema validation — форму повідомлення. Контракти не перевіряють повний бізнес-процес, production configuration чи семантику всіх даних.",
+        "examples": ["Consumer очікує поле currency та конкретну поведінку для 404; provider verification запускає ці очікування перед релізом."],
+        "exercises": ["Для двох сервісів визначте contract, ownership, правила versioning і сценарій, який усе одно потребує end-to-end test."]
+      },
+      "en": {
+        "question": "What problem does contract testing solve between services?",
+        "answer": "Contract testing checks that providers and consumers agree on requests, responses, and compatible changes at service boundaries. A consumer-driven approach captures behaviour that clients actually need, while schema validation checks message shape. Contracts do not verify complete business flows, production configuration, or every data semantic.",
+        "examples": ["A consumer expects a currency field and specific 404 behaviour; provider verification runs those expectations before release."],
+        "exercises": ["For two services, define the contract, ownership, versioning rules, and one scenario that still needs an end-to-end test."]
+      }
+    }
+  },
+  {
+    "id": "parallel-execution-observability",
+    "direction": "automation-architecture",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Що потрібно архітектурі тестів для безпечного parallel execution?",
+        "answer": "Паралельність потребує ізольованих даних і ресурсів, контрольованої конкуренції, незалежних тестів та кореляційних ідентифікаторів. Логи, traces, screenshots і мережеві артефакти мають прив’язуватися до конкретного worker і test run. Інакше прискорення лише створює race conditions, шум і нерозбірливі падіння.",
+        "examples": ["Кожен worker отримує окремий tenant і correlation ID, а звіт збирає всі запити та події одного тесту."],
+        "exercises": ["Підготуйте план переходу suite з 1 на 8 workers: ресурси, ліміти, isolation та evidence при failure."]
+      },
+      "en": {
+        "question": "What does a test architecture need for safe parallel execution?",
+        "answer": "Parallelism requires isolated data and resources, controlled concurrency, independent tests, and correlation identifiers. Logs, traces, screenshots, and network artefacts must map to a specific worker and test run. Otherwise, speed merely creates race conditions, noise, and failures that cannot be diagnosed.",
+        "examples": ["Each worker receives a separate tenant and correlation ID, while the report gathers every request and event for one test."],
+        "exercises": ["Plan a suite migration from one to eight workers, covering resources, limits, isolation, and failure evidence."]
+      }
+    }
+  },
+  {
+    "id": "python-identity-equality",
+    "direction": "python-coding-whiteboard",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим у Python відрізняються is та ==?",
+        "answer": "Оператор == порівнює значення через equality protocol, а is перевіряє, чи дві змінні посилаються на той самий об’єкт. is доречний для singleton-значень на кшталт None; використовувати його для рядків або чисел небезпечно через деталі інтернування.",
+        "examples": ["value is None — коректна перевірка; value == expected — порівняння змісту."],
+        "exercises": ["Напишіть приклади, де два окремі списки рівні за ==, але is повертає False, і поясніть результат."]
+      },
+      "en": {
+        "question": "How do is and == differ in Python?",
+        "answer": "The == operator compares values through the equality protocol, while is checks whether two names refer to the same object. is is appropriate for singleton values such as None; using it for strings or numbers is unsafe because of interning details.",
+        "examples": ["value is None is a correct identity check; value == expected compares content."],
+        "exercises": ["Write an example where two separate lists are equal with == but is returns False, and explain why."]
+      }
+    }
+  },
+  {
+    "id": "python-context-manager",
+    "direction": "python-coding-whiteboard",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Навіщо Python context manager?",
+        "answer": "Context manager описує вхід у контрольований контекст і гарантований вихід із нього, навіть коли всередині виникає exception. Він підходить для файлів, locks, транзакцій, тимчасових ресурсів і тестових fixtures, бо тримає setup та cleanup поруч.",
+        "examples": ["with open(...) закриває файл автоматично; власний context manager може відкотити тестову транзакцію."],
+        "exercises": ["Створіть context manager для тимчасового environment variable, який завжди відновлює попереднє значення."]
+      },
+      "en": {
+        "question": "Why use a Python context manager?",
+        "answer": "A context manager defines entry into a controlled context and guaranteed exit, even when an exception occurs inside it. It suits files, locks, transactions, temporary resources, and test fixtures because setup and cleanup stay together.",
+        "examples": ["with open(...) closes a file automatically; a custom context manager can roll back a test transaction."],
+        "exercises": ["Create a context manager for a temporary environment variable that always restores the previous value."]
+      }
+    }
+  },
+  {
+    "id": "python-type-hints-contracts",
+    "direction": "python-coding-whiteboard",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Що дають type hints у динамічному Python?",
+        "answer": "Type hints документують очікувані контракти й дозволяють static checker знайти частину помилок до runtime. Вони не виконують автоматичну runtime validation і не замінюють тести. Найбільша користь з’являється на межах модулів, у складних структурах даних і під час refactoring.",
+        "examples": ["Protocol описує потрібну поведінку API client без жорсткої залежності від конкретного класу."],
+        "exercises": ["Додайте typing до функції нормалізації API response й перевірте обробку Optional та union values."]
+      },
+      "en": {
+        "question": "What do type hints provide in dynamic Python?",
+        "answer": "Type hints document expected contracts and let a static checker catch some errors before runtime. They do not automatically validate values at runtime and do not replace tests. Their greatest value appears at module boundaries, in complex data structures, and during refactoring.",
+        "examples": ["A Protocol describes the behaviour required from an API client without coupling code to one concrete class."],
+        "exercises": ["Add typing to an API-response normalizer and handle Optional and union values explicitly."]
+      }
+    }
+  },
+  {
+    "id": "python-exception-paths",
+    "direction": "python-coding-whiteboard",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як тестувати exception paths без маскування помилок?",
+        "answer": "Тест має викликати конкретну умову, перевірити тип і значущі атрибути exception, а також стан після помилки. Broad except або порожній catch приховує дефекти. Для retryable помилок окремо перевіряють кількість спроб, backoff і те, що non-retryable exception не повторюється.",
+        "examples": ["pytest.raises перевіряє ValidationError і поле invalid_field, а fixture підтверджує, що запис у базі не створено."],
+        "exercises": ["Протестуйте функцію з timeout, validation error і unexpected error; визначте різну політику для кожної."]
+      },
+      "en": {
+        "question": "How do you test exception paths without hiding errors?",
+        "answer": "A test should trigger a specific condition, assert the exception type and meaningful attributes, and verify state after failure. A broad except or empty catch hides defects. For retryable failures, separately verify attempt count, backoff, and that non-retryable exceptions are not repeated.",
+        "examples": ["pytest.raises checks ValidationError and its invalid_field attribute, while a fixture confirms that no database row was created."],
+        "exercises": ["Test a function for timeout, validation error, and unexpected error, defining a different policy for each."]
+      }
+    }
+  },
+  {
+    "id": "python-async-cancellation",
+    "direction": "python-coding-whiteboard",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Чому cancellation і timeout є частиною дизайну async-коду?",
+        "answer": "Async task може бути скасована під час будь-якого await, тому код має коректно звільняти ресурси й не залишати частково змінений стан. Timeout задає межу очікування, але не завжди зупиняє зовнішню операцію. Structured concurrency допомагає пов’язати життєвий цикл дочірніх tasks із батьківською операцією.",
+        "examples": ["Після timeout HTTP-запиту context manager закриває session, а незавершені дочірні tasks скасовуються та awaited."],
+        "exercises": ["Спроєктуйте async fan-out до трьох сервісів із загальним deadline, частковими результатами та cleanup."]
+      },
+      "en": {
+        "question": "Why are cancellation and timeout part of async-code design?",
+        "answer": "An async task can be cancelled at any await, so code must release resources correctly and avoid leaving partially changed state. A timeout bounds waiting but does not always stop the external operation. Structured concurrency helps tie child-task lifecycles to their parent operation.",
+        "examples": ["After an HTTP timeout, a context manager closes the session, and unfinished child tasks are cancelled and awaited."],
+        "exercises": ["Design an async fan-out to three services with a shared deadline, partial results, and cleanup."]
+      }
+    }
+  },
+  {
+    "id": "python-complexity-review",
+    "direction": "python-coding-whiteboard",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як оцінювати complexity під час coding whiteboard і code review?",
+        "answer": "Big-O описує, як ростуть витрати зі збільшенням input, але практичний review враховує також розмір даних, memory, I/O, читабельність і профілювання. Правильна відповідь пояснює assumptions та trade-offs, а не просто називає O(n). Оптимізація без вимірювання може ускладнити код без користі.",
+        "examples": ["Заміна вкладеного пошуку списком на set зменшує очікуваний час із O(n²) до O(n), використовуючи додаткову пам’ять."],
+        "exercises": ["Порівняйте два способи пошуку дублікатів і поясніть вибір для 100 та 10 мільйонів елементів."]
+      },
+      "en": {
+        "question": "How should complexity be assessed in a coding whiteboard or code review?",
+        "answer": "Big-O describes how cost grows with input, but practical review also considers data size, memory, I/O, readability, and profiling. A strong answer states assumptions and trade-offs instead of merely naming O(n). Optimising without measurement may complicate code without benefit.",
+        "examples": ["Replacing nested list lookup with a set reduces expected time from O(n²) to O(n) while using additional memory."],
+        "exercises": ["Compare two duplicate-detection approaches and justify the choice for 100 and 10 million elements."]
+      }
+    }
+  },
+  {
+    "id": "typescript-structural-typing",
+    "direction": "typescript-playwright-bdd",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що означає structural typing у TypeScript?",
+        "answer": "TypeScript перевіряє сумісність переважно за формою значення: об’єкт підходить, якщо має потрібні поля й типи, незалежно від назви класу. Це зручно для API та dependency injection, але compile-time типи зникають у runtime, тому зовнішні дані все одно потребують validation.",
+        "examples": ["Функція приймає об’єкт із методом send(); будь-яка реалізація з сумісною сигнатурою відповідає контракту."],
+        "exercises": ["Опишіть interface для API client і покажіть, чому JSON response не стає безпечним лише після type assertion."]
+      },
+      "en": {
+        "question": "What does structural typing mean in TypeScript?",
+        "answer": "TypeScript checks compatibility mainly by value shape: an object fits when it has the required fields and types, regardless of its class name. This is convenient for APIs and dependency injection, but compile-time types disappear at runtime, so external data still needs validation.",
+        "examples": ["A function accepts an object with a send() method; any implementation with a compatible signature satisfies the contract."],
+        "exercises": ["Define an interface for an API client and show why a type assertion alone does not make a JSON response safe."]
+      }
+    }
+  },
+  {
+    "id": "playwright-stable-locators",
+    "direction": "typescript-playwright-bdd",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як вибирати стабільні locators у Playwright?",
+        "answer": "Перевагу варто надавати user-facing семантиці: role, accessible name, label або стабільному test id. Довгі CSS/XPath-селектори прив’язуються до випадкової структури DOM і часто ламаються після верстки. Locator має однозначно описувати намір і падати, якщо елементів несподівано кілька.",
+        "examples": ["getByRole('button', { name: 'Save' }) краще передає поведінку, ніж div:nth-child(3) > button."],
+        "exercises": ["Перепишіть п’ять крихких CSS selectors через role, label або test id і поясніть кожен вибір."]
+      },
+      "en": {
+        "question": "How should stable Playwright locators be chosen?",
+        "answer": "Prefer user-facing semantics such as role, accessible name, label, or a stable test id. Long CSS or XPath selectors couple tests to incidental DOM structure and often break after layout changes. A locator should express intent clearly and fail when it unexpectedly matches multiple elements.",
+        "examples": ["getByRole('button', { name: 'Save' }) expresses behaviour better than div:nth-child(3) > button."],
+        "exercises": ["Rewrite five brittle CSS selectors using role, label, or test id and explain each choice."]
+      }
+    }
+  },
+  {
+    "id": "playwright-web-first-assertions",
+    "direction": "typescript-playwright-bdd",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Чим web-first assertions відрізняються від миттєвої перевірки?",
+        "answer": "Web-first assertion повторно читає стан через locator до успіху або timeout, враховуючи асинхронні оновлення UI. Миттєва перевірка snapshot-значення легко потрапляє між render cycles. Очікування має бути спрямоване на бізнесово значущий стан, а не приховувати нескінченне завантаження великим timeout.",
+        "examples": ["expect(locator).toHaveText('Paid') чекає потрібний стан, тоді як перевірка textContent одразу може побачити старе значення."],
+        "exercises": ["Замініть polling вручну та fixed sleep на web-first assertions у сценарії з асинхронним status update."]
+      },
+      "en": {
+        "question": "How do web-first assertions differ from immediate checks?",
+        "answer": "A web-first assertion repeatedly reads state through a locator until success or timeout, accounting for asynchronous UI updates. An immediate snapshot check can land between render cycles. Wait for a business-meaningful state rather than hiding endless loading behind a large timeout.",
+        "examples": ["expect(locator).toHaveText('Paid') waits for the target state, while immediately checking textContent may see the old value."],
+        "exercises": ["Replace manual polling and fixed sleep with web-first assertions in a scenario with an asynchronous status update."]
+      }
+    }
+  },
+  {
+    "id": "playwright-fixtures",
+    "direction": "typescript-playwright-bdd",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як використовувати Playwright fixtures без прихованої магії?",
+        "answer": "Fixtures мають надавати чітко названі ресурси з відповідним scope і автоматичним cleanup. Worker-scoped fixture підходить для дорогого read-only setup, test-scoped — для змінного стану. Надмірно велика auto fixture приховує залежності та робить тест складним для читання й діагностики.",
+        "examples": ["authPage створює ізольований context для кожного тесту, а API client із базовою конфігурацією може бути worker-scoped."],
+        "exercises": ["Розділіть одну велику fixture на auth, data setup і page objects; оберіть scope та cleanup для кожної."]
+      },
+      "en": {
+        "question": "How can Playwright fixtures be used without hidden magic?",
+        "answer": "Fixtures should provide clearly named resources with an appropriate scope and automatic cleanup. A worker-scoped fixture suits expensive read-only setup, while test scope suits mutable state. An oversized automatic fixture hides dependencies and makes tests difficult to read and diagnose.",
+        "examples": ["authPage creates an isolated context per test, while an API client with base configuration can be worker-scoped."],
+        "exercises": ["Split one large fixture into authentication, data setup, and page objects; choose scope and cleanup for each."]
+      }
+    }
+  },
+  {
+    "id": "playwright-network-mocking",
+    "direction": "typescript-playwright-bdd",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Коли network mocking у browser test виправданий?",
+        "answer": "Mocking корисний для детермінованих помилок, повільних залежностей і UI-станів, які важко відтворити. Він дозволяє перевірити frontend окремо, але створює ризик розходження з реальним API. Контракт fixture має бути перевірений, а критичні flows — додатково пройти з реальною інтеграцією.",
+        "examples": ["route.fulfill повертає 429 із Retry-After для перевірки повідомлення й повторної дії користувача."],
+        "exercises": ["Визначте три сценарії для mock і два для real backend; опишіть захист від застарілого response fixture."]
+      },
+      "en": {
+        "question": "When is network mocking in a browser test justified?",
+        "answer": "Mocking is useful for deterministic failures, slow dependencies, and UI states that are hard to reproduce. It isolates frontend behaviour but risks drifting from the real API. Validate fixture contracts and additionally run critical flows against the real integration.",
+        "examples": ["route.fulfill returns 429 with Retry-After to test the message and the user’s retry action."],
+        "exercises": ["Choose three scenarios for mocks and two for a real backend, then define protection against stale response fixtures."]
+      }
+    }
+  },
+  {
+    "id": "playwright-trace-parallelism",
+    "direction": "typescript-playwright-bdd",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як traces допомагають діагностувати паралельні Playwright tests?",
+        "answer": "Trace об’єднує actions, DOM snapshots, network, console та timing для конкретного тесту. У CI це значно корисніше за один screenshot, особливо при race condition. Trace потрібно зберігати за зрозумілою retention policy, не записувати secrets і поєднувати з унікальними test data для відтворення.",
+        "examples": ["Trace показує, що worker B змінив спільне замовлення між click і assertion worker A."],
+        "exercises": ["Налаштуйте trace on-first-retry та перелічіть дані, які потрібні, щоб відрізнити product defect від test isolation issue."]
+      },
+      "en": {
+        "question": "How do traces help diagnose parallel Playwright tests?",
+        "answer": "A trace combines actions, DOM snapshots, network, console, and timing for one test. In CI this is much more useful than a single screenshot, especially for race conditions. Store traces under a clear retention policy, avoid secrets, and pair them with unique test data for reproduction.",
+        "examples": ["A trace shows that worker B changed a shared order between worker A’s click and assertion."],
+        "exercises": ["Configure trace on-first-retry and list the evidence needed to separate a product defect from a test-isolation issue."]
+      }
+    }
+  }
+]

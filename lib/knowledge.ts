@@ -1,6 +1,9 @@
 import catalogData from '../content/knowledge/catalog.json'
 import testingTheoryData from '../content/knowledge/materials/testing-theory.json'
 import starterPackData from '../content/knowledge/materials/starter-pack.json'
+import expandedQualityEngineeringData from '../content/knowledge/materials/expanded-quality-engineering.json'
+import expandedPlatformData from '../content/knowledge/materials/expanded-platform.json'
+import expandedIntelligentSystemsData from '../content/knowledge/materials/expanded-intelligent-systems.json'
 import type { Language } from '../types/post'
 import type { KnowledgeDirection, KnowledgeMaterial, LocalizedDirection, LocalizedMaterial } from '../types/knowledge'
 
@@ -9,6 +12,9 @@ const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
 const allMaterials = [
   ...(testingTheoryData as KnowledgeMaterial[]),
   ...(starterPackData as KnowledgeMaterial[]),
+  ...(expandedQualityEngineeringData as KnowledgeMaterial[]),
+  ...(expandedPlatformData as KnowledgeMaterial[]),
+  ...(expandedIntelligentSystemsData as KnowledgeMaterial[]),
 ]
 
 export function getKnowledgeDirections(): KnowledgeDirection[] {
