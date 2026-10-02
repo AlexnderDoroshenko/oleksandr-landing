@@ -18,6 +18,7 @@ export type KnowledgeDirection = {
 export type LocalizedMaterial = {
   question: string
   answer: string
+  answerPoints?: string[]
   examples: string[]
   exercises: string[]
 }

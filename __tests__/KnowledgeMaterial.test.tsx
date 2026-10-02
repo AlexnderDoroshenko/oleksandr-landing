@@ -11,6 +11,7 @@ const material: KnowledgeMaterial = {
     en: {
       question: 'What is testing?',
       answer: 'A way to investigate risk.',
+      answerPoints: ['Reveal relevant problems', 'Support a decision'],
       examples: ['A payment check'],
       exercises: ['List three risks'],
     },
@@ -24,6 +25,8 @@ describe('KnowledgeMaterialView', () => {
     expect(screen.getByText('Junior')).toBeInTheDocument()
     fireEvent.click(screen.getByText('What is testing?'))
     expect(screen.getByText('A way to investigate risk.')).toBeInTheDocument()
+    expect(screen.getByText('Reveal relevant problems')).toBeInTheDocument()
+    expect(screen.getByText('Support a decision')).toBeInTheDocument()
     expect(screen.getByText('A payment check')).toBeInTheDocument()
     expect(screen.getByText('List three risks')).toBeInTheDocument()
   })

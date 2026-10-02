@@ -101,13 +101,25 @@
     "translations": {
       "uk": {
         "question": "Які browser security boundaries важливі для тестування web application?",
-        "answer": "Same-origin policy обмежує читання ресурсів між origins; CORS надає контрольовані винятки; CSP обмежує джерела executable content; sandbox та permission policies звужують можливості embedded content. Це різні механізми, і жоден не виправляє слабку server-side authorization.",
+        "answer": "Це різні механізми, і жоден не виправляє слабку server-side authorization:",
+        "answerPoints": [
+          "Same-origin policy обмежує читання ресурсів між origins.",
+          "CORS надає контрольовані винятки.",
+          "CSP обмежує джерела executable content.",
+          "Sandbox та permission policies звужують можливості embedded content."
+        ],
         "examples": ["CORS дозволяє frontend прочитати response, але backend усе одно має перевірити право користувача на конкретний order."],
         "exercises": ["Для application з iframe й API складіть матрицю origin, credentials, CORS, CSP та authorization expectations."]
       },
       "en": {
         "question": "Which browser security boundaries matter when testing a web application?",
-        "answer": "The same-origin policy limits reading resources across origins; CORS provides controlled exceptions; CSP restricts executable-content sources; sandbox and permission policies narrow embedded-content capabilities. These mechanisms solve different problems, and none repairs weak server-side authorization.",
+        "answer": "These mechanisms solve different problems, and none repairs weak server-side authorization:",
+        "answerPoints": [
+          "The same-origin policy limits reading resources across origins.",
+          "CORS provides controlled exceptions.",
+          "CSP restricts executable-content sources.",
+          "Sandbox and permission policies narrow embedded-content capabilities."
+        ],
         "examples": ["CORS lets a frontend read a response, but the backend must still verify the user’s access to that specific order."],
         "exercises": ["For an application with an iframe and API, build a matrix of origin, credentials, CORS, CSP, and authorization expectations."]
       }
@@ -310,13 +322,23 @@
     "translations": {
       "uk": {
         "question": "Як вибирати між rolling, blue-green і canary deployment?",
-        "answer": "Rolling поступово замінює instances з невеликою додатковою інфраструктурою; blue-green тримає два environments і дає швидке перемикання; canary спрямовує частину трафіку на нову версію та потребує якісних metrics. Вибір залежить від сумісності версій, state, вартості, blast radius і швидкості rollback.",
+        "answer": "Вибір залежить від сумісності версій, state, вартості, blast radius і швидкості rollback:",
+        "answerPoints": [
+          "Rolling поступово замінює instances з невеликою додатковою інфраструктурою.",
+          "Blue-green тримає два environments і дає швидке перемикання.",
+          "Canary спрямовує частину трафіку на нову версію та потребує якісних metrics."
+        ],
         "examples": ["Canary на 5% трафіку автоматично зупиняється при зростанні error rate і latency проти baseline."],
         "exercises": ["Оберіть strategy для stateful API з database migration та опишіть критерії promotion і abort."]
       },
       "en": {
         "question": "How do you choose among rolling, blue-green, and canary deployment?",
-        "answer": "Rolling gradually replaces instances with little extra infrastructure; blue-green maintains two environments and enables fast switching; canary sends a traffic subset to the new version and requires strong metrics. Choose based on version compatibility, state, cost, blast radius, and rollback speed.",
+        "answer": "Choose based on version compatibility, state, cost, blast radius, and rollback speed:",
+        "answerPoints": [
+          "Rolling gradually replaces instances with little extra infrastructure.",
+          "Blue-green maintains two environments and enables fast switching.",
+          "Canary sends a traffic subset to the new version and requires strong metrics."
+        ],
         "examples": ["A 5% canary automatically stops when error rate and latency increase relative to baseline."],
         "exercises": ["Choose a strategy for a stateful API with a database migration and define promotion and abort criteria."]
       }
