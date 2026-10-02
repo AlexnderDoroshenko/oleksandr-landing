@@ -18,10 +18,10 @@ self.__BUILD_MANIFEST = {
     "static/chunks/3yki_m3prlz1m.js"
   ],
   "/knowledge": [
-    "static/chunks/2xh448vt9vw5b.js"
+    "static/chunks/1wxqnxl2uco_3.js"
   ],
   "/knowledge/[direction]": [
-    "static/chunks/3coyz9pqkj0-g.js"
+    "static/chunks/3wlot2f4l2s7n.js"
   ],
   "__rewrites": {
     "afterFiles": [],
