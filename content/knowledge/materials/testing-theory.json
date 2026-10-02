@@ -276,8 +276,8 @@
     "level": "Junior",
     "translations": {
       "uk": {
-        "question": "Чим відрізняються component, integration, system і acceptance testing?",
-        "answer": "Межі рівнів залежать від архітектури, тому їх потрібно визначати для конкретного продукту:",
+        "question": "Що таке рівні тестування і чим вони відрізняються?",
+        "answer": "Рівень тестування визначає масштаб і частину системи, на якій зосереджена перевірка. Межі залежать від архітектури, тому їх потрібно визначати для конкретного продукту:",
         "answerPoints": [
           "Component testing ізолює невелику одиницю.",
           "Integration testing перевіряє взаємодію частин.",
@@ -292,8 +292,8 @@
         ]
       },
       "en": {
-        "question": "How do component, integration, system, and acceptance testing differ?",
-        "answer": "Level boundaries depend on architecture and must be defined for the product:",
+        "question": "What are test levels, and how do they differ?",
+        "answer": "A test level defines the scale and part of the system on which a check focuses. Level boundaries depend on architecture and must be defined for the product:",
         "answerPoints": [
           "Component testing isolates a small unit.",
           "Integration testing checks interactions among parts.",
@@ -310,28 +310,40 @@
     }
   },
   {
-    "id": "functional-nonfunctional",
+    "id": "test-types",
     "direction": "testing-theory",
     "level": "Junior",
     "translations": {
       "uk": {
-        "question": "Чим functional testing відрізняється від non-functional testing?",
-        "answer": "Functional testing перевіряє, що система робить: правила, обчислення, переходи та результати. Non-functional testing досліджує, як система це робить: продуктивність, надійність, безпеку, доступність, сумісність та інші характеристики. Один сценарій часто потребує обох перспектив.",
+        "question": "Що таке типи тестування і чим вони відрізняються від рівнів?",
+        "answer": "Тип тестування визначає мету перевірки або характеристику якості, яку ми досліджуємо. На відміну від рівня, тип не прив’язаний до конкретного масштабу системи й може застосовуватися на кількох рівнях:",
+        "answerPoints": [
+          "Functional testing перевіряє, що система робить: правила, обчислення, переходи та результати.",
+          "Non-functional testing перевіряє, як система працює: продуктивність, надійність, безпеку, доступність, сумісність та інші характеристики.",
+          "White-box, або structural, testing використовує внутрішню структуру системи: statements, branches, paths або data flows.",
+          "Change-related testing включає confirmation testing виправленої поведінки та regression testing можливих побічних змін."
+        ],
         "examples": [
-          "Пошук повертає правильні товари — функціональна перевірка; відповідь пошуку вкладається в latency budget під навантаженням — нефункціональна."
+          "System — це рівень перевірки повного продукту. На цьому рівні можна виконувати functional, performance, security та regression testing — різні типи тестування."
         ],
         "exercises": [
-          "Для завантаження файлу сформулюйте три functional і три non-functional ризики."
+          "Для завантаження файлу визначте рівень кожної перевірки та класифікуйте її тип: functional, non-functional, structural або change-related."
         ]
       },
       "en": {
-        "question": "How does functional testing differ from non-functional testing?",
-        "answer": "Functional testing checks what the system does: rules, calculations, transitions, and outcomes. Non-functional testing investigates how it does so: performance, reliability, security, accessibility, compatibility, and other characteristics. One journey often needs both perspectives.",
+        "question": "What are test types, and how do they differ from test levels?",
+        "answer": "A test type defines the objective of a check or the quality characteristic being investigated. Unlike a level, a type is not tied to one scale of the system and can be applied at several levels:",
+        "answerPoints": [
+          "Functional testing checks what the system does: rules, calculations, transitions, and outcomes.",
+          "Non-functional testing checks how the system operates: performance, reliability, security, accessibility, compatibility, and other characteristics.",
+          "White-box, or structural, testing uses the system’s internal structure: statements, branches, paths, or data flows.",
+          "Change-related testing includes confirmation testing of corrected behaviour and regression testing for unintended side effects."
+        ],
         "examples": [
-          "Search returning the correct products is functional; staying within the latency budget under load is non-functional."
+          "System is the level at which the complete product is checked. Functional, performance, security, and regression testing are different test types that may all be applied at that level."
         ],
         "exercises": [
-          "For a file upload, define three functional and three non-functional risks."
+          "For file upload checks, identify the level of each check and classify its type as functional, non-functional, structural, or change-related."
         ]
       }
     }
