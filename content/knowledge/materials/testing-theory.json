@@ -6,7 +6,7 @@
     "translations": {
       "uk": {
         "question": "Що таке тестування програмного забезпечення і навіщо воно потрібне?",
-        "answer": "Тестування — це систематичне дослідження продукту та пов’язаної документації, яке допомагає знаходити дефекти, перевіряти очікувану поведінку й давати команді інформацію про якість і ризики. Його мета — не «довести, що все працює», а зменшити невизначеність перед рішенням.",
+        "answer": "Тестування — це процес статичної та динамічної перевірки продукту й пов’язаних робочих матеріалів для виявлення дефектів і визначення їх відповідності вимогам та потребам користувачів.",
         "examples": [
           "Для сервісу переказів недостатньо побачити успішний платіж: команда також має знати, як система поводиться при повторному запиті, відмові банку та втраті мережі."
         ],
@@ -16,7 +16,7 @@
       },
       "en": {
         "question": "What is software testing, and why do we need it?",
-        "answer": "Testing is the systematic investigation of a product and its related documentation to reveal defects, check expected behaviour, and give the team information about quality and risk. Its purpose is not to “prove everything works,” but to reduce uncertainty before a decision.",
+        "answer": "Testing is the process of statically and dynamically examining a product and related work products to identify defects and determine whether they meet requirements and user needs.",
         "examples": [
           "For a money-transfer service, a successful payment is not enough: the team also needs evidence about repeated requests, bank declines, and network loss."
         ],
@@ -60,7 +60,12 @@
     "translations": {
       "uk": {
         "question": "Як пов’язані Quality Assurance, Quality Control і тестування?",
-        "answer": "Quality Assurance працює з процесами, які мають запобігати проблемам; Quality Control оцінює властивості створеного продукту; тестування є одним зі способів такого оцінювання. Межі термінів залежать від організації, тому важливіше узгодити відповідальність і очікуваний результат, ніж сперечатися про назви.",
+        "answer": "Межі термінів залежать від організації, тому важливіше узгодити відповідальність і очікуваний результат, ніж сперечатися про назви:",
+        "answerPoints": [
+          "Quality Assurance працює з процесами, які мають запобігати проблемам.",
+          "Quality Control оцінює властивості створеного продукту.",
+          "Тестування є одним зі способів такого оцінювання."
+        ],
         "examples": [
           "Рев’ю Definition of Done належить до профілактики процесу, а перевірка готового API-контракту — до контролю продукту."
         ],
@@ -70,7 +75,12 @@
       },
       "en": {
         "question": "How are Quality Assurance, Quality Control, and testing related?",
-        "answer": "Quality Assurance focuses on processes intended to prevent problems; Quality Control evaluates properties of the product that was built; testing is one way to perform that evaluation. Terminology varies by organisation, so agreed responsibilities and outcomes matter more than labels.",
+        "answer": "Terminology varies by organisation, so agreed responsibilities and outcomes matter more than labels:",
+        "answerPoints": [
+          "Quality Assurance focuses on processes intended to prevent problems.",
+          "Quality Control evaluates properties of the product that was built.",
+          "Testing is one way to perform that evaluation."
+        ],
         "examples": [
           "Reviewing the Definition of Done is process prevention, while checking an implemented API contract is product control."
         ],
@@ -114,7 +124,16 @@
     "translations": {
       "uk": {
         "question": "Які базові принципи допомагають реалістично планувати тестування?",
-        "answer": "Тестування показує наявність проблем, але не гарантує їх відсутності; повна перевірка недосяжна; ранній зворотний зв’язок дешевший; дефекти часто концентруються в окремих зонах; повторення одного набору з часом втрачає ефективність; підхід залежить від контексту. Навіть продукт без відомих дефектів може не задовольняти користувача.",
+        "answer": "Реалістичне планування тестування спирається на такі базові принципи:",
+        "answerPoints": [
+          "Тестування показує наявність проблем, але не гарантує їх відсутності.",
+          "Повна перевірка недосяжна.",
+          "Ранній зворотний зв’язок дешевший.",
+          "Дефекти часто концентруються в окремих зонах.",
+          "Повторення одного набору з часом втрачає ефективність.",
+          "Підхід залежить від контексту.",
+          "Навіть продукт без відомих дефектів може не задовольняти користувача."
+        ],
         "examples": [
           "Стабільний regression suite роками проходить зелено, але не перевіряє новий мобільний сценарій, яким користується більшість клієнтів."
         ],
@@ -124,7 +143,16 @@
       },
       "en": {
         "question": "Which principles help us plan testing realistically?",
-        "answer": "Testing can reveal problems but cannot guarantee their absence; exhaustive coverage is unattainable; earlier feedback is cheaper; defects often cluster; repeating the same set loses effectiveness over time; and the approach depends on context. A product with no known defects may still fail its users.",
+        "answer": "Realistic test planning relies on these core principles:",
+        "answerPoints": [
+          "Testing can reveal problems but cannot guarantee their absence.",
+          "Exhaustive coverage is unattainable.",
+          "Earlier feedback is cheaper.",
+          "Defects often cluster.",
+          "Repeating the same set loses effectiveness over time.",
+          "The approach depends on context.",
+          "A product with no known defects may still fail its users."
+        ],
         "examples": [
           "A stable regression suite stays green for years but does not cover a new mobile journey used by most customers."
         ],
@@ -249,7 +277,13 @@
     "translations": {
       "uk": {
         "question": "Чим відрізняються component, integration, system і acceptance testing?",
-        "answer": "Component testing ізолює невелику одиницю; integration перевіряє взаємодію частин; system розглядає повну систему відносно вимог; acceptance оцінює готовність задовольнити бізнесову або користувацьку потребу. Межі залежать від архітектури, тому їх потрібно визначати для конкретного продукту.",
+        "answer": "Межі рівнів залежать від архітектури, тому їх потрібно визначати для конкретного продукту:",
+        "answerPoints": [
+          "Component testing ізолює невелику одиницю.",
+          "Integration testing перевіряє взаємодію частин.",
+          "System testing розглядає повну систему відносно вимог.",
+          "Acceptance testing оцінює готовність задовольнити бізнесову або користувацьку потребу."
+        ],
         "examples": [
           "Функція розрахунку податку, обмін checkout із tax service, повна покупка та бізнесове приймання бухгалтерією — це різні рівні одного ризику."
         ],
@@ -259,7 +293,13 @@
       },
       "en": {
         "question": "How do component, integration, system, and acceptance testing differ?",
-        "answer": "Component testing isolates a small unit; integration testing checks interactions among parts; system testing evaluates the complete system against requirements; acceptance testing assesses readiness to satisfy a business or user need. Boundaries depend on architecture and must be defined for the product.",
+        "answer": "Level boundaries depend on architecture and must be defined for the product:",
+        "answerPoints": [
+          "Component testing isolates a small unit.",
+          "Integration testing checks interactions among parts.",
+          "System testing evaluates the complete system against requirements.",
+          "Acceptance testing assesses readiness to satisfy a business or user need."
+        ],
         "examples": [
           "A tax calculation function, checkout-to-tax-service interaction, a complete purchase, and accounting acceptance represent different levels of one risk."
         ],
@@ -438,7 +478,13 @@
     "translations": {
       "uk": {
         "question": "Чим відрізняються error, defect, failure і root cause?",
-        "answer": "Error — людська помилка або неправильне рішення; defect — вада в артефакті чи коді; failure — спостережуване відхилення системи під час виконання; root cause — глибинна причина, що дозволила проблемі виникнути або пройти далі. Один failure може мати кілька причин, а defect може довго не проявлятися.",
+        "answer": "Один failure може мати кілька причин, а defect може довго не проявлятися. Терміни означають:",
+        "answerPoints": [
+          "Error — людська помилка або неправильне рішення.",
+          "Defect — вада в артефакті чи коді.",
+          "Failure — спостережуване відхилення системи під час виконання.",
+          "Root cause — глибинна причина, що дозволила проблемі виникнути або пройти далі."
+        ],
         "examples": [
           "Неправильно зрозуміле правило призвело до дефектної умови в коді; failure видно лише для певної валюти, а root cause включає нечітку вимогу й відсутнє review."
         ],
@@ -448,7 +494,13 @@
       },
       "en": {
         "question": "How do error, defect, failure, and root cause differ?",
-        "answer": "An error is a human mistake or incorrect decision; a defect is a flaw in an artefact or code; a failure is an observable deviation while the system runs; a root cause is an underlying condition that allowed the problem to occur or escape. One failure may have several causes, and a defect may remain dormant.",
+        "answer": "One failure may have several causes, and a defect may remain dormant. The terms mean:",
+        "answerPoints": [
+          "An error is a human mistake or incorrect decision.",
+          "A defect is a flaw in an artefact or code.",
+          "A failure is an observable deviation while the system runs.",
+          "A root cause is an underlying condition that allowed the problem to occur or escape."
+        ],
         "examples": [
           "A misunderstood rule produced a faulty condition in code; the failure appears only for one currency, while root causes include a vague requirement and missing review."
         ],
@@ -600,7 +652,12 @@
     "translations": {
       "uk": {
         "question": "Що дають entry, exit і suspension criteria?",
-        "answer": "Entry criteria визначають, коли тестову активність має сенс починати; exit criteria — який evidence потрібен для її завершення або рішення; suspension criteria — коли продовження не дає надійного результату чи марнує ресурс. Це орієнтири для рішення, а не автоматична гарантія якості.",
+        "answer": "Ці критерії є орієнтирами для рішення, а не автоматичною гарантією якості:",
+        "answerPoints": [
+          "Entry criteria визначають, коли тестову активність має сенс починати.",
+          "Exit criteria визначають, який evidence потрібен для завершення активності або рішення.",
+          "Suspension criteria визначають, коли продовження не дає надійного результату чи марнує ресурс."
+        ],
         "examples": [
           "Якщо середовище нестабільне й половина API-запитів падає через інфраструктуру, suspension criterion захищає команду від фальшивих висновків."
         ],
@@ -610,7 +667,12 @@
       },
       "en": {
         "question": "What do entry, exit, and suspension criteria provide?",
-        "answer": "Entry criteria define when a test activity is ready to start; exit criteria define the evidence needed to finish it or make a decision; suspension criteria define when continuing would produce unreliable results or waste resources. They guide decisions rather than automatically guaranteeing quality.",
+        "answer": "These criteria guide decisions rather than automatically guaranteeing quality:",
+        "answerPoints": [
+          "Entry criteria define when a test activity is ready to start.",
+          "Exit criteria define the evidence needed to finish it or make a decision.",
+          "Suspension criteria define when continuing would produce unreliable results or waste resources."
+        ],
         "examples": [
           "If the environment is unstable and half of the API requests fail because of infrastructure, a suspension criterion prevents the team from drawing false conclusions."
         ],

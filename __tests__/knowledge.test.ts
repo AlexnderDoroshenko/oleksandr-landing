@@ -40,6 +40,7 @@ describe('Knowledge Base content', () => {
           const translation = getMaterialTranslation(material, lang)
           expect(translation?.question).toBeTruthy()
           expect(translation?.answer).toBeTruthy()
+          if (translation?.answerPoints) expect(translation.answerPoints.length).toBeGreaterThan(1)
           expect(translation?.examples.length).toBeGreaterThan(0)
           expect(translation?.exercises.length).toBeGreaterThan(0)
         }

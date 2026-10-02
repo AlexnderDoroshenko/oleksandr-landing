@@ -33,6 +33,9 @@ export default function KnowledgeMaterialView({ material, lang, labels }: Props)
       <section>
         <h3>{labels.answer}</h3>
         <p>{content.answer}</p>
+        {content.answerPoints && content.answerPoints.length > 0 && <ul className="knowledge-answer-points">
+          {content.answerPoints.map(point => <li key={point}>{point}</li>)}
+        </ul>}
       </section>
       {content.examples.length > 0 && <section>
         <h3>{labels.examples}</h3>
