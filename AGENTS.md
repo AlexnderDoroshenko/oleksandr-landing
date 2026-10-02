@@ -10,7 +10,8 @@
 
 ## Branch synchronization before push
 
-- Before every push, fetch `origin/main` and compare the current branch with it.
+- Before every push, fetch both `origin/main` and the current branch's remote upstream, then compare the current branch with each of them.
+- If the remote upstream moved, merge it into the local branch first. Never overwrite another contributor's remote changes with a force-push.
 - If the branch is behind `origin/main`, merge `origin/main` into the current branch unless the user explicitly requests a rebase. Do not rewrite published branch history or force-push by default.
 - After a merge or conflict resolution, rerun the relevant tests, type checks, and production build before pushing.
-- Immediately before the final push, fetch and compare again. Push only when the branch is not behind `origin/main`; if main moved during validation, repeat the merge and validation cycle.
+- Immediately before the final push, fetch and compare both refs again. Push only when the branch is behind neither its upstream nor `origin/main`; if either moved during validation, repeat the merge and validation cycle.
