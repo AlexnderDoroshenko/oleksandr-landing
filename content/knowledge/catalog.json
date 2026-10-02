@@ -6,11 +6,11 @@
     "translations": {
       "uk": {
         "title": "Теорія тестування",
-        "description": "Базові принципи якості, рівні й типи тестування, життєвий цикл дефекту та роль QA."
+        "description": "Фундамент QA: принципи, процес, вимоги, рівні й типи тестування, документація, дефекти, ризики та release readiness."
       },
       "en": {
         "title": "Testing theory",
-        "description": "Core quality principles, testing levels and types, the defect lifecycle, and the role of QA."
+        "description": "QA foundations: principles, process, requirements, testing levels and types, documentation, defects, risk, and release readiness."
       }
     }
   },
