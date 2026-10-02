@@ -2,6 +2,7 @@
   {
     "id": "equivalence-partitioning",
     "direction": "test-design",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Навіщо equivalence partitioning?",
@@ -28,6 +29,7 @@
   {
     "id": "decision-table",
     "direction": "test-design",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Коли потрібна decision table?",
@@ -54,6 +56,7 @@
   {
     "id": "pairwise-limits",
     "direction": "test-design",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чи гарантує pairwise відсутність дефектів?",
@@ -80,6 +83,7 @@
   {
     "id": "automation-priority",
     "direction": "automation-architecture",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Що автоматизувати першочергово?",
@@ -106,6 +110,7 @@
   {
     "id": "flaky-test",
     "direction": "automation-architecture",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Що таке flaky test?",
@@ -132,6 +137,7 @@
   {
     "id": "automation-layers",
     "direction": "automation-architecture",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Навіщо розділяти test logic і client/page layers?",
@@ -158,6 +164,7 @@
   {
     "id": "mutable-default",
     "direction": "python-coding-whiteboard",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чому mutable default argument небезпечний?",
@@ -184,6 +191,7 @@
   {
     "id": "generator-vs-list",
     "direction": "python-coding-whiteboard",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Чим generator відрізняється від list?",
@@ -210,6 +218,7 @@
   {
     "id": "asyncio-cpu",
     "direction": "python-coding-whiteboard",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чи прискорює asyncio CPU-heavy код?",
@@ -236,6 +245,7 @@
   {
     "id": "isolated-browser-context",
     "direction": "typescript-playwright-bdd",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Навіщо ізольований browser context?",
@@ -262,6 +272,7 @@
   {
     "id": "await-promises",
     "direction": "typescript-playwright-bdd",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чому await важливий?",
@@ -288,6 +299,7 @@
   {
     "id": "gherkin-scope",
     "direction": "typescript-playwright-bdd",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Що має описувати Gherkin?",
@@ -314,6 +326,7 @@
   {
     "id": "idempotent-method",
     "direction": "web-http-networking",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Що означає idempotent method?",
@@ -340,6 +353,7 @@
   {
     "id": "http-401-403",
     "direction": "web-http-networking",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чим 401 відрізняється від 403?",
@@ -366,6 +380,7 @@
   {
     "id": "cors",
     "direction": "web-http-networking",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Що робить CORS?",
@@ -392,6 +407,7 @@
   {
     "id": "database-transaction",
     "direction": "api-sql-data",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Навіщо транзакція?",
@@ -418,6 +434,7 @@
   {
     "id": "database-index",
     "direction": "api-sql-data",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чому index не завжди прискорює систему?",
@@ -444,6 +461,7 @@
   {
     "id": "api-beyond-status",
     "direction": "api-sql-data",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Що перевіряти крім HTTP status?",
@@ -470,6 +488,7 @@
   {
     "id": "continuous-delivery-deployment",
     "direction": "cicd-docker-kubernetes",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чим continuous delivery відрізняється від deployment?",
@@ -496,6 +515,7 @@
   {
     "id": "image-vs-container",
     "direction": "cicd-docker-kubernetes",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Чим image відрізняється від container?",
@@ -522,6 +542,7 @@
   {
     "id": "readiness-liveness",
     "direction": "cicd-docker-kubernetes",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чим readiness відрізняється від liveness?",
@@ -548,6 +569,7 @@
   {
     "id": "authentication-authorization",
     "direction": "security-devsecops",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чим authentication відрізняється від authorization?",
@@ -574,6 +596,7 @@
   {
     "id": "sast-dast",
     "direction": "security-devsecops",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Чому SAST і DAST доповнюють одне одного?",
@@ -600,6 +623,7 @@
   {
     "id": "trust-boundary",
     "direction": "security-devsecops",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Що таке trust boundary?",
@@ -626,6 +650,7 @@
   {
     "id": "queue-long-runs",
     "direction": "system-design-cloud",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Навіщо queue для довгих test runs?",
@@ -652,6 +677,7 @@
   {
     "id": "rto-rpo",
     "direction": "system-design-cloud",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чим RTO відрізняється від RPO?",
@@ -678,6 +704,7 @@
   {
     "id": "retry-outage",
     "direction": "system-design-cloud",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чому retries можуть погіршити outage?",
@@ -704,6 +731,7 @@
   {
     "id": "rag-purpose",
     "direction": "ai-llm-rag-agents",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Що додає RAG до LLM?",
@@ -730,6 +758,7 @@
   {
     "id": "agent-not-needed",
     "direction": "ai-llm-rag-agents",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Коли agent не потрібен?",
@@ -756,6 +785,7 @@
   {
     "id": "embeddings-permissions",
     "direction": "ai-llm-rag-agents",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Чому embeddings не замінюють permissions?",
@@ -782,6 +812,7 @@
   {
     "id": "evaluation-vs-demo",
     "direction": "llmops-evaluation-observability",
+    "level": "Junior",
     "translations": {
       "uk": {
         "question": "Чим evaluation відрізняється від одного demo?",
@@ -808,6 +839,7 @@
   {
     "id": "llm-as-judge",
     "direction": "llmops-evaluation-observability",
+    "level": "Middle",
     "translations": {
       "uk": {
         "question": "Чому LLM-as-judge не є абсолютним oracle?",
@@ -834,6 +866,7 @@
   {
     "id": "traces-and-logs",
     "direction": "llmops-evaluation-observability",
+    "level": "Senior",
     "translations": {
       "uk": {
         "question": "Навіщо traces поряд із logs?",
