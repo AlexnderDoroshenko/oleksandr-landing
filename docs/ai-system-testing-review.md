@@ -8,6 +8,8 @@ Reviewed on / Перевірено: **2026-10-06**
 
 Матеріал інтегровано як навчальний маршрут **«Тестування AI-систем»** із 12 темами та 95 стабільними ID `AIQA-*`. Щоб не створювати друге сховище однакових знань, записи одночасно доповнюють канонічні наявні напрямки: теорію тестування, Python, AI/LLM/RAG/агентів, API, LLMOps та security. Маршрут `ai-system-testing` лише збирає ті самі записи у послідовну програму.
 
+Для статичного експорту маршрут розділено на компактний огляд і п’ять окремих сторінок: `junior`, `middle`, `senior`, `deep-dives` та `python-examples`. Найбільший JSON payload після поділу становить приблизно 51 kB замість 177 kB; попередження Next.js про large page data усунено.
+
 Кожна тема має українську й англійську версії, практичне завдання та посилання на першоджерела. Десять розгорнутих розборів прив’язані до змістовно відповідних тем, а шість Python-прикладів розміщено у темі Python і перевіряються окремою командою.
 
 ### Суттєві виправлення після рев’ю
@@ -68,6 +70,8 @@ Reviewed on / Перевірено: **2026-10-06**
 ### Integration outcome
 
 The content is published as an **AI System Testing** learning path with 12 topics and 95 stable `AIQA-*` IDs. To avoid a duplicate knowledge store, each record also extends its existing canonical direction: testing theory, Python, AI/LLM/RAG/agents, APIs, LLMOps, or security. The `ai-system-testing` route is a curated view over those same records.
+
+For static export, the learning path is split into a compact overview plus `junior`, `middle`, `senior`, `deep-dives`, and `python-examples` pages. The largest JSON payload is now approximately 51 kB rather than 177 kB, removing the Next.js large-page-data warning.
 
 Every topic has equivalent Ukrainian and English content, a practical exercise, and primary-source links. Ten detailed discussions are mapped to the relevant topics; six Python examples live under Python automation and have an executable verification command.
 

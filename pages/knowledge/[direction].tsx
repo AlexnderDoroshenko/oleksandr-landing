@@ -20,6 +20,7 @@ const pageCopy = {
     topics: 'Topics', practice: 'Practice', deepDive: 'Detailed discussion', codeExamples: 'Runnable Python examples',
     sources: 'Primary sources',
     learningProject: 'Learning project', completion: 'Completion criteria', reviewed: 'Reviewed',
+    learningSections: 'Open the learning path', deepDives: 'Detailed discussions', pythonExamples: 'Python examples',
   },
   uk: {
     back: 'До Бази знань',
@@ -33,6 +34,7 @@ const pageCopy = {
     topics: 'Теми', practice: 'Практика', deepDive: 'Розгорнутий розбір', codeExamples: 'Виконувані приклади Python',
     sources: 'Першоджерела',
     learningProject: 'Навчальний проєкт', completion: 'Критерії готовності', reviewed: 'Перевірено',
+    learningSections: 'Перейти до навчальних розділів', deepDives: 'Розгорнуті розбори', pythonExamples: 'Приклади Python',
   },
 }
 
@@ -63,6 +65,14 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
         <p>{curriculum.translations[lang].definitionOfDone}</p>
       </section>}
 
+      {curriculum && <nav className="knowledge-section-nav" aria-label={copy.learningSections}>
+        <h2>{copy.learningSections}</h2>
+        <div>{[
+          { slug: 'junior', label: 'Junior' }, { slug: 'middle', label: 'Middle' }, { slug: 'senior', label: 'Senior' },
+          { slug: 'deep-dives', label: copy.deepDives }, { slug: 'python-examples', label: copy.pythonExamples },
+        ].map(section => <Link key={section.slug} href={{ pathname: `/knowledge/ai-system-testing/${section.slug}`, query: { lang } }}>{section.label}<span aria-hidden="true">→</span></Link>)}</div>
+      </nav>}
+
       {translation && topics.length > 0 && <>
         <nav className="knowledge-topic-nav" aria-label={copy.topics}>
           <p className="section-index">{copy.topics}</p>
@@ -73,7 +83,7 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
           const topicMaterials = materials.filter(material => material.topic === topic.id)
           return <section className="knowledge-topic" id={`topic-${topic.id}`} key={topic.id} aria-labelledby={`topic-title-${topic.id}`}>
             <header><p className="section-index">{String(topic.order).padStart(2, '0')} / 12</p><h2 id={`topic-title-${topic.id}`}>{topicContent.title}</h2></header>
-            <aside className="knowledge-practice"><h3>{copy.practice}</h3><p>{topicContent.practice}</p></aside>
+            {topicContent.practice && <aside className="knowledge-practice"><h3>{copy.practice}</h3><p>{topicContent.practice}</p></aside>}
             <div className="knowledge-material-list">{topicMaterials.map(material => <KnowledgeMaterialView key={material.id} material={material} lang={lang} labels={copy} references={references} />)}</div>
             {topicContent.deepDives?.map(deepDive => <article className="knowledge-deep-dive" key={deepDive.title}><p className="section-index">{copy.deepDive}</p><h3>{deepDive.title}</h3>{deepDive.body.split('\n\n').map(paragraph => <p key={paragraph}>{paragraph}</p>)}</article>)}
             {topicContent.codeExamples && <section className="knowledge-code-examples"><h3>{copy.codeExamples}</h3>{topicContent.codeExamples.map(example => <article id={example.id} key={example.id}><h4>{example.title}</h4><pre tabIndex={0}><code>{example.code}</code></pre><p>{example.explanation}</p></article>)}</section>}
@@ -103,5 +113,15 @@ export async function getStaticProps({ params }: GetStaticPropsContext<{ directi
   if (!slug) return { notFound: true }
   const direction = getKnowledgeDirection(slug)
   if (!direction) return { notFound: true }
+  if (slug === 'ai-system-testing') {
+    const topics = getKnowledgeTopics(slug).map(topic => ({
+      ...topic,
+      translations: {
+        uk: { title: topic.translations.uk.title, practice: topic.translations.uk.practice },
+        en: { title: topic.translations.en.title, practice: topic.translations.en.practice },
+      },
+    }))
+    return { props: { direction, materials: [], topics, references: [], curriculum: getKnowledgeCurriculum(slug) } }
+  }
   return { props: { direction, materials: getKnowledgeMaterials(slug), topics: getKnowledgeTopics(slug), references: getKnowledgeReferences(), curriculum: getKnowledgeCurriculum(slug) } }
 }
