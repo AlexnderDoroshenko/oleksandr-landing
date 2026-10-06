@@ -1,41 +1,7 @@
 [
   {
-    "id": "AIQA-05-01",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "rag-retrieval",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Що таке RAG і який мінімальний pipeline тестувати?",
-        "answer": "RAG додає retrieved context до generation і може зменшити unsupported answers, але не усуває hallucinations. Pipeline: ingest → chunk → embed/index → retrieve → optional rerank → build context → generate → validate. Перевір lost text, chunk boundaries, relevant retrieval, context budget та відповідність citations реально використаним sources.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S15",
-          "S22"
-        ]
-      },
-      "en": {
-        "question": "What is RAG and which minimal pipeline should be tested?",
-        "answer": "RAG adds retrieved context to generation and may reduce unsupported answers but does not eliminate hallucinations. Pipeline: ingest → chunk → embed/index → retrieve → optional rerank → build context → generate → validate. Check lost text, chunk boundaries, relevant retrieval, context budgets and citations matching the sources actually used.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S15",
-          "S22"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-05-02",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "rag-retrieval",
     "level": "Junior",
     "translations": {
@@ -62,42 +28,8 @@
     }
   },
   {
-    "id": "AIQA-05-03",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "rag-retrieval",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Як виміряти retrieval quality на golden set?",
-        "answer": "Label relevant documents/passages для query. Precision@k = relevant retrieved / k; recall@k = relevant retrieved / all labeled relevant; MRR = mean reciprocal rank першого relevant result. Для менш ніж k results явно визнач denominator. Relevance@k не має одного універсального визначення: зафіксуй hit rate або graded score.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S15",
-          "S22"
-        ]
-      },
-      "en": {
-        "question": "How is retrieval quality measured on a golden set?",
-        "answer": "Label relevant documents/passages for each query. Precision@k = relevant retrieved / k; recall@k = relevant retrieved / all labelled relevant; MRR is the mean reciprocal rank of the first relevant result. Explicitly define the denominator when fewer than k results exist. Relevance@k is not universally defined: specify hit rate or a graded score.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S15",
-          "S22"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-05-04",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "rag-retrieval",
     "level": "Middle",
     "translations": {
@@ -125,10 +57,7 @@
   },
   {
     "id": "AIQA-05-05",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "rag-retrieval",
     "level": "Senior",
     "translations": {

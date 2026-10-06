@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-12-01",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "responsible-ai",
     "level": "Middle",
     "translations": {
@@ -32,10 +29,7 @@
   },
   {
     "id": "AIQA-12-02",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "responsible-ai",
     "level": "Middle",
     "translations": {
@@ -63,10 +57,7 @@
   },
   {
     "id": "AIQA-12-03",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "responsible-ai",
     "level": "Senior",
     "translations": {

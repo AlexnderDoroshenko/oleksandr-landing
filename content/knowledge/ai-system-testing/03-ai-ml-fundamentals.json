@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-03-01",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Junior",
     "translations": {
@@ -31,42 +28,8 @@
     }
   },
   {
-    "id": "AIQA-03-02",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "ai-ml-fundamentals",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Що таке tokens і context window та як вони впливають на якість?",
-        "answer": "Token — одиниця tokenizer, не обов’язково слово. Context window обмежує обсяг доступного контексту; конкретний budget input/output залежить від моделі/API. Довгі histories можуть обрізатися або summaries втрачати деталі. Перевір position effects, multilingual text, tool outputs і явні limits; велике window не гарантує attention до всіх фактів.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S12",
-          "S28"
-        ]
-      },
-      "en": {
-        "question": "What are tokens and context windows and how do they affect quality?",
-        "answer": "A token is a tokenizer unit, not necessarily a word. The context window limits available context; input/output budgeting depends on the model/API. Long histories may be truncated or summaries lose detail. Test position effects, multilingual text, tool outputs and explicit limits; a large window does not guarantee attention to every fact.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S12",
-          "S28"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-03-03",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Junior",
     "translations": {
@@ -94,10 +57,7 @@
   },
   {
     "id": "AIQA-03-04",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Junior",
     "translations": {
@@ -125,10 +85,7 @@
   },
   {
     "id": "AIQA-03-05",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Middle",
     "translations": {
@@ -156,10 +113,7 @@
   },
   {
     "id": "AIQA-03-06",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Middle",
     "translations": {
@@ -187,10 +141,7 @@
   },
   {
     "id": "AIQA-03-07",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Middle",
     "translations": {
@@ -218,10 +169,7 @@
   },
   {
     "id": "AIQA-03-08",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Senior",
     "translations": {
@@ -249,10 +197,7 @@
   },
   {
     "id": "AIQA-03-09",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "ai-ml-fundamentals",
     "level": "Senior",
     "translations": {

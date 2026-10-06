@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-01-01",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Junior",
     "translations": {
@@ -29,127 +26,8 @@
     }
   },
   {
-    "id": "AIQA-01-02",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Які поля потрібні test case і як групувати suites?",
-        "answer": "Робочий мінімум: ID, мета, requirement link, передумови, input/data, steps, expected result та oracle. Execution status і evidence зберігай у run record. Suites групуй за ризиком, level, component, capability, швидкістю та середовищем; обов’язковість полів визначає команда.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "What fields does a test case need and how are suites grouped?",
-        "answer": "A practical minimum is ID, objective, requirement link, preconditions, inputs/data, steps, expected result and oracle. Store execution status and evidence in the run record. Group suites by risk, level, component, capability, speed and environment; the team defines mandatory fields.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-03",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Що є expected result для AI і чому його складно визначити?",
-        "answer": "Часто це набір обмежень, фактів, допустимих варіантів і rubric, а не одна строка. Відкриті задачі допускають кілька правильних відповідей. Недетермінізм, неповний контекст і суб’єктивність ускладнюють oracle. Наприклад: правильний order ID, підтверджені джерелами факти, відсутність PII.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "What is an expected result for AI and why is it hard to define?",
-        "answer": "It is often a set of constraints, facts, acceptable alternatives and a rubric rather than one string. Open tasks admit multiple valid answers. Non-determinism, incomplete context and subjectivity complicate the oracle. Example: correct order ID, source-supported facts and no PII.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-04",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Які поля defect і який його lifecycle?",
-        "answer": "ID, summary, середовище й версії, steps/input, expected/actual, evidence, impact/severity, priority, owner/status. Для AI зберігай prompt, model, retrieval snapshot, параметри та повторюваність без secrets. Типовий flow: New → Triaged → In progress → Fixed → Retest → Closed; можливі Reopened, Duplicate, Deferred.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "What fields does a defect need and what is its lifecycle?",
-        "answer": "Include ID, summary, environment and versions, steps/input, expected/actual, evidence, impact/severity, priority and owner/status. For AI preserve prompt, model, retrieval snapshot, parameters and reproducibility without secrets. A typical flow is New → Triaged → In progress → Fixed → Retest → Closed, with Reopened, Duplicate or Deferred branches.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-05",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Чим severity відрізняється від priority?",
-        "answer": "Severity описує наслідки дефекту; priority — порядок виправлення з урахуванням бізнесу, часу й ризику. Рідкісний витік даних може мати високу severity; typo у ключовій кампанії — нижчу severity, але високу priority. Частота прояву не замінює оцінку шкоди.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "How do severity and priority differ?",
-        "answer": "Severity describes defect impact; priority is the order of fixing given business needs, timing and risk. A rare data leak may have high severity; a typo in a key campaign may have lower severity but high priority. Frequency does not replace impact assessment.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-01-06",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Junior",
     "translations": {
@@ -174,40 +52,8 @@
     }
   },
   {
-    "id": "AIQA-01-07",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Які functional і change-related tests потрібні AI?",
-        "answer": "Functional tests перевіряють поведінку: відповіді, retrieval, tool use, permissions і fallback. Change-related: confirmation/retest та regression після зміни model, prompt, data, index або code. Component, integration і system — рівні; performance та security — окремі quality aspects, які теж потребують перевірок.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "Which functional and change-related tests apply to AI?",
-        "answer": "Functional tests verify behaviour: answers, retrieval, tool use, permissions and fallback. Change-related testing includes confirmation/retest and regression after model, prompt, data, index or code changes. Component, integration and system are levels; performance and security are additional quality aspects to test.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-01-08",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Middle",
     "translations": {
@@ -233,10 +79,7 @@
   },
   {
     "id": "AIQA-01-09",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Middle",
     "translations": {
@@ -262,10 +105,7 @@
   },
   {
     "id": "AIQA-01-10",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Middle",
     "translations": {
@@ -291,10 +131,7 @@
   },
   {
     "id": "AIQA-01-11",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Middle",
     "translations": {
@@ -319,69 +156,8 @@
     }
   },
   {
-    "id": "AIQA-01-12",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Які entry criteria та чим DoR відрізняється від DoD?",
-        "answer": "Entry criteria: testable scope, доступне середовище/data, стабільна збірка, доступи, oracle/rubric і власники blocker risks. DoR — домовленість про готовність починати роботу; DoD — спільні критерії завершення increment. DoR не універсальна обов’язкова Scrum-подія. AI додає versioned datasets і approved evaluation thresholds.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "What are entry criteria and how do DoR and DoD differ?",
-        "answer": "Entry criteria include testable scope, available environment/data, a stable build, access, an oracle/rubric and blocker-risk owners. DoR is an agreement about readiness to start; DoD defines completion of an increment. DoR is not a universally required Scrum event. AI adds versioned datasets and approved evaluation thresholds.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-13",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Senior",
-    "translations": {
-      "uk": {
-        "question": "Чим test strategy відрізняється від test plan?",
-        "answer": "Strategy визначає підхід: risks, levels, techniques, automation, environment policy і критерії якості. Plan конкретизує scope, schedule, resources, dependencies, suites, deliverables та entry/exit criteria для релізу чи feature. Межі залежать від організації; уникни дублювання й покажи traceability до бізнес-цілей.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "How does test strategy differ from a test plan?",
-        "answer": "Strategy defines the approach: risks, levels, techniques, automation, environment policy and quality criteria. A plan specifies scope, schedule, resources, dependencies, suites, deliverables and entry/exit criteria for a release or feature. Boundaries vary by organization; avoid duplication and trace decisions to business goals.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-01-14",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Senior",
     "translations": {
@@ -407,10 +183,7 @@
   },
   {
     "id": "AIQA-01-15",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "documentation-testing-process",
     "level": "Senior",
     "translations": {
@@ -426,64 +199,6 @@
       "en": {
         "question": "How should progress and results be reported to management?",
         "answer": "A status report covers completed/planned work, blockers and forecast; a completion report covers coverage, results, residual risks and release recommendations; an incident report covers impact and actions. PO/management need risks and decisions; engineering needs evidence and diagnosis. Show denominators, timeframes, baselines, critical failures, flakiness, latency/cost and sample uncertainty.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-16",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Senior",
-    "translations": {
-      "uk": {
-        "question": "Як виміряти AI coverage і які metrics відстежувати?",
-        "answer": "Code coverage не показує semantic quality. Окремо рахуй requirements/risks, capability × language × user/data slices, failure modes, tools і states. Визнач denominator для кожного. Відстежуй task success, factual errors, groundedness, unsafe actions, групові результати, defect escape, latency/cost і stability. Один score не доводить готовність.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "How is AI coverage measured and which metrics matter?",
-        "answer": "Code coverage does not establish semantic quality. Track requirements/risks, capability × language × user/data slices, failure modes, tools and states separately. Define each denominator. Track task success, factual errors, groundedness, unsafe actions, group results, defect escape, latency/cost and stability. One score does not prove readiness.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-01-17",
-    "direction": "testing-theory",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "documentation-testing-process",
-    "level": "Senior",
-    "translations": {
-      "uk": {
-        "question": "Як оцінити effort і керувати ризиками на різних етапах?",
-        "answer": "Effort залежить від complexity, dependencies, data labeling, середовищ, oracle ambiguity, repeats, security і review. На discovery аналізуй потреби; design — trust boundaries; implementation — changes; release — evidence; production — incidents/drift. Risk-based testing пріоритизує ймовірність і шкоду. Residual risks приймає відповідальний owner з monitoring, contingency та строком перегляду.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S27"
-        ]
-      },
-      "en": {
-        "question": "How is effort estimated and how are risks handled across stages?",
-        "answer": "Effort depends on complexity, dependencies, data labelling, environments, oracle ambiguity, repeats, security and review. At discovery inspect needs; at design trust boundaries; during implementation changes; at release evidence; in production incidents/drift. Risk-based testing prioritizes likelihood and harm. An accountable owner accepts residual risks with monitoring, contingency and a review date.",
         "examples": [],
         "exercises": [],
         "sources": [

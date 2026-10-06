@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-06-01",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Junior",
     "translations": {
@@ -30,10 +27,7 @@
   },
   {
     "id": "AIQA-06-02",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Junior",
     "translations": {
@@ -58,40 +52,8 @@
     }
   },
   {
-    "id": "AIQA-06-03",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "agents-coordination",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Чим ReAct і plan-and-execute відрізняються та коли multi-agent зайвий?",
-        "answer": "ReAct чергує reasoning і actions; plan-and-execute формує план перед виконанням та може replan. Для короткого deterministic workflow достатньо code або одного agent. Multi-agent додає communication overhead і coordination failures; він виправданий окремими capabilities, permissions або незалежним review.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S23"
-        ]
-      },
-      "en": {
-        "question": "How do ReAct and plan-and-execute differ and when is multi-agent unnecessary?",
-        "answer": "ReAct interleaves reasoning and actions; plan-and-execute forms a plan before execution and may replan. A short deterministic workflow can use code or one agent. Multi-agent adds communication overhead and coordination failures; distinct capabilities, permissions or independent review can justify it.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S23"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-06-04",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Junior",
     "translations": {
@@ -117,10 +79,7 @@
   },
   {
     "id": "AIQA-06-05",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Middle",
     "translations": {
@@ -146,10 +105,7 @@
   },
   {
     "id": "AIQA-06-06",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Middle",
     "translations": {
@@ -175,10 +131,7 @@
   },
   {
     "id": "AIQA-06-07",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Senior",
     "translations": {
@@ -204,10 +157,7 @@
   },
   {
     "id": "AIQA-06-08",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "agents-coordination",
     "level": "Senior",
     "translations": {

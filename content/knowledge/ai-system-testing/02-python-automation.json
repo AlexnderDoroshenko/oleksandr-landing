@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-02-01",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -48,10 +45,7 @@
   },
   {
     "id": "AIQA-02-02",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -95,10 +89,7 @@
   },
   {
     "id": "AIQA-02-03",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -142,10 +133,7 @@
   },
   {
     "id": "AIQA-02-04",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -188,105 +176,8 @@
     }
   },
   {
-    "id": "AIQA-02-05",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "python-automation",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Що таке generator і які його переваги?",
-        "answer": "Функція з yield повертає generator, який обчислює значення поступово й зберігає execution state. Корисний для великих datasets і streaming. Зазвичай одноразовий; exceptions можуть виникнути під час iteration. Пам’ять не зменшиться, якщо одразу перетворити весь output на list.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      },
-      "en": {
-        "question": "What is a generator and what are its benefits?",
-        "answer": "A function with yield returns a generator that computes values lazily and retains execution state. It helps with large datasets and streaming. It is usually single-pass; exceptions may occur during iteration. Memory savings disappear if the entire output is immediately materialized as a list.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      }
-    }
-  },
-  {
-    "id": "AIQA-02-06",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "python-automation",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Що таке exception і як ним керувати?",
-        "answer": "try виконує код; except ловить конкретну помилку; raise піднімає або повторно піднімає її; finally виконує cleanup. Не приховуй broad except як PASS. Розділяй product assertion failure, malformed input і infrastructure failure; зберігай причину через exception chaining.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      },
-      "en": {
-        "question": "What is an exception and how is it handled?",
-        "answer": "try runs code; except catches a specific error; raise raises or re-raises it; finally performs cleanup. Do not turn broad exceptions into PASS. Distinguish product assertion failures, malformed input and infrastructure failures; preserve causes through exception chaining.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-02-07",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -330,10 +221,7 @@
   },
   {
     "id": "AIQA-02-08",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Junior",
     "translations": {
@@ -377,10 +265,7 @@
   },
   {
     "id": "AIQA-02-09",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -424,10 +309,7 @@
   },
   {
     "id": "AIQA-02-10",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -471,10 +353,7 @@
   },
   {
     "id": "AIQA-02-11",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -517,58 +396,8 @@
     }
   },
   {
-    "id": "AIQA-02-12",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "python-automation",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Яка ідея decorator і context manager?",
-        "answer": "Decorator перетворює function або class, часто додаючи logging чи timing. Context manager обмежує lifetime ресурсу й виконує cleanup через with. Приклад: with open(path) as f. Звичайне відкриття файла не гарантує закриття в exception path без finally або context manager.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      },
-      "en": {
-        "question": "What are decorators and context managers for?",
-        "answer": "A decorator transforms a function or class, often adding logging or timing. A context manager bounds resource lifetime and handles cleanup through with. Example: with open(path) as f. Plain file opening does not ensure closure on exception paths without finally or a context manager.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-02-13",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -611,58 +440,8 @@
     }
   },
   {
-    "id": "AIQA-02-14",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "python-automation",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Для чого type hints та як використати Any, Union і Optional?",
-        "answer": "Type hints допомагають static analysis та читанню, але самі не enforce runtime validation. def squares(xs: list[int]) -> dict[int, int]: return {x: x*x for x in xs}. Any послаблює перевірку; Union[A,B] або A|B — альтернативи; Optional[T] означає T|None, а не необов’язковий аргумент.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      },
-      "en": {
-        "question": "What are type hints and how are Any, Union and Optional used?",
-        "answer": "Type hints support static analysis and readability but do not enforce runtime validation themselves. def squares(xs: list[int]) -> dict[int, int]: return {x: x*x for x in xs}. Any relaxes checking; Union[A,B] or A|B expresses alternatives; Optional[T] means T|None, not an optional argument.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S01",
-          "S02",
-          "S03",
-          "S04",
-          "S05",
-          "S06",
-          "S07",
-          "S08",
-          "S09",
-          "S20"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-02-15",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -706,10 +485,7 @@
   },
   {
     "id": "AIQA-02-16",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {
@@ -753,10 +529,7 @@
   },
   {
     "id": "AIQA-02-17",
-    "direction": "python-coding-whiteboard",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "python-automation",
     "level": "Middle",
     "translations": {

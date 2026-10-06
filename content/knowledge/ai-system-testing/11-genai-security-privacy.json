@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-11-01",
-    "direction": "security-devsecops",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-security-privacy",
     "level": "Senior",
     "translations": {
@@ -32,10 +29,7 @@
   },
   {
     "id": "AIQA-11-02",
-    "direction": "security-devsecops",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-security-privacy",
     "level": "Middle",
     "translations": {
@@ -62,42 +56,8 @@
     }
   },
   {
-    "id": "AIQA-11-03",
-    "direction": "security-devsecops",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "genai-security-privacy",
-    "level": "Senior",
-    "translations": {
-      "uk": {
-        "question": "Як реалізувати RAG access control?",
-        "answer": "Перевір identity й permissions до видачі chunks у model context; фільтруй tenant/document ACL на retrieval й enforce authorization для tools. Scope caches і memory за користувачем/tenant, обробляй revocation. Test forbidden retrieval, metadata leaks і cross-tenant similarity results. Не покладайся на «не показуй документ» у prompt.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S12",
-          "S13"
-        ]
-      },
-      "en": {
-        "question": "How is RAG access control implemented?",
-        "answer": "Check identity/permissions before chunks enter model context; filter tenant/document ACLs during retrieval and enforce tool authorization. Scope caches/memory by user/tenant and handle revocation. Test forbidden retrieval, metadata leaks and cross-tenant similarity results. Do not rely on a prompt saying not to reveal a document.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S12",
-          "S13"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-11-04",
-    "direction": "security-devsecops",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-security-privacy",
     "level": "Senior",
     "translations": {
@@ -125,10 +85,7 @@
   },
   {
     "id": "AIQA-11-05",
-    "direction": "security-devsecops",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-security-privacy",
     "level": "Senior",
     "translations": {

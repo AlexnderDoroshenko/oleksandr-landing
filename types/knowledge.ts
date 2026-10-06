@@ -26,6 +26,7 @@ export type LocalizedMaterial = {
 
 export type KnowledgeMaterial = {
   id: string
+  aliases?: string[]
   direction: string
   collections?: string[]
   topic?: string

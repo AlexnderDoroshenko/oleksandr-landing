@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-04-01",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Junior",
     "translations": {
@@ -30,10 +27,7 @@
   },
   {
     "id": "AIQA-04-02",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Junior",
     "translations": {
@@ -59,10 +53,7 @@
   },
   {
     "id": "AIQA-04-03",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Middle",
     "translations": {
@@ -88,10 +79,7 @@
   },
   {
     "id": "AIQA-04-04",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Middle",
     "translations": {
@@ -117,10 +105,7 @@
   },
   {
     "id": "AIQA-04-05",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Middle",
     "translations": {
@@ -145,40 +130,8 @@
     }
   },
   {
-    "id": "AIQA-04-06",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "prompting-tool-calling",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Як працює function calling та які його плюси й ризики?",
-        "answer": "Application передає tool schema; модель пропонує name/arguments; host validates, authorizes і executes; result повертається моделі. Це дає controlled interfaces, але не гарантує правильний tool/arguments. Перевір schema, permissions, timeout, duplicate execution і handling errors. Model сама не виконує Python function лише через текст tool call.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S21"
-        ]
-      },
-      "en": {
-        "question": "How does function calling work and what are its benefits and risks?",
-        "answer": "The application supplies a tool schema; the model proposes a name/arguments; the host validates, authorizes and executes; the result returns to the model. This provides controlled interfaces but does not ensure correct tools/arguments. Test schema, permissions, timeouts, duplicate execution and errors. A model does not execute Python merely by emitting a tool call.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S21"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-04-07",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "prompting-tool-calling",
     "level": "Senior",
     "translations": {

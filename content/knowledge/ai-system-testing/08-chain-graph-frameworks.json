@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-08-01",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "chain-graph-frameworks",
     "level": "Junior",
     "translations": {
@@ -35,46 +32,8 @@
     }
   },
   {
-    "id": "AIQA-08-02",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "chain-graph-frameworks",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Як templates і structured outputs допомагають QA?",
-        "answer": "Templates стандартизують inputs; schemas визначають machine-checkable shape. Assert усі variables заповнені, required fields присутні, types/enums валідні й немає зайвого prose там, де потрібен JSON. Окремо перевір correctness values: schema-valid risk report може бути повністю вигаданим.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S17",
-          "S24",
-          "S25",
-          "S26"
-        ]
-      },
-      "en": {
-        "question": "How do templates and structured outputs help QA?",
-        "answer": "Templates standardize inputs; schemas define machine-checkable shapes. Assert that variables are filled, required fields exist, types/enums are valid and no extra prose appears where JSON is required. Separately check value correctness: a schema-valid risk report may be entirely fabricated.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S17",
-          "S24",
-          "S25",
-          "S26"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-08-03",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "chain-graph-frameworks",
     "level": "Middle",
     "translations": {
@@ -106,10 +65,7 @@
   },
   {
     "id": "AIQA-08-04",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "chain-graph-frameworks",
     "level": "Middle",
     "translations": {
@@ -141,10 +97,7 @@
   },
   {
     "id": "AIQA-08-05",
-    "direction": "ai-llm-rag-agents",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "chain-graph-frameworks",
     "level": "Middle",
     "translations": {

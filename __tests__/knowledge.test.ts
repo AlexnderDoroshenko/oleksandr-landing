@@ -40,8 +40,8 @@ describe('Knowledge Base content', () => {
           const translation = getMaterialTranslation(material, lang)
           expect(translation?.question).toBeTruthy()
           expect(translation?.answer).toBeTruthy()
-          if (translation?.answerPoints) expect(translation.answerPoints.length).toBeGreaterThan(1)
-          if (!material.collections?.includes('ai-system-testing')) {
+          if (translation?.answerPoints) expect(translation.answerPoints.length).toBeGreaterThan(0)
+          if (material.direction !== 'ai-system-testing') {
             expect(translation?.examples.length).toBeGreaterThan(0)
             expect(translation?.exercises.length).toBeGreaterThan(0)
           }
@@ -55,7 +55,7 @@ describe('Knowledge Base content', () => {
       getKnowledgeMaterials(direction.slug).map(material => material.id),
     )
 
-    expect(ids).toHaveLength(221)
+    expect(ids).toHaveLength(126)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -65,8 +65,8 @@ describe('Knowledge Base content', () => {
     const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
     const materialLevels = materials.map(material => material.level ? levelOrder[material.level] : 3)
 
-    expect(materials).toHaveLength(44)
-    expect(new Set(materials.map(material => material.id)).size).toBe(44)
+    expect(materials).toHaveLength(27)
+    expect(new Set(materials.map(material => material.id)).size).toBe(27)
     expect(materialLevels).toEqual([...materialLevels].sort((a, b) => a - b))
     expect(materials.some(material => material.level === 'Junior')).toBe(true)
     expect(materials.some(material => material.level === 'Middle')).toBe(true)
@@ -77,11 +77,22 @@ describe('Knowledge Base content', () => {
       for (const lang of ['en', 'uk'] as const) {
         const translation = getMaterialTranslation(material, lang)
         expect(translation?.answer).toBeTruthy()
-        if (!material.collections?.includes('ai-system-testing')) {
+        if (material.direction !== 'ai-system-testing') {
           expect(translation?.examples.length).toBeGreaterThan(0)
           expect(translation?.exercises.length).toBeGreaterThan(0)
         }
       }
+    }
+  })
+
+  it('extends canonical testing theory with concise AI applications instead of duplicate questions', () => {
+    const materials = getKnowledgeMaterials('testing-theory')
+    const extendedIds = ['effective-test-case', 'test-basis-oracle', 'defect-report', 'severity-priority', 'test-types', 'entry-exit-criteria', 'test-strategy', 'metrics-context', 'risk-based-testing']
+
+    for (const id of extendedIds) {
+      const material = materials.find(item => item.id === id)
+      expect(material?.translations.uk?.answerPoints?.at(-1)).toBeTruthy()
+      expect(material?.translations.en?.answerPoints?.at(-1)).toBeTruthy()
     }
   })
 
@@ -92,14 +103,16 @@ describe('Knowledge Base content', () => {
 
     expect(topics).toHaveLength(12)
     expect(topics.map(topic => topic.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    expect(materials).toHaveLength(95)
-    expect(new Set(materials.map(material => material.id)).size).toBe(95)
-    expect(materials.every(material => material.direction !== 'ai-system-testing')).toBe(true)
-    expect(materials.every(material => material.collections?.includes('ai-system-testing'))).toBe(true)
+    expect(materials).toHaveLength(93)
+    expect(new Set(materials.map(material => material.id)).size).toBe(93)
+    expect(materials.filter(material => material.aliases).length).toBe(23)
+    expect(materials.filter(material => !material.aliases).length).toBe(70)
+    expect(materials.filter(material => !material.aliases).every(material => material.direction === 'ai-system-testing')).toBe(true)
     expect(materials.every(material => topics.some(topic => topic.id === material.topic))).toBe(true)
-    expect(materials.filter(material => material.level === 'Junior')).toHaveLength(34)
-    expect(materials.filter(material => material.level === 'Middle')).toHaveLength(37)
-    expect(materials.filter(material => material.level === 'Senior')).toHaveLength(24)
+    expect(materials.filter(material => material.level === 'Junior')).toHaveLength(29)
+    expect(materials.filter(material => material.level === 'Middle')).toHaveLength(43)
+    expect(materials.filter(material => material.level === 'Senior')).toHaveLength(21)
+    expect(materials.filter(material => !material.aliases).length + materials.flatMap(material => material.aliases ?? []).length).toBe(95)
     expect(curriculum?.reviewedAt).toBe('2026-10-06')
     expect(curriculum?.translations.uk.completion.Senior).toBeTruthy()
     expect(curriculum?.translations.en.completion.Senior).toBeTruthy()

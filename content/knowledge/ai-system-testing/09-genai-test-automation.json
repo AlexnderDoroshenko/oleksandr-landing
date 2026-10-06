@@ -1,45 +1,7 @@
 [
   {
-    "id": "AIQA-09-01",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "genai-test-automation",
-    "level": "Junior",
-    "translations": {
-      "uk": {
-        "question": "Чим GenAI automation відрізняється і як перевірити output correctness?",
-        "answer": "Output variable, oracle часто неповний, model/provider можуть змінюватися, а live runs дорогі. Перевір deterministic facts/schema/actions code assertions; semantic quality — rubric, human labels і calibrated judge. Зберігай versions і evidence. Правильне formatting, similarity чи впевнене пояснення не доводять correctness.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S14",
-          "S15",
-          "S16",
-          "S18"
-        ]
-      },
-      "en": {
-        "question": "How does GenAI automation differ and how is output correctness checked?",
-        "answer": "Outputs vary, oracles are often incomplete, models/providers may change and live runs are costly. Use code assertions for deterministic facts/schema/actions and rubrics, human labels and calibrated judges for semantic quality. Preserve versions and evidence. Formatting, similarity or confident explanations do not prove correctness.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S14",
-          "S15",
-          "S16",
-          "S18"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-09-02",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-test-automation",
     "level": "Junior",
     "translations": {
@@ -70,46 +32,8 @@
     }
   },
   {
-    "id": "AIQA-09-03",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
-    "topic": "genai-test-automation",
-    "level": "Middle",
-    "translations": {
-      "uk": {
-        "question": "Як тестувати variability і порівнювати model versions?",
-        "answer": "Використовуй однакові cases, configurations і repeated runs; paired analysis показує виграші/регресії по cases і slices. Record seed, але не вважай guarantee. Оцінюй variance, task success, critical errors, latency/cost і uncertainty. При малому sample не оголошуй статистичну перевагу без підстав.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S14",
-          "S15",
-          "S16",
-          "S18"
-        ]
-      },
-      "en": {
-        "question": "How are variability and model versions tested?",
-        "answer": "Use identical cases, configurations and repeated runs; paired analysis exposes wins/regressions by case and slice. Record seeds without treating them as guarantees. Assess variance, task success, critical errors, latency/cost and uncertainty. Do not claim statistical superiority from small samples without justification.",
-        "examples": [],
-        "exercises": [],
-        "sources": [
-          "S14",
-          "S15",
-          "S16",
-          "S18"
-        ]
-      }
-    }
-  },
-  {
     "id": "AIQA-09-04",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-test-automation",
     "level": "Middle",
     "translations": {
@@ -141,10 +65,7 @@
   },
   {
     "id": "AIQA-09-05",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-test-automation",
     "level": "Senior",
     "translations": {
@@ -176,10 +97,7 @@
   },
   {
     "id": "AIQA-09-06",
-    "direction": "llmops-evaluation-observability",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "genai-test-automation",
     "level": "Senior",
     "translations": {

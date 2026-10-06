@@ -7,6 +7,8 @@ import expandedIntelligentSystemsData from '../content/knowledge/materials/expan
 import aiSystemTestingTopicsData from '../content/knowledge/ai-system-testing/topics.json'
 import aiSystemTestingReferencesData from '../content/knowledge/ai-system-testing/references.json'
 import aiSystemTestingCurriculumData from '../content/knowledge/ai-system-testing/curriculum.json'
+import aiSystemTestingReusedData from '../content/knowledge/ai-system-testing/reused-materials.json'
+import aiSystemTestingExtensionsData from '../content/knowledge/ai-system-testing/canonical-extensions.json'
 import aiSystemTesting01Data from '../content/knowledge/ai-system-testing/01-documentation-testing-process.json'
 import aiSystemTesting02Data from '../content/knowledge/ai-system-testing/02-python-automation.json'
 import aiSystemTesting03Data from '../content/knowledge/ai-system-testing/03-ai-ml-fundamentals.json'
@@ -24,12 +26,26 @@ import type { KnowledgeCurriculum, KnowledgeDirection, KnowledgeMaterial, Knowle
 
 const directions = catalogData as KnowledgeDirection[]
 const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
-const allMaterials = [
+const rawBaseMaterials = [
   ...(testingTheoryData as KnowledgeMaterial[]),
   ...(starterPackData as KnowledgeMaterial[]),
   ...(expandedQualityEngineeringData as KnowledgeMaterial[]),
   ...(expandedPlatformData as KnowledgeMaterial[]),
   ...(expandedIntelligentSystemsData as KnowledgeMaterial[]),
+]
+const canonicalExtensions = aiSystemTestingExtensionsData as Array<{ id: string; uk: string; en: string }>
+const baseMaterials = rawBaseMaterials.map(material => {
+  const extension = canonicalExtensions.find(item => item.id === material.id)
+  if (!extension) return material
+  return {
+    ...material,
+    translations: {
+      uk: { ...material.translations.uk!, answerPoints: [...(material.translations.uk?.answerPoints ?? []), extension.uk] },
+      en: { ...material.translations.en!, answerPoints: [...(material.translations.en?.answerPoints ?? []), extension.en] },
+    },
+  }
+})
+const aiSystemTestingMaterials = [
   ...(aiSystemTesting01Data as KnowledgeMaterial[]),
   ...(aiSystemTesting02Data as KnowledgeMaterial[]),
   ...(aiSystemTesting03Data as KnowledgeMaterial[]),
@@ -43,6 +59,18 @@ const allMaterials = [
   ...(aiSystemTesting11Data as KnowledgeMaterial[]),
   ...(aiSystemTesting12Data as KnowledgeMaterial[]),
 ]
+const reusedMappings = aiSystemTestingReusedData as Array<{ canonicalId: string; topic: string; aliases: string[] }>
+const topicReferenceIds: Record<string, string[]> = {
+  'documentation-testing-process': ['S27'],
+  'python-automation': ['S01', 'S04', 'S06', 'S08', 'S20'],
+  'ai-ml-fundamentals': ['S12', 'S28'],
+  'prompting-tool-calling': ['S21'],
+  'rag-retrieval': ['S15', 'S22'],
+  'agents-coordination': ['S23'],
+  'genai-test-automation': ['S14', 'S16', 'S18'],
+  'evaluation-golden-data': ['S14', 'S15', 'S16', 'S18'],
+  'genai-security-privacy': ['S12', 'S13'],
+}
 const topics = aiSystemTestingTopicsData as KnowledgeTopic[]
 
 export function getKnowledgeDirections(): KnowledgeDirection[] {
@@ -54,8 +82,27 @@ export function getKnowledgeDirection(slug: string): KnowledgeDirection | undefi
 }
 
 export function getKnowledgeMaterials(direction: string): KnowledgeMaterial[] {
-  return allMaterials
-    .filter(material => material.direction === direction || material.collections?.includes(direction))
+  const materials = direction === 'ai-system-testing'
+    ? [
+        ...aiSystemTestingMaterials,
+        ...reusedMappings.map(mapping => {
+          const canonical = baseMaterials.find(material => material.id === mapping.canonicalId)
+          if (!canonical) throw new Error(`Unknown reused knowledge material: ${mapping.canonicalId}`)
+          const sources = topicReferenceIds[mapping.topic] ?? []
+          return {
+            ...canonical,
+            aliases: mapping.aliases,
+            topic: mapping.topic,
+            translations: {
+              uk: { ...canonical.translations.uk!, sources },
+              en: { ...canonical.translations.en!, sources },
+            },
+          }
+        }),
+      ]
+    : baseMaterials.filter(material => material.direction === direction)
+
+  return materials
     .sort((a, b) => (a.level ? levelOrder[a.level] : 3) - (b.level ? levelOrder[b.level] : 3))
 }
 

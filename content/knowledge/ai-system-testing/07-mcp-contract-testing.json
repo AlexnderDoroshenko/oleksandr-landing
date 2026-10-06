@@ -1,10 +1,7 @@
 [
   {
     "id": "AIQA-07-01",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Junior",
     "translations": {
@@ -32,10 +29,7 @@
   },
   {
     "id": "AIQA-07-02",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Junior",
     "translations": {
@@ -63,10 +57,7 @@
   },
   {
     "id": "AIQA-07-03",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Junior",
     "translations": {
@@ -94,10 +85,7 @@
   },
   {
     "id": "AIQA-07-04",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Middle",
     "translations": {
@@ -125,10 +113,7 @@
   },
   {
     "id": "AIQA-07-05",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Middle",
     "translations": {
@@ -156,10 +141,7 @@
   },
   {
     "id": "AIQA-07-06",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Senior",
     "translations": {
@@ -187,10 +169,7 @@
   },
   {
     "id": "AIQA-07-07",
-    "direction": "api-sql-data",
-    "collections": [
-      "ai-system-testing"
-    ],
+    "direction": "ai-system-testing",
     "topic": "mcp-contract-testing",
     "level": "Senior",
     "translations": {
