@@ -1,0 +1,205 @@
+[
+  {
+    "id": "AIQA-04-01",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Для чого system і user messages?",
+        "answer": "System message задає application instructions; user message — поточну задачу й input. Конкретні roles та precedence залежать від API. Retrieved pages і tool outputs трактуй як data, не як право змінити policy. Backend має enforce permissions незалежно від того, що написано в prompt.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "What are system and user messages for?",
+        "answer": "System messages provide application instructions; user messages contain the current task and input. Exact roles and precedence depend on the API. Treat retrieved pages and tool outputs as data, not permission to change policy. The backend must enforce permissions independently of prompt text.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-02",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим simple і structured prompts відрізняються?",
+        "answer": "Simple prompt — короткий task. Structured prompt явно виділяє мету, context, constraints, output format і examples. Структура допомагає consistency, але не гарантує correctness. Додавай правило insufficient evidence, обмежуй scope й тестуй template variables; не зберігай secrets у prompt.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "How do simple and structured prompts differ?",
+        "answer": "A simple prompt is a short task. A structured prompt separates objective, context, constraints, output format and examples. Structure helps consistency but does not guarantee correctness. Define insufficient-evidence behaviour, bound scope and test template variables; keep secrets out of prompts.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-03",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Коли корисні few-shot і покроковий підхід?",
+        "answer": "Few-shot показує кілька representative input/output examples; перевір, що вони не витікають з evaluation set і не задають bias. Складну задачу можна розбити на checkpoints і попросити коротке обґрунтування. Не вимагай прихований chain-of-thought і не використовуй його як oracle; оцінюй artifacts, evidence та actions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "When are few-shot examples and stepwise approaches useful?",
+        "answer": "Few-shot prompting supplies representative input/output examples; ensure they do not leak from the evaluation set or introduce bias. Break complex tasks into checkpoints and request concise justification. Do not demand hidden chain-of-thought or use it as an oracle; evaluate artifacts, evidence and actions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-04",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як temperature і top-k впливають на output?",
+        "answer": "Temperature змінює distribution перед sampling; top-k залишає k candidates. Higher variability може змінювати answer stability. Не всі APIs підтримують ці parameters; low temperature чи seed не гарантують повної reproducibility. Записуй config і порівнюй повторні runs на однакових cases.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "How do temperature and top-k affect output?",
+        "answer": "Temperature changes the distribution before sampling; top-k retains k candidates. Greater variability may affect answer stability. Not every API supports these parameters; low temperature or a seed does not guarantee full reproducibility. Record configuration and compare repeated runs on identical cases.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-05",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як проектувати code-generation prompts?",
+        "answer": "Задай language/runtime, interfaces, dependencies, constraints, acceptance criteria й examples. Проси мінімальну зміну, runnable tests і пояснення assumptions. Згенерований code перевір compilation, tests, security й review; не запускай його з production credentials або необмеженим network/filesystem access.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "How should code-generation prompts be designed?",
+        "answer": "Specify language/runtime, interfaces, dependencies, constraints, acceptance criteria and examples. Request a minimal change, runnable tests and explicit assumptions. Validate generated code through compilation, tests, security checks and review; do not run it with production credentials or unrestricted network/filesystem access.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-06",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як працює function calling та які його плюси й ризики?",
+        "answer": "Application передає tool schema; модель пропонує name/arguments; host validates, authorizes і executes; result повертається моделі. Це дає controlled interfaces, але не гарантує правильний tool/arguments. Перевір schema, permissions, timeout, duplicate execution і handling errors. Model сама не виконує Python function лише через текст tool call.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "How does function calling work and what are its benefits and risks?",
+        "answer": "The application supplies a tool schema; the model proposes a name/arguments; the host validates, authorizes and executes; the result returns to the model. This provides controlled interfaces but does not ensure correct tools/arguments. Test schema, permissions, timeouts, duplicate execution and errors. A model does not execute Python merely by emitting a tool call.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-04-07",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "prompting-tool-calling",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як зменшувати hallucinations і де tool calling застосовують у реальних workflows?",
+        "answer": "Використовуй authoritative context, bounded tasks, abstention, structured outputs і independent validators; вимірюй factual errors. Tools можуть шукати docs, читати order чи делегувати subtask агенту. Delegation може бути tool call, але agent selection також буває deterministic routing. Tool output може бути stale, wrong або injected.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      },
+      "en": {
+        "question": "How are hallucinations reduced and where is tool calling used in workflows?",
+        "answer": "Use authoritative context, bounded tasks, abstention, structured outputs and independent validators; measure factual errors. Tools can search documents, read orders or delegate subtasks to agents. Delegation may use tool calls, but agent selection may also use deterministic routing. Tool output can be stale, wrong or injected.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S21"
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "direction": "ai-system-testing",
+  "reviewedAt": "2026-10-06",
+  "translations": {
+    "uk": {
+      "principles": [
+        "Тестування — це статична й динамічна перевірка продукту та пов’язаних робочих матеріалів для виявлення дефектів і визначення відповідності вимогам та потребам користувачів. Це навчальне формулювання, а не дослівна цитата стандарту.",
+        "Deterministic properties перевіряються code assertions; semantic quality — визначеною rubric, calibrated evaluation і human review. Model, retrieval, application, tool та environment failures діагностуються окремо.",
+        "Працюйте з однією темою за раз: дайте відповідь без підглядання, прочитайте пояснення, виконайте практику та збережіть evidence. Числові thresholds і sample sizes у прикладах є навчальними, не нормативними."
+      ],
+      "project": "Навчальний проєкт — read-only AI Quality Architect над fictitious Jira/Confluence fixtures. Він аналізує вимоги й coverage та формує strategy report із citations. Write tools додаються лише після окремої перевірки permissions і approval, щоб dataset, retrieval, reasoning та execution можна було оцінювати незалежно.",
+      "completion": {
+        "Junior": "Створити 10 cases із inputs, context, expected properties і forbidden actions; реалізувати schema та exact ID checks.",
+        "Middle": "Додати retrieval metrics, mock tool failures, two-turn conversation та paired prompt comparison. Зберегти trace із versions і sanitized evidence.",
+        "Senior": "Обґрунтувати dataset coverage, judge calibration, release gates, residual risks, cost і privacy. Показати recovery та rollback і пояснити, яких claims evidence не доводить."
+      },
+      "definitionOfDone": "Готовність теми означає пояснення своїми словами, runnable example, перевірений negative case, report із denominator, versions та evidence, опис limitations і еквівалентний UA/EN content. Високий quiz score сам по собі не доводить Senior-компетентність."
+    },
+    "en": {
+      "principles": [
+        "Testing is the static and dynamic examination of a product and related work products to identify defects and determine alignment with requirements and user needs. This is a teaching definition, not a verbatim standards quotation.",
+        "Check deterministic properties with code assertions and semantic quality with a defined rubric, calibrated evaluation, and human review. Diagnose model, retrieval, application, tool, and environment failures separately.",
+        "Work through one topic at a time: answer from memory, read the explanation, complete the exercise, and preserve evidence. Numeric thresholds and sample sizes are illustrative rather than normative."
+      ],
+      "project": "Use a read-only AI Quality Architect over fictitious Jira/Confluence fixtures. It analyses requirements and coverage and creates a cited strategy report. Add write tools only after separate permission and approval validation so datasets, retrieval, reasoning, and execution can be evaluated independently.",
+      "completion": {
+        "Junior": "Create 10 cases with inputs, contexts, expected properties, and forbidden actions; implement schema and exact-ID checks.",
+        "Middle": "Add retrieval metrics, mocked tool failures, a two-turn conversation, and paired prompt comparisons. Preserve versioned traces and sanitized evidence.",
+        "Senior": "Justify dataset coverage, judge calibration, release gates, residual risks, cost, and privacy. Demonstrate recovery and rollback and explain which claims the evidence does not establish."
+      },
+      "definitionOfDone": "Topic completion means an explanation in your own words, a runnable example, a verified negative case, a report with denominators, versions and evidence, explained limitations, and equivalent Ukrainian/English content. A high quiz score alone does not establish Senior competence."
+    }
+  }
+}

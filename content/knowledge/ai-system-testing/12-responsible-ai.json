@@ -1,0 +1,95 @@
+[
+  {
+    "id": "AIQA-12-01",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "responsible-ai",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які ethical principles і privacy challenges?",
+        "answer": "Fairness, transparency, privacy, accountability, safety і human oversight треба перетворити на observable requirements. Risks: reuse без належної підстави, re-identification, sensitive inference і нерівна якість між групами. Узгодь intended use, affected users, appeal/escalation і відповідального owner; abstract принципу недостатньо для test oracle.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      },
+      "en": {
+        "question": "What ethical principles and privacy challenges matter?",
+        "answer": "Translate fairness, transparency, privacy, accountability, safety and human oversight into observable requirements. Risks include unjustified reuse, re-identification, sensitive inference and unequal group quality. Agree on intended use, affected users, appeal/escalation and accountable owners; abstract principles alone are insufficient as test oracles.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-12-02",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "responsible-ai",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Чим anonymization відрізняється від pseudonymization?",
+        "answer": "Anonymization має зробити re-identification практично неможливою в relevant threat model; pseudonymization замінює identifiers, але допускає linkage через додаткову інформацію. Просте видалення імен не забезпечує anonymity. Перевір indirect identifiers, rare combinations і logs; врахуй privacy–utility trade-off та доступ до mapping keys.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      },
+      "en": {
+        "question": "How do anonymization and pseudonymization differ?",
+        "answer": "Anonymization aims to make re-identification impractical under the relevant threat model; pseudonymization replaces identifiers but permits linkage through additional information. Removing names alone does not ensure anonymity. Check indirect identifiers, rare combinations and logs; consider privacy–utility trade-offs and access to mapping keys.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-12-03",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "responsible-ai",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як організувати continuous impact evaluation й які tools допоможуть?",
+        "answer": "Визнач intended use, harm hypotheses, user slices, metrics, incident channels і review cadence. Порівнюй trends із baseline, перевір complaints, drift та unintended use; потрібні remediation owners. NIST AI RMF допомагає структурувати governance; Azure AI Content Safety може бути content control. Жоден tool score не сертифікує fairness або відповідальність системи.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      },
+      "en": {
+        "question": "How is continuous impact evaluation organized and which tools help?",
+        "answer": "Define intended use, harm hypotheses, user slices, metrics, incident channels and review cadence. Compare trends with baselines and inspect complaints, drift and unintended use; assign remediation owners. NIST AI RMF helps structure governance; Azure AI Content Safety can provide content controls. No tool score certifies fairness or responsible operation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S19"
+        ]
+      }
+    }
+  }
+]

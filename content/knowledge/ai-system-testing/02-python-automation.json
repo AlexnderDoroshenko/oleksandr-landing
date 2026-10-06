@@ -1,0 +1,801 @@
+[
+  {
+    "id": "AIQA-02-01",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що означає mutable та immutable?",
+        "answer": "Mutable object змінюється на місці: list, dict, set. Immutable object не змінюється: int, str, tuple. Присвоєння зв’язує ім’я з об’єктом, а не копіює його. Tuple може містити mutable list, тому immutable контейнер не означає deep immutability.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What do mutable and immutable mean?",
+        "answer": "A mutable object changes in place: list, dict, set. An immutable object does not: int, str, tuple. Assignment binds a name to an object; it does not copy it. A tuple may contain a mutable list, so container immutability does not mean deep immutability.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-02",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим list, set і dict відрізняються?",
+        "answer": "List — ordered sequence з duplicates; set — унікальні hashable elements без гарантованого порядку; dict — mapping hashable keys до values зі збереженням insertion order. Для membership обирай set, для indexed sequence — list, для lookup by ID — dict; врахуй memory і порядок.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How do list, set and dict differ?",
+        "answer": "A list is an ordered sequence allowing duplicates; a set holds unique hashable elements without guaranteed order; a dict maps hashable keys to values and preserves insertion order. Use sets for membership, lists for indexed sequences and dicts for lookup by ID; consider memory and order.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-03",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке comprehensions і чи завжди вони кращі за loops?",
+        "answer": "[i*i for i in range(3)] будує list; {i: i*i for i in range(3)} — dict. Вони компактні для простих transformations, але не автоматично кращі: складна логіка, side effects і великий output можуть вимагати loop або generator. Вимірюй performance на реальних даних.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What are comprehensions and are they always better than loops?",
+        "answer": "[i*i for i in range(3)] builds a list; {i: i*i for i in range(3)} builds a dict. They are concise for simple transformations, but not automatically better: complex logic, side effects and large outputs may favour loops or generators. Measure performance on actual data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-04",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як працюють range і slicing?",
+        "answer": "range(start, stop, step) представляє integer sequence без створення повного list; stop не входить, step не може бути 0. seq[start:stop:step] бере зріз; негативні indices рахують з кінця. Зріз list створює shallow copy; семантика view/copy в інших бібліотеках може відрізнятися.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How do range and slicing work?",
+        "answer": "range(start, stop, step) represents an integer sequence without creating a full list; stop is excluded and step cannot be 0. seq[start:stop:step] selects a slice; negative indices count from the end. A list slice is a shallow copy; other libraries may use different view/copy semantics.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-05",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке generator і які його переваги?",
+        "answer": "Функція з yield повертає generator, який обчислює значення поступово й зберігає execution state. Корисний для великих datasets і streaming. Зазвичай одноразовий; exceptions можуть виникнути під час iteration. Пам’ять не зменшиться, якщо одразу перетворити весь output на list.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What is a generator and what are its benefits?",
+        "answer": "A function with yield returns a generator that computes values lazily and retains execution state. It helps with large datasets and streaming. It is usually single-pass; exceptions may occur during iteration. Memory savings disappear if the entire output is immediately materialized as a list.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-06",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке exception і як ним керувати?",
+        "answer": "try виконує код; except ловить конкретну помилку; raise піднімає або повторно піднімає її; finally виконує cleanup. Не приховуй broad except як PASS. Розділяй product assertion failure, malformed input і infrastructure failure; зберігай причину через exception chaining.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What is an exception and how is it handled?",
+        "answer": "try runs code; except catches a specific error; raise raises or re-raises it; finally performs cleanup. Do not turn broad exceptions into PASS. Distinguish product assertion failures, malformed input and infrastructure failures; preserve causes through exception chaining.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-07",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як копіювати objects і serialize JSON?",
+        "answer": "copy.copy створює shallow copy зі спільними nested objects; deepcopy рекурсивно копіює з урахуванням типу й custom hooks. json.dumps/loads працюють зі strings; dump/load — з file objects. Datetime, set і custom classes потребують explicit conversion; serialization не замінює schema validation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How are objects copied and JSON serialized?",
+        "answer": "copy.copy creates a shallow copy sharing nested objects; deepcopy copies recursively subject to type behaviour and custom hooks. json.dumps/loads use strings; dump/load use file objects. Datetime, set and custom classes need explicit conversion; serialization does not replace schema validation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-08",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке self і які package managers існують?",
+        "answer": "self — звичайне ім’я першого параметра instance method, через який доступний instance. pip встановлює Python packages; Poetry керує project dependencies/packaging; conda — environments і packages, включно з native dependencies. Обирай один узгоджений dependency flow і фіксуй versions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What is self and which package managers exist?",
+        "answer": "self is the conventional name of the first instance-method parameter giving access to the instance. pip installs Python packages; Poetry manages project dependencies/packaging; conda manages environments and packages including native dependencies. Use one coherent dependency workflow and pin versions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-09",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як використовують venv, pytest і unittest?",
+        "answer": "venv ізолює Python packages від інших проєктів; це не container і не OS sandbox. unittest входить у standard library; pytest має fixtures, parametrization і plugins. Для AI розділяй mock unit tests та live evaluation, щоб PR не залежав від provider latency/cost.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How are venv, pytest and unittest used?",
+        "answer": "venv isolates Python packages from other projects; it is neither a container nor an OS sandbox. unittest is in the standard library; pytest offers fixtures, parametrization and plugins. Separate mocked unit tests from live AI evaluation so PRs do not depend on provider latency/cost.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-10",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Що таке lambda, args і kwargs?",
+        "answer": "lambda створює функцію з одним expression, наприклад key=lambda x: x.score. *args збирає positional arguments у tuple, **kwargs — named arguments у dict; при виклику вони розпаковують collections. Для складної логіки використовуй def і явний signature.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What are lambda, args and kwargs?",
+        "answer": "lambda creates a function with one expression, such as key=lambda x: x.score. *args collects positional arguments into a tuple and **kwargs named arguments into a dict; in calls they unpack collections. Prefer def and explicit signatures for complex logic.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-11",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як створити class і custom exception та які magic methods корисні?",
+        "answer": "class визначає тип; __init__ налаштовує instance, __repr__ дає debug representation, __eq__ — equality, __iter__ — iteration, __enter__/__exit__ — context protocol. class ToolTimeout(Exception): pass створює domain exception для framework. Не називай timeout дефектом продукту без перевірки причини.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How are classes and custom exceptions created and which magic methods help?",
+        "answer": "class defines a type; __init__ initializes the instance, __repr__ provides debug representation, __eq__ equality, __iter__ iteration and __enter__/__exit__ the context protocol. class ToolTimeout(Exception): pass creates a framework domain exception. Do not label a timeout a product defect without investigating its cause.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-12",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Яка ідея decorator і context manager?",
+        "answer": "Decorator перетворює function або class, часто додаючи logging чи timing. Context manager обмежує lifetime ресурсу й виконує cleanup через with. Приклад: with open(path) as f. Звичайне відкриття файла не гарантує закриття в exception path без finally або context manager.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What are decorators and context managers for?",
+        "answer": "A decorator transforms a function or class, often adding logging or timing. A context manager bounds resource lifetime and handles cleanup through with. Example: with open(path) as f. Plain file opening does not ensure closure on exception paths without finally or a context manager.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-13",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як працює import і чим відрізняється from import?",
+        "answer": "import module зв’язує ім’я модуля; from module import name зв’язує вибраний об’єкт. При першому import Python знаходить і виконує module, зазвичай кешує його в sys.modules. Side effects, circular imports і момент binding важливі; mock роби там, де dependency lookup виконується.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How does import work and how does from import differ?",
+        "answer": "import module binds the module name; from module import name binds the selected object. On first import Python locates and executes a module and normally caches it in sys.modules. Side effects, circular imports and binding time matter; mock where the dependency is looked up.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-14",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Для чого type hints та як використати Any, Union і Optional?",
+        "answer": "Type hints допомагають static analysis та читанню, але самі не enforce runtime validation. def squares(xs: list[int]) -> dict[int, int]: return {x: x*x for x in xs}. Any послаблює перевірку; Union[A,B] або A|B — альтернативи; Optional[T] означає T|None, а не необов’язковий аргумент.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What are type hints and how are Any, Union and Optional used?",
+        "answer": "Type hints support static analysis and readability but do not enforce runtime validation themselves. def squares(xs: list[int]) -> dict[int, int]: return {x: x*x for x in xs}. Any relaxes checking; Union[A,B] or A|B expresses alternatives; Optional[T] means T|None, not an optional argument.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-15",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як реалізувати generator, decorator і context manager?",
+        "answer": "Generator використовує yield; function decorator повертає wrapper і застосовує functools.wraps; context manager реалізує __enter__/__exit__ або @contextmanager із try/finally навколо yield. Перевір exception path, cleanup, preserved metadata та async behaviour. Retry decorator не повинен повторювати side effects без idempotency.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "How are generators, decorators and context managers implemented?",
+        "answer": "A generator uses yield; a function decorator returns a wrapper and uses functools.wraps; a context manager implements __enter__/__exit__ or @contextmanager with try/finally around yield. Test exception paths, cleanup, preserved metadata and async behaviour. Retry decorators must not repeat side effects without idempotency.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-16",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Що таке class decorator і closure?",
+        "answer": "Class decorator приймає class і повертає modified/replacement class; function decorator — function. Це не те саме, що @classmethod. Closure утримує bindings із enclosing scope: factory evaluator може зберігати threshold. У loops врахуй late binding; mutable captured state може порушити isolation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "What are class decorators and closures?",
+        "answer": "A class decorator takes a class and returns a modified/replacement class; a function decorator takes a function. This differs from @classmethod. A closure retains enclosing-scope bindings: an evaluator factory may capture a threshold. Watch late binding in loops and shared mutable captured state.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-02-17",
+    "direction": "python-coding-whiteboard",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "python-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Де використовувати dataclass у TAF?",
+        "answer": "Dataclass генерує boilerplate для data records, наприклад EvalCase або ToolResult. Використовуй default_factory для mutable defaults. frozen=True забороняє звичайне присвоєння полів, але не робить nested values deeply immutable. Schema validation і invariants потребують додаткового коду або спеціалізованої бібліотеки.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      },
+      "en": {
+        "question": "Where is a dataclass useful in a TAF?",
+        "answer": "Dataclasses generate boilerplate for records such as EvalCase or ToolResult. Use default_factory for mutable defaults. frozen=True prevents ordinary field assignment but does not make nested values deeply immutable. Schema validation and invariants need additional code or a dedicated library.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S20"
+        ]
+      }
+    }
+  }
+]

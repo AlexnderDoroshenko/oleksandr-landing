@@ -1,0 +1,212 @@
+[
+  {
+    "id": "AIQA-10-01",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Що таке LLM as a judge і чим він відрізняється від звичайного assertion?",
+        "answer": "Judge оцінює response за rubric і context, іноді reference. Він корисний для semantic criteria, але також probabilistic і susceptible до bias/injection. Калібруй із expert labels, version judge/prompt, shuffle answer order і test consistency. Для schema, IDs і forbidden actions використовуй code, а не judge.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "What is LLM as a judge and how does it differ from ordinary assertions?",
+        "answer": "A judge assesses responses against rubrics and context, sometimes references. It helps with semantic criteria but is probabilistic and vulnerable to bias/injection. Calibrate against expert labels, version judge/prompts, shuffle answer order and test consistency. Use code rather than judges for schemas, IDs and forbidden actions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-02",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як оцінювати RAG і які evaluation frameworks існують?",
+        "answer": "Розділяй retrieval, generation і whole-system outcomes. Приклади frameworks/platforms: Ragas, DeepEval, OpenAI Evals/API evals, LangSmith, Langfuse. Вони різняться datasets, judges, tracing і supported metrics; це не взаємозамінні guarantees. Обирай за потрібними assertions, privacy, reproducibility і можливістю export raw results. Станом на 2026-10-06 OpenAI переводить користувачів із застарілої Evals platform до Datasets/новіших evaluation workflows; перед інтеграцією перевіряй актуальну сторінку deprecations.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How is RAG evaluated and which evaluation frameworks exist?",
+        "answer": "Separate retrieval, generation and whole-system outcomes. Examples include Ragas, DeepEval, OpenAI Evals/API evals, LangSmith and Langfuse. They differ in datasets, judges, tracing and metrics; they are not interchangeable guarantees. Choose by required assertions, privacy, reproducibility and raw-result export. As of 2026-10-06, OpenAI is moving users away from the deprecated Evals platform toward Datasets/newer evaluation workflows; check the current deprecations page before integration.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-03",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Які RAG metrics і як їх порахувати у framework?",
+        "answer": "Створи records із query, retrieved context IDs/text, answer, reference і relevant IDs. Deterministic evaluator рахує precision/recall/MRR; Ragas може додати Faithfulness або Context Precision відповідно до required fields конкретної версії. Перевір denominator і rubric; human-аudit sample. Answer relevance, faithfulness і factual correctness — різні осі.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "Which RAG metrics matter and how are they computed in a framework?",
+        "answer": "Build records containing queries, retrieved context IDs/text, answers, references and relevant IDs. Deterministic evaluators compute precision/recall/MRR; Ragas can add Faithfulness or Context Precision using the fields required by the pinned version. Verify denominators/rubrics and human-audit samples. Answer relevance, faithfulness and factual correctness are distinct axes.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-04",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Які metrics для multi-agent і multiturn MCP assistant?",
+        "answer": "Task success = successful scenarios / evaluated scenarios; unauthorized-action rate = offending scenarios / evaluated scenarios. Також termination rate, handoff validity, correct tool/arguments, retries, recovery, latency/cost. Capture events і final state; custom code evaluators у обраному framework обчислюють flags/rates. Judge оцінює communication quality; labels задають допустимі альтернативні trajectories.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "Which metrics apply to multi-agent and multiturn MCP assistants?",
+        "answer": "Task success = successful scenarios / evaluated scenarios; unauthorized-action rate = offending scenarios / evaluated scenarios. Also track termination, valid handoffs, correct tools/arguments, retries, recovery and latency/cost. Capture events and final state; custom code evaluators compute flags/rates. Judges assess communication quality; labels allow alternative valid trajectories.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-05",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Що таке golden data і як його підготувати?",
+        "answer": "Це versioned набір inputs, context, expert labels і expected properties для evaluation, а не обов’язково exact answers. Вибирай representative і rare high-risk cases, deduplicate, peer-review labels і розділяй tuning/holdout. Synthetic examples перевір людиною; coverage і provenance мають бути documented. Захисти від test contamination.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "What is golden data and how is it prepared?",
+        "answer": "It is a versioned set of inputs, contexts, expert labels and expected properties for evaluation, not necessarily exact answers. Select representative and rare high-risk cases, deduplicate, peer-review labels and separate tuning/holdout. Human-validate synthetic examples; document coverage/provenance and guard against test contamination.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-06",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як створити golden data для personal assistant chat?",
+        "answer": "Використовуй fictitious personas, consent-safe tasks і isolated tools: scheduling, search, clarification, preference changes. Задай conversation history, time/timezone, доступні tools/data, expected state changes і forbidden actions. Include conflicting dates, memory deletion і cross-user attempts. Labels для кожного turn і фіналу не повинні містити реальні private data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How is golden data created for a personal assistant chat?",
+        "answer": "Use fictitious personas, consent-safe tasks and isolated tools for scheduling, search, clarification and preference changes. Specify history, time/timezone, tools/data, expected state changes and forbidden actions. Include conflicting dates, memory deletion and cross-user attempts. Per-turn and final labels must not contain real private data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  }
+]

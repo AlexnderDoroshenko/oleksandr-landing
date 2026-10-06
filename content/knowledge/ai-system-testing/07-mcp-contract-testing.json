@@ -1,0 +1,219 @@
+[
+  {
+    "id": "AIQA-07-01",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке MCP і навіщо він QA?",
+        "answer": "Model Context Protocol стандартизує підключення hosts/clients до servers із tools, resources і prompts. QA перевіряє protocol, schemas, permissions та observable business effects. MCP не є agent framework і сам не робить tool безпечним. Version protocol і negotiated capabilities є частиною test environment. Тут зафіксовано ревізію MCP 2026-07-28; старіші handshake-based ревізії мають інший lifecycle, тому interoperability tests повинні явно задавати protocol version.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "What is MCP and why does it matter to QA?",
+        "answer": "Model Context Protocol standardizes host/client connections to servers exposing tools, resources and prompts. QA tests the protocol, schemas, permissions and observable business effects. MCP is not an agent framework and does not make tools safe by itself. Protocol versions and negotiated capabilities are part of the test environment. This material pins MCP revision 2026-07-28; older handshake-based revisions have a different lifecycle, so interoperability tests must state the protocol version explicitly.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-02",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як перевірити schemas, responses і basic negative cases?",
+        "answer": "Validate inputSchema за JSON Schema; missing required field, wrong type, bounds і unknown tool мають контрольовано оброблятися. Перевір result envelope і content blocks. Коли tool має outputSchema, validate structuredContent; не вимагай довільний output schema від усіх tools. Success response ще не означає правильний business result.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "How are schemas, responses and basic negative cases checked?",
+        "answer": "Validate inputSchema using JSON Schema; handle missing required fields, wrong types, bounds and unknown tools predictably. Check result envelopes and content blocks. When a tool provides outputSchema, validate structuredContent; do not require an arbitrary output schema from every tool. A successful response does not establish business correctness.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-03",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Які ризики MCP tool calls?",
+        "answer": "Wrong arguments, unauthorized access, injected tool/resource text, sensitive output, unintended writes і duplicate side effects. Host і server повинні незалежно validate й authorize. Tool descriptions/annotations не вважай trusted authority. Використовуй fixtures замість реальних secrets і перевір permission boundaries.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "What risks occur in MCP tool calls?",
+        "answer": "Risks include wrong arguments, unauthorized access, injected tool/resource text, sensitive outputs, unintended writes and duplicate side effects. Hosts and servers should validate and authorize independently. Do not treat tool descriptions/annotations as trusted authority. Use fixtures instead of real secrets and test permission boundaries.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-04",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як тестувати schema evolution і optional або extra fields?",
+        "answer": "Додавання optional field може бути сумісним; new required field, звуження type або зміна semantics — breaking. Поведінка extra fields залежить від additionalProperties і reader policy. Missing optional не тотожний null. Тестуй old client/new server і reverse, negotiated protocol та business compatibility.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "How are schema evolution and optional or extra fields tested?",
+        "answer": "Adding an optional field may be compatible; new required fields, narrower types or changed semantics may break compatibility. Extra-field behaviour depends on additionalProperties and reader policy. Missing optional fields differ from null. Test old-client/new-server and the reverse, negotiated protocols and business compatibility.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-05",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як зробити fail-fast contract tests і error handling у CI?",
+        "answer": "На PR validate schemas і representative examples, diff required fields/types, replay consumer contracts. Окремо перевір protocol errors, tool execution errors, transport failures й provider rate limits. Retry policy належить implementation: test bounded retries, backoff і idempotency. Breaking contracts блокують merge до live evals.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "How are fail-fast contract tests and error handling built in CI?",
+        "answer": "On PRs validate schemas and representative examples, diff required fields/types and replay consumer contracts. Separately test protocol errors, tool execution errors, transport failures and provider rate limits. Retry policy belongs to the implementation: test bounded retries, backoff and idempotency. Block breaking contracts before live evals.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-06",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як перевірити interoperability та observability?",
+        "answer": "Перевір version negotiation, capabilities, supported transports, content types й auth flows. Logs/traces зв’язують run, request і tool execution; application correlation ID не є універсальним mandatory MCP field. Визнач його передачу явним instrumentation contract. Перевір sanitized arguments, duration, errors, retry count і відсутність secrets.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "How are interoperability and observability tested?",
+        "answer": "Test version negotiation, capabilities, supported transports, content types and auth flows. Logs/traces link runs, requests and tool executions; an application correlation ID is not a universally mandatory MCP field. Define its propagation in an instrumentation contract. Check sanitized arguments, durations, errors, retries and absence of secrets.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-07-07",
+    "direction": "api-sql-data",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "mcp-contract-testing",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як проводити MCP load і chaos tests?",
+        "answer": "У sandbox inject latency, disconnects, partial replies, worker restart і concurrency. Define workload, capacity, error budget, recovery targets та stop conditions. Перевір cancellation, connection/resource cleanup і no duplicate writes. Repeat scenarios для nondeterministic failures; provenance й timings потрібні для reproduction, а не лише average latency.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      },
+      "en": {
+        "question": "How are MCP load and chaos tests designed?",
+        "answer": "In a sandbox inject latency, disconnects, partial replies, worker restarts and concurrency. Define workload, capacity, error budgets, recovery targets and stop conditions. Check cancellation, connection/resource cleanup and no duplicate writes. Repeat scenarios for non-deterministic failures; provenance and timings aid reproduction beyond average latency.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S10",
+          "S11"
+        ]
+      }
+    }
+  }
+]

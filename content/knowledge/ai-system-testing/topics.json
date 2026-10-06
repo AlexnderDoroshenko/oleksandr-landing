@@ -1,0 +1,374 @@
+[
+  {
+    "id": "documentation-testing-process",
+    "direction": "ai-system-testing",
+    "order": 1,
+    "translations": {
+      "uk": {
+        "title": "Документація і тестовий процес",
+        "practice": "Для AI Quality Architect опиши test case пошуку прогалин у вимогах. Додай versioned input, допустимі findings, заборонені твердження й evidence. Створи defect для вигаданого ризику та поясни severity і priority.",
+        "deepDives": [
+          {
+            "title": "Очікуваний результат і багаторівневий oracle",
+            "body": "Для AI результат потрібно визначити до запуску, навіть коли exact text невідомий. Спочатку відділи objective facts від оцінки presentation. Для відповіді про замовлення facts — order ID, owner, amount і status; presentation — зрозумілість і достатність пояснення. Для аналізу requirements facts можуть бути самі passages та справжні суперечності. Не позначай усі «несподівані» findings помилками: вони можуть бути корисними discoveries, які має adjudicate експерт.\n\nOracle складається з шарів. Перший перевіряє структуру і types; другий — точні entities, числа та business rules; третій — claim-to-source support; четвертий — completeness/relevance за rubric; п’ятий — prohibited actions і privacy. Safety failure не можна компенсувати високим average score за style. Якщо система чесно відповіла «недостатньо даних», для no-answer case це може бути PASS.\n\nПриклад case: source каже, що refund дозволено протягом 14 днів; користувач питає про 20-й день. Очікуємо відмову в автоматичному refund або escalation відповідно до policy, correct explanation і citation. Не вимагаємо конкретного речення. Якщо assistant цитує source, але повертає «30 днів», schema та citation-existence checks можуть пройти, а factual validator має впасти.\n\nВизнач acceptance rubric: 2 — усі critical facts правильні й немає unsupported claims; 1 — правильний висновок із noncritical omission; 0 — неправильний висновок або critical unsupported claim. Для release gate зафіксуй, які cases вимагають тільки 2. Це навчальна rubric, не універсальний industry threshold. На кожному run збережи версії context, model, prompt та evaluator, щоб оцінка була відтворюваною."
+          },
+          {
+            "title": "Планування ризиків і звіт про реліз",
+            "body": "Risk assessment починається не зі списку всіх можливих tests, а з того, кому й що може зашкодити. Для assistant, який лише читає public docs, неправильна відповідь має інший impact, ніж неправильний refund tool call. Для кожного risk запиши scenario, likelihood, impact, controls, evidence, owner і residual risk. Число likelihood × impact — допоміжна heuristic; воно не робить оцінку об’єктивною і не повинно занижувати рідкісні catastrophic events.\n\nTest strategy пов’язує risks із test levels і типами evidence. Unit test може довести correctness permission function, integration — правильне застосування ACL у retrieval, а end-to-end — що заборонений document не потрапляє в context і answer. Важливо перевірити також cache, memory та logs: один правильний retrieval filter не закриває всі data paths.\n\nУ management report спочатку дай рекомендацію та її межі. Приклад: «Готово для read-only pilot у двох мовах; write tools вимкнені. Пройдено 48 з 50 agreed critical scenarios; два блокери залишаються. На 200 sampled queries task success 91%, але це не оцінка всіх можливих запитів». Далі додай unresolved defects, slice coverage, uncertainty і рішення, потрібні від owner. Test pass rate без denominator і risk coverage — слабкий аргумент.\n\nEffort estimate розклади на preparation, dataset labeling, automation, execution, analysis і maintenance. Live evaluation має не лише runtime, а й cost повторів, rate-limit delays та expert review. У Agile використай ranges та assumptions, а не удавану точність. Не називай risk mitigated лише тому, що test написаний: потрібні control, successful evidence та review після змін."
+          }
+        ]
+      },
+      "en": {
+        "title": "Documentation and testing process",
+        "practice": "Write a requirement-gap test case for AI Quality Architect. Include versioned input, acceptable findings, prohibited claims and evidence. File a defect for a fabricated risk and justify severity and priority.",
+        "deepDives": [
+          {
+            "title": "Expected results and layered oracles",
+            "body": "Define AI outcomes before execution even when exact wording is unknown. Separate objective facts from presentation quality. For order answers, facts include order ID, owner, amount and status; presentation includes clarity and adequate explanation. In requirement analysis, facts may be source passages and genuine contradictions. Do not treat every unexpected finding as an error: it may be a valuable discovery requiring expert adjudication.\n\nBuild layered oracles. The first validates structure/types; the second exact entities, numbers and business rules; the third claim-to-source support; the fourth completeness/relevance using a rubric; the fifth prohibited actions and privacy. Safety failures must not be offset by high average style scores. Honest insufficient-data responses may pass no-answer cases.\n\nExample: a source allows refunds within 14 days and the user asks on day 20. Expect denial of automatic refunds or escalation according to policy, a correct explanation and citation rather than one exact sentence. An assistant citing the source while saying 30 days can pass schema and citation-existence checks but must fail factual validation.\n\nAn example acceptance rubric is 2 for all critical facts correct with no unsupported claims, 1 for a correct conclusion with a noncritical omission, and 0 for a wrong conclusion or critical unsupported claim. Specify which release cases require 2. This is a teaching rubric, not a universal industry threshold. Preserve context, model, prompt and evaluator versions for every run."
+          },
+          {
+            "title": "Risk planning and release reporting",
+            "body": "Risk assessment starts with potential harm and affected people rather than every possible test. Incorrect public-document answers have a different impact from incorrect refund tool calls. Record scenarios, likelihood, impact, controls, evidence, owners and residual risks. Likelihood × impact is a useful heuristic rather than objective truth and must not hide rare catastrophic events.\n\nConnect risks to test levels and evidence through the strategy. Unit tests can establish permission-function behaviour, integration tests ACL enforcement in retrieval, and end-to-end tests absence of forbidden documents from context and answers. Also test caches, memory and logs; one correct retrieval filter does not cover every data path.\n\nLead management reports with a recommendation and its limits. Example: ready for a read-only bilingual pilot with write tools disabled; 48 of 50 agreed critical scenarios passed and two blockers remain. Task success was 91% on 200 sampled queries, which does not estimate every possible request. Then show unresolved defects, slice coverage, uncertainty and owner decisions. Pass rates without denominators and risk coverage are weak evidence.\n\nBreak effort into preparation, dataset labelling, automation, execution, analysis and maintenance. Live evaluation costs include repetitions, rate-limit delays and expert review as well as runtime. Use ranges and assumptions in Agile rather than false precision. A written test does not mitigate a risk by itself; controls, successful evidence and change review are needed."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "python-automation",
+    "direction": "ai-system-testing",
+    "order": 2,
+    "translations": {
+      "uk": {
+        "title": "Python для автоматизації",
+        "practice": "Напиши typed evaluator, що читає JSONL, генерує results поступово й закриває файл навіть після exception. Додай pytest для nested copy, invalid input і власного exception.",
+        "codeExamples": [
+          {
+            "id": "AIQA-CODE-01",
+            "title": "Typed evaluator і dataclass",
+            "code": "from dataclasses import dataclass\n\n@dataclass(frozen=True)\nclass EvalCase:\n    case_id: str\n    allowed_tools: frozenset[str]\n\ndef squares(xs: list[int]) -> dict[int, int]:\n    return {x: x * x for x in xs}\n\ndef tool_allowed(case: EvalCase, tool: str) -> bool:\n    return tool in case.allowed_tools\n\nassert squares([2, 3, 2]) == {2: 4, 3: 9}\nassert not tool_allowed(\n    EvalCase(\"readonly\", frozenset({\"read_order\"})),\n    \"delete_order\",\n)",
+            "explanation": "Duplicate integers стають одним key у dict. frozen record не замінює validation; immutable frozenset тут обрано навмисно. Це validator fixture, не production authorization."
+          },
+          {
+            "id": "AIQA-CODE-02",
+            "title": "Shallow і deep copy",
+            "code": "from copy import copy, deepcopy\n\noriginal = {\"contexts\": [\"A\"]}\nshallow = copy(original)\ndeep = deepcopy(original)\nshallow[\"contexts\"].append(\"B\")\nassert original[\"contexts\"] == [\"A\", \"B\"]\nassert deep[\"contexts\"] == [\"A\"]",
+            "explanation": "Shallow copy ділить nested list. У test data це створює залежності між cases; deep copy теж не універсальний для sockets, clients і custom objects."
+          },
+          {
+            "id": "AIQA-CODE-03",
+            "title": "Generator і context manager",
+            "code": "import json\nfrom contextlib import contextmanager\nfrom pathlib import Path\n\n@contextmanager\ndef jsonl_rows(path: Path):\n    with path.open(encoding=\"utf-8\") as stream:\n        yield (json.loads(line) for line in stream if line.strip())\n\n# with jsonl_rows(Path(\"cases.jsonl\")) as rows:\n#     for row in rows:\n#         print(row[\"case_id\"])",
+            "explanation": "Iteration має відбуватися всередині with. Після виходу file закритий; generator не слід повертати за межі scope. JSON parsing error не приховуй; schema validation додай окремо."
+          },
+          {
+            "id": "AIQA-CODE-04",
+            "title": "Decorator для вимірювання",
+            "code": "from functools import wraps\nfrom time import perf_counter\n\ndef timed(fn):\n    @wraps(fn)\n    def wrapper(*args, **kwargs):\n        start = perf_counter()\n        try:\n            return fn(*args, **kwargs)\n        finally:\n            duration = perf_counter() - start\n            print(f\"duration={duration:.6f}\")\n    return wrapper\n\n@timed\ndef local_check() -> bool:\n    return True\n\nassert local_check()",
+            "explanation": "finally вимірює також failed runs; wraps зберігає metadata. Це synchronous приклад; async function потребує wrapper з await. Для production telemetry не друкуй sensitive arguments."
+          },
+          {
+            "id": "AIQA-CODE-05",
+            "title": "Retrieval metrics без LLM judge",
+            "code": "def retrieval_metrics(retrieved: list[str],\n                      relevant: set[str], k: int) -> dict:\n    if k <= 0:\n        raise ValueError(\"k must be positive\")\n    top = retrieved[:k]\n    if len(top) != len(set(top)):\n        raise ValueError(\"duplicate document IDs\")\n    hits = len(set(top) & relevant)\n    rr = next((1 / rank for rank, doc in\n               enumerate(top, 1) if doc in relevant), 0.0)\n    return {\"precision\": hits / k,\n            \"recall\": hits / len(relevant) if relevant else None,\n            \"rr\": rr}\n\nm = retrieval_metrics([\"X\", \"B\", \"Y\"], {\"A\", \"B\", \"C\"}, 3)\nassert m == {\"precision\": 1/3, \"recall\": 1/3, \"rr\": 0.5}",
+            "explanation": "Тут precision використовує fixed k навіть якщо results менше; recall для no-relevant case — None. MRR — mean rr по dataset, не rr одного case. Passage-level relevance потребує інших IDs/labels."
+          },
+          {
+            "id": "AIQA-CODE-06",
+            "title": "Application validator tool calls",
+            "code": "class ToolValidationError(Exception):\n    pass\n\ndef validate_read_order(arguments: dict,\n                        allowed_orders: set[str]) -> str:\n    if set(arguments) != {\"order_id\"}:\n        raise ToolValidationError(\"unexpected fields\")\n    order_id = arguments[\"order_id\"]\n    if not isinstance(order_id, str) or not order_id:\n        raise ToolValidationError(\"invalid order_id\")\n    if order_id not in allowed_orders:\n        raise PermissionError(\"order access denied\")\n    return order_id\n\nassert validate_read_order({\"order_id\": \"O-1\"}, {\"O-1\"}) == \"O-1\"",
+            "explanation": "Це локальний business validator, не повна MCP implementation. Allowed orders повинні надходити з trusted identity/authorization service, не від моделі. JSON Schema і server authorization додаються окремо."
+          }
+        ]
+      },
+      "en": {
+        "title": "Python for automation",
+        "practice": "Write a typed evaluator that reads JSONL, yields results lazily and closes the file even after an exception. Add pytest cases for nested copies, invalid input and a custom exception.",
+        "codeExamples": [
+          {
+            "id": "AIQA-CODE-01",
+            "title": "Typed evaluator and dataclass",
+            "code": "from dataclasses import dataclass\n\n@dataclass(frozen=True)\nclass EvalCase:\n    case_id: str\n    allowed_tools: frozenset[str]\n\ndef squares(xs: list[int]) -> dict[int, int]:\n    return {x: x * x for x in xs}\n\ndef tool_allowed(case: EvalCase, tool: str) -> bool:\n    return tool in case.allowed_tools\n\nassert squares([2, 3, 2]) == {2: 4, 3: 9}\nassert not tool_allowed(\n    EvalCase(\"readonly\", frozenset({\"read_order\"})),\n    \"delete_order\",\n)",
+            "explanation": "Duplicate integers become one dictionary key. Frozen records do not replace validation; frozenset is intentional. This is a validator fixture, not production authorization."
+          },
+          {
+            "id": "AIQA-CODE-02",
+            "title": "Shallow and deep copies",
+            "code": "from copy import copy, deepcopy\n\noriginal = {\"contexts\": [\"A\"]}\nshallow = copy(original)\ndeep = deepcopy(original)\nshallow[\"contexts\"].append(\"B\")\nassert original[\"contexts\"] == [\"A\", \"B\"]\nassert deep[\"contexts\"] == [\"A\"]",
+            "explanation": "Shallow copies share nested lists. This can couple test cases; deep copies are not universal for sockets, clients and custom objects."
+          },
+          {
+            "id": "AIQA-CODE-03",
+            "title": "Generator and context manager",
+            "code": "import json\nfrom contextlib import contextmanager\nfrom pathlib import Path\n\n@contextmanager\ndef jsonl_rows(path: Path):\n    with path.open(encoding=\"utf-8\") as stream:\n        yield (json.loads(line) for line in stream if line.strip())\n\n# with jsonl_rows(Path(\"cases.jsonl\")) as rows:\n#     for row in rows:\n#         print(row[\"case_id\"])",
+            "explanation": "Iterate inside with. The file closes after exit, so do not let the generator escape its scope. Do not hide JSON parsing errors; add separate schema validation."
+          },
+          {
+            "id": "AIQA-CODE-04",
+            "title": "A timing decorator",
+            "code": "from functools import wraps\nfrom time import perf_counter\n\ndef timed(fn):\n    @wraps(fn)\n    def wrapper(*args, **kwargs):\n        start = perf_counter()\n        try:\n            return fn(*args, **kwargs)\n        finally:\n            duration = perf_counter() - start\n            print(f\"duration={duration:.6f}\")\n    return wrapper\n\n@timed\ndef local_check() -> bool:\n    return True\n\nassert local_check()",
+            "explanation": "finally measures failed runs too and wraps preserves metadata. This synchronous example needs an await-based wrapper for async functions. Production telemetry must not print sensitive arguments."
+          },
+          {
+            "id": "AIQA-CODE-05",
+            "title": "Retrieval metrics without an LLM judge",
+            "code": "def retrieval_metrics(retrieved: list[str],\n                      relevant: set[str], k: int) -> dict:\n    if k <= 0:\n        raise ValueError(\"k must be positive\")\n    top = retrieved[:k]\n    if len(top) != len(set(top)):\n        raise ValueError(\"duplicate document IDs\")\n    hits = len(set(top) & relevant)\n    rr = next((1 / rank for rank, doc in\n               enumerate(top, 1) if doc in relevant), 0.0)\n    return {\"precision\": hits / k,\n            \"recall\": hits / len(relevant) if relevant else None,\n            \"rr\": rr}\n\nm = retrieval_metrics([\"X\", \"B\", \"Y\"], {\"A\", \"B\", \"C\"}, 3)\nassert m == {\"precision\": 1/3, \"recall\": 1/3, \"rr\": 0.5}",
+            "explanation": "Precision uses fixed k even if fewer results are returned; recall is None for no-relevant cases. MRR is dataset-mean rr rather than one-case rr. Passage-level relevance requires different IDs/labels."
+          },
+          {
+            "id": "AIQA-CODE-06",
+            "title": "An application tool-call validator",
+            "code": "class ToolValidationError(Exception):\n    pass\n\ndef validate_read_order(arguments: dict,\n                        allowed_orders: set[str]) -> str:\n    if set(arguments) != {\"order_id\"}:\n        raise ToolValidationError(\"unexpected fields\")\n    order_id = arguments[\"order_id\"]\n    if not isinstance(order_id, str) or not order_id:\n        raise ToolValidationError(\"invalid order_id\")\n    if order_id not in allowed_orders:\n        raise PermissionError(\"order access denied\")\n    return order_id\n\nassert validate_read_order({\"order_id\": \"O-1\"}, {\"O-1\"}) == \"O-1\"",
+            "explanation": "This is a local business validator, not a complete MCP implementation. Allowed orders must come from a trusted identity/authorization service rather than the model. Add JSON Schema and server authorization separately."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ai-ml-fundamentals",
+    "direction": "ai-system-testing",
+    "order": 3,
+    "translations": {
+      "uk": {
+        "title": "Основи AI і ML",
+        "practice": "Для документаційного assistant визнач context budget, доступ до даних, модель розміщення й guardrails. Поясни, як перевірити втрату ранньої інструкції в довгій розмові.",
+        "deepDives": [
+          {
+            "title": "Context window і model deployment",
+            "body": "Context budget складається з instructions, history, retrieved documents, tool definitions, tool results і generation allowance відповідно до API. Порахуй tokens tokenizer обраної моделі; characters/4 — ненадійна оцінка для multilingual і code. Перевір token-limit boundaries та поведінку application: reject, trim чи summarize. Silent truncation може прибрати critical policy або потрібний факт.\n\nПобудуй long-context tests з одним фактом на початку, у середині й наприкінці; додавай distractors, repeated/conflicting facts та кілька turns. Вимірюй answer correctness і source selection, а не просто успіх HTTP. Summary memory має зберігати важливі constraints і provenance; видалена preference не повинна оживати з іншого cache.\n\nOn-prem planning починається з workload: model size/precision, peak concurrent requests, prompt/output lengths і latency objective. Weights — лише частина RAM/VRAM: KV cache, runtime buffers і batching теж потребують memory. Quantization може зменшити memory, але quality та supported hardware перевір експериментом. CPU hosting може бути можливим, але непридатним за latency для конкретного сценарію.\n\nDeployment tests: cold start, readiness до usable model, load, memory pressure, cancellation, safe shutdown і fallback. Для provider routing перевір однакові output contracts, unsupported parameters і capability differences. Fallback не повинен порушувати residency або відправляти sensitive context іншому provider без належної policy."
+          }
+        ]
+      },
+      "en": {
+        "title": "AI and ML fundamentals",
+        "practice": "For a documentation assistant define the context budget, data access, hosting choice and guardrails. Explain how to test loss of an early instruction in a long conversation.",
+        "deepDives": [
+          {
+            "title": "Context windows and model deployment",
+            "body": "Context budgets include instructions, history, retrieved documents, tool definitions, tool results and generation allowances according to the API. Use the selected model's tokenizer; characters/4 is unreliable for multilingual text and code. Test token-limit boundaries and whether the application rejects, trims or summarizes. Silent truncation may remove critical policies or necessary facts.\n\nPlace a fact at the start, middle and end of long-context tests; add distractors, repeated/conflicting facts and multiple turns. Measure answer correctness/source selection rather than HTTP success alone. Summary memory should preserve important constraints and provenance; deleted preferences must not return from another cache.\n\nOn-prem planning starts with workloads: model size/precision, peak concurrency, prompt/output lengths and latency objectives. Weights are only part of RAM/VRAM needs; KV caches, buffers and batching also consume memory. Quantization may help, but evaluate quality/hardware support experimentally. CPU hosting may be possible yet unsuitable for a scenario's latency needs.\n\nDeployment tests should cover cold starts, readiness until the model is usable, load, memory pressure, cancellation, safe shutdown and fallback. Routing requires compatible output contracts and checks for unsupported parameters/capability differences. Fallback must not violate residency or send sensitive context to another provider outside the approved policy."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "prompting-tool-calling",
+    "direction": "ai-system-testing",
+    "order": 4,
+    "translations": {
+      "uk": {
+        "title": "Prompting і tool calling",
+        "practice": "Створи prompt для report у JSON із source IDs. Перевір missing context, conflicting instructions і tool result з malicious text; correctness визначай validators, а не красиво оформленим reasoning."
+      },
+      "en": {
+        "title": "Prompting and tool calling",
+        "practice": "Create a JSON report prompt with source IDs. Test missing context, conflicting instructions and a malicious tool result; use validators rather than polished reasoning to judge correctness."
+      }
+    }
+  },
+  {
+    "id": "rag-retrieval",
+    "direction": "ai-system-testing",
+    "order": 5,
+    "translations": {
+      "uk": {
+        "title": "RAG і retrieval",
+        "practice": "Підготуй 10 queries, relevance labels і document versions. Вручну порахуй precision@3 та recall@3, потім перевір citations для відповіді із суперечливих документів.",
+        "deepDives": [
+          {
+            "title": "RAG experiment із числовим прикладом",
+            "body": "Для query позначено три relevant documents: A, B, C. Retriever повернув top 3: X, B, Y. Precision@3 = 1/3; recall@3 = 1/3; reciprocal rank = 1/2, бо перший relevant result стоїть другим. Якщо жодного relevant result немає, reciprocal rank = 0. Якщо labels неповні, recall не є чесною оцінкою всієї relevant інформації; це recall відносно labeled set.\n\nОкремо перевір ranking і context utilization. Retriever може повернути B, але context builder обрізає потрібний paragraph. Або LLM має passage, але ігнорує його. Тому pipeline telemetry повинна містити retrieved IDs, фактичні context IDs, token budget і final citations. Text snippets з private documents не повинні потрапляти в unrestricted trace store.\n\nExperiment matrix: chunk size 300/600 tokens, overlap 0/60, top_k 3/6, reranker on/off. Повний factorial дає 16 variants, але не потрібно одразу тестувати все: почни з baseline і одного фактора, потім перевір interactions у promising settings. Для кожного variation показуй quality, latency, context size, cost і no-answer behaviour. More retrieved text може погіршити відповідь через noise.\n\nДля safe release створи незмінний holdout і previous index для rollback. Перевір cache invalidation після document update, ACL revocation і embedding/index version changes. Cache key має розрізняти user permissions, query та relevant configuration; TTL сам по собі не гарантує негайного відкликання доступу. Для revoked permission enforce доступ при читанні cache або invalidation з визначеним SLA."
+          }
+        ]
+      },
+      "en": {
+        "title": "RAG and retrieval",
+        "practice": "Prepare 10 queries, relevance labels and document versions. Calculate precision@3 and recall@3 manually, then inspect citations for an answer using contradictory documents.",
+        "deepDives": [
+          {
+            "title": "RAG experiment with a numeric example",
+            "body": "Suppose A, B and C are the three labelled relevant documents and the top three results are X, B and Y. Precision@3 is 1/3, recall@3 is 1/3 and reciprocal rank is 1/2 because the first relevant result ranks second. With no relevant result reciprocal rank is 0. Incomplete labels make recall relative to the labelled set rather than all relevant information.\n\nCheck ranking and context utilization separately. A retriever can return B while the context builder truncates the necessary paragraph, or the model can ignore an available passage. Capture retrieved IDs, actual context IDs, token budgets and final citations. Private-document snippets must not enter unrestricted trace storage.\n\nAn experiment matrix using chunk sizes 300/600 tokens, overlap 0/60, top_k 3/6 and reranker on/off has 16 combinations. Start with a baseline and one factor, then test interactions among promising settings. Report quality, latency, context size, cost and no-answer behaviour for every variant. More retrieved text may reduce quality through noise.\n\nUse an immutable holdout and retain a previous index for rollback. Test cache invalidation after document changes, ACL revocation and embedding/index changes. Cache keys must distinguish permissions, queries and relevant configuration; TTL alone does not guarantee immediate access revocation. Enforce access on cache reads or invalidate under a defined SLA."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "agents-coordination",
+    "direction": "ai-system-testing",
+    "order": 6,
+    "translations": {
+      "uk": {
+        "title": "Агенти і взаємодія",
+        "practice": "Спроєктуй API → browser → API checkout run. Визнач allowed tools, budgets, handoffs, stop conditions і human approval для дій із побічними ефектами.",
+        "deepDives": [
+          {
+            "title": "Метрики агента і стан середовища",
+            "body": "Final text «замовлення створене» не доводить створення order. Expected state може вимагати рівно один order з correct owner, items, amount і status. Неправильний tool call, який backend відхилив, і successful unauthorized write — різні events: перший вказує на policy/selection failure, другий — ще й на broken authorization control. Обидва потрібно бачити у звіті.\n\nОціни trajectories через invariant properties: кожен write авторизований, task IDs збережені, budgets не перевищені, cleanup виконаний і workflow завершується. Не вимагай один exact path, якщо альтернативні tool sequences валідні. Reference trajectory корисна для regression, але не повинна карати новий коротший безпечний шлях.\n\nДля 20 scenarios з 16 successes task success = 80%. Якщо 2 scenarios мали unauthorized attempts, scenario-level attempt rate = 10%. Якщо було 100 tool calls і 3 unsafe attempts, call-level rate = 3%; ці знаменники не можна змішувати. Report обидва явно. Zero observed unsafe successes у 20 cases не доводить нульовий ризик у production.\n\nCooperation quality вимірюй valid handoffs, missing/duplicated work і conflicting outputs; efficiency — tool count, duration, tokens і cost per successful task. Lower tool count може бути false optimization, якщо agent пропускає necessary validation. Test cancellation під час write і resume після checkpoint: повторний запуск не повинен створити duplicate order."
+          }
+        ]
+      },
+      "en": {
+        "title": "Agents and coordination",
+        "practice": "Design an API → browser → API checkout run. Define allowed tools, budgets, handoffs, stop conditions and human approval for actions with side effects.",
+        "deepDives": [
+          {
+            "title": "Agent metrics and environment state",
+            "body": "The final text order created does not establish order creation. Expected state may require exactly one order with the correct owner, items, amount and status. An incorrect call rejected by the backend differs from a successful unauthorized write: the first reveals a policy/selection failure, the second also breaks authorization controls. Reports should expose both.\n\nEvaluate trajectories through invariants: every write is authorized, task IDs are preserved, budgets are respected, cleanup happens and the workflow terminates. Do not require one exact path when alternative tool sequences are valid. Reference trajectories help regression but should not penalize a shorter safe path.\n\nFor 20 scenarios with 16 successes, task success is 80%. If two scenarios include unauthorized attempts, the scenario-level attempt rate is 10%. With 100 tool calls and three unsafe attempts, the call-level rate is 3%; do not mix these denominators. Report both explicitly. Zero observed unsafe successes in 20 cases does not establish zero production risk.\n\nMeasure cooperation with valid handoffs, missing/duplicated work and conflicting outputs; measure efficiency through tool counts, duration, tokens and cost per successful task. Fewer calls may be a false optimization if necessary validation is skipped. Test cancellation during writes and checkpoint resume without duplicate orders."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "mcp-contract-testing",
+    "direction": "ai-system-testing",
+    "order": 7,
+    "translations": {
+      "uk": {
+        "title": "MCP і contract testing",
+        "practice": "Для read_order tool перевір valid call, missing required ID, invalid types, unauthorized order, application error і timeout. Зафіксуй protocol version та окремий бізнес-контракт.",
+        "deepDives": [
+          {
+            "title": "Безпечний MCP контракт",
+            "body": "Для read_order визнач inputSchema з order_id required string, bounds і забороною невідомих fields, якщо цього вимагає business contract. Permission не визначається тільки valid ID: server має перевірити caller identity та ownership. Model не має права передавати довільний user_id, щоб читати іншу людину. Якщо потрібен admin access, це окремий authorized scope.\n\nOutput schema може містити order_id, status і amount; currency має бути explicit. MCP structuredContent та serialized text треба узгодити, якщо повертаються обидва. Validation output не гарантує truthful data — compare із fixture database. Розрізняй unknown tool/protocol issue, tool execution error і transport timeout. Не визначай всі errors через HTTP code: transport і JSON-RPC мають власні semantics.\n\nCompatibility test matrix охоплює supported versions client/server і capability negotiation. Додавання optional output field може порушити строгого consumer, який rejects extras, тому additive не завжди означає safe. Новий required input майже завжди потребує міграції consumers. Record schema snapshots і semantic assertions; зміна currency units може бути breaking без жодної schema change.\n\nTimeout не означає, що side effect не відбувся. Для write tool repeat лише з idempotency strategy й перевіркою operation status. Load tests мають включати rate limits, bounded queue, resource cleanup і auth refresh. Correlation IDs додавай за application contract; JSON-RPC id зв’язує request/response, але не замінює distributed trace всього agent run."
+          }
+        ]
+      },
+      "en": {
+        "title": "MCP and contract testing",
+        "practice": "For a read_order tool test valid calls, missing required IDs, invalid types, unauthorized orders, application errors and timeouts. Pin the protocol version and a separate business contract.",
+        "deepDives": [
+          {
+            "title": "A safe MCP contract",
+            "body": "For read_order require a bounded string order_id in inputSchema and reject unknown fields if the business contract requires it. A valid ID alone is not permission: the server must check caller identity and ownership. Models must not supply arbitrary user IDs to read another person's data. Administrative access needs a separate authorized scope.\n\nAn output schema may contain order_id, status and amount with explicit currency. Keep structuredContent and serialized text consistent when both are returned. Schema validation does not prove truth; compare against fixture databases. Distinguish unknown tools/protocol issues, execution errors and transport timeouts. Not all errors are HTTP statuses; transport and JSON-RPC have their own semantics.\n\nCompatibility matrices cover supported client/server versions and capability negotiation. Optional output additions can still break consumers rejecting extras, so additive does not always mean safe. New required inputs generally need consumer migration. Preserve schema snapshots and semantic assertions; currency-unit changes can break contracts without schema changes.\n\nA timeout does not prove a side effect never occurred. Retry write tools only with an idempotency strategy and operation-status checks. Load tests should cover rate limits, bounded queues, resource cleanup and auth refresh. Application correlation IDs need explicit contracts; JSON-RPC IDs connect request/response but do not replace distributed traces across an agent run."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "chain-graph-frameworks",
+    "direction": "ai-system-testing",
+    "order": 8,
+    "translations": {
+      "uk": {
+        "title": "Frameworks для chains і graphs",
+        "practice": "Реалізуй mock pipeline template → retriever → model → validator. Додай checkpoint після retrieval і перевір, що resume не повторює side effect."
+      },
+      "en": {
+        "title": "Frameworks for chains and graphs",
+        "practice": "Implement a mock template → retriever → model → validator pipeline. Add a retrieval checkpoint and verify that resume does not repeat a side effect."
+      }
+    }
+  },
+  {
+    "id": "genai-test-automation",
+    "direction": "ai-system-testing",
+    "order": 9,
+    "translations": {
+      "uk": {
+        "title": "Автоматизація GenAI tests",
+        "practice": "Створи paired comparison двох prompt versions на 20 cases. Збережи raw scores, critical failures, cost і повтори; у gate не дозволяй average score приховати unsafe action.",
+        "deepDives": [
+          {
+            "title": "Online evaluation і release gates",
+            "body": "Offline golden set дає контрольоване порівняння, але не описує весь production distribution. Online evaluation використовує representative sampling, user feedback і delayed outcome labels. Відсутність complaint не означає correctness: користувач може не помітити помилку або просто піти. Correlate quality signals із task outcomes, incidents і relevant user slices.\n\nShadow mode оцінює alternative model на копії consent-safe input, але не дозволяє йому виконувати writes. Canary rollout спрямовує обмежену частку actual traffic на candidate з monitoring і rollback. A/B experiment потребує consistent assignment, comparable populations і safeguards. Не використовуй production як заміну попередній перевірці high-risk behaviours.\n\nGate має окремі dimensions: deterministic contracts, critical safety invariants, quality rubric, retrieval quality, latency і cost. Quality threshold визначається business risk та calibrated labels; safety violation може блокувати release незалежно від mean quality. Порівняй candidate з baseline, а не тільки абсолютним score. Для відсутньої evidence познач incomplete, не PASS.\n\nMonitor drift у inputs, retrieved corpus, model responses і user tasks. При деградації визнач actions: rollback, switch read-only, disable tool, escalate review або refresh dataset. Це має owner і deadline. Зберігай version lineage: code, model, prompt, policy, corpus, embeddings, evaluator та runtime config, щоб пояснити, що саме змінилось."
+          }
+        ]
+      },
+      "en": {
+        "title": "GenAI test automation",
+        "practice": "Create a paired comparison of two prompt versions on 20 cases. Preserve raw scores, critical failures, cost and repeats; do not let an average score hide unsafe actions in the gate.",
+        "deepDives": [
+          {
+            "title": "Online evaluation and release gates",
+            "body": "Offline golden sets allow controlled comparison but do not represent the entire production distribution. Online evaluation uses representative sampling, user feedback and delayed outcome labels. No complaint does not imply correctness: users may miss errors or leave. Correlate quality signals with task outcomes, incidents and relevant user slices.\n\nShadow mode evaluates alternative models on consent-safe input copies without allowing writes. Canary rollouts send limited real traffic to candidates with monitoring and rollback. A/B experiments require consistent assignment, comparable populations and safeguards. Production is not a substitute for pre-release validation of high-risk behaviours.\n\nGates need separate dimensions: deterministic contracts, critical safety invariants, quality rubrics, retrieval quality, latency and cost. Quality thresholds depend on business risk and calibrated labels; safety violations may block release regardless of mean quality. Compare candidates with baselines rather than absolute scores alone. Mark missing evidence incomplete, not PASS.\n\nMonitor shifts in inputs, retrieved corpora, responses and user tasks. Define degradation responses such as rollback, read-only operation, tool disabling, review escalation or dataset refresh, with owners and deadlines. Preserve lineage across code, models, prompts, policies, corpora, embeddings, evaluators and runtime configuration."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "evaluation-golden-data",
+    "direction": "ai-system-testing",
+    "order": 10,
+    "translations": {
+      "uk": {
+        "title": "Evaluation і golden datasets",
+        "practice": "Створи golden set із 12 assistant conversations: happy path, no answer, ACL, clarification, stale data і malicious context. Додай acceptable outcomes, forbidden actions і labels для кожного turn.",
+        "deepDives": [
+          {
+            "title": "Judge calibration і statistical interpretation",
+            "body": "Почни з 30–50 diverse examples, які незалежно оцінять два експерти. Узгодь disagreements і rubric до калібрування judge. Розділи cases для prompt tuning і blind holdout. Для binary label можна рахувати confusion matrix judge vs expert: TP, FP, FN, TN; precision показує частку правильних positive flags, recall — частку виявлених реальних positives. Визнач, що саме є positive: defect чи acceptable answer.\n\nJudge може мати position bias, verbosity bias, self-preference і sensitivity до wording. Swap order у pairwise comparison, подай коротку та довгу equivalent answer, перефразуйте rubric і перевір malicious instructions в evaluated text. System із judgment score теж потребує tests. Зберігай concise rationale із evidence; private reasoning не потрібен для audit.\n\nУ regression порівнюй ті самі cases для baseline і candidate. Покажи per-case deltas, slices і кількість repetitions. Confidence intervals або paired statistical tests обирай відповідно до data structure; repeated outputs однієї query не є незалежними новими users. Bootstrap на case-level може бути доречним, але methodology і assumptions треба вказати.\n\nThresholds на кшталт faithfulness ≥ 0.9 не універсальні. Метрика може використовувати інший denominator або judge scale після upgrade. Валідуй evaluator на known good/bad fixtures і не допускай, щоб evaluator exception перетворювався на score 0 або 1 без explicit status. Judge failure, system failure і quality failure мають різні причини та дії."
+          }
+        ]
+      },
+      "en": {
+        "title": "Evaluation and golden datasets",
+        "practice": "Create a golden set of 12 assistant conversations covering happy paths, no answers, ACLs, clarification, stale data and malicious contexts. Label acceptable outcomes, forbidden actions and each turn.",
+        "deepDives": [
+          {
+            "title": "Judge calibration and statistical interpretation",
+            "body": "Start with 30–50 diverse examples independently labelled by two experts. Resolve disagreements and clarify the rubric before judge calibration. Separate prompt-tuning examples from blind holdouts. Binary labels support a judge-versus-expert confusion matrix: TP, FP, FN and TN; precision is the correctness of positive flags and recall the detected share of real positives. Define whether positive means a defect or an acceptable answer.\n\nJudges can show position bias, verbosity bias, self-preference and wording sensitivity. Swap pairwise answer order, present equivalent short/long answers, paraphrase rubrics and test malicious instructions inside evaluated text. The scoring system itself needs tests. Preserve concise evidence-based rationales; private reasoning is unnecessary for audits.\n\nCompare identical baseline and candidate cases in regression. Show per-case deltas, slices and repetitions. Choose confidence intervals or paired tests for the data structure; repeated outputs for one query are not independent new users. Case-level bootstrap may be appropriate, but state methodology and assumptions.\n\nThresholds such as faithfulness ≥ 0.9 are not universal. Upgrades may change denominators or judge scales. Validate evaluators on known-good/bad fixtures and do not silently convert exceptions into scores of zero or one. Judge failures, system failures and quality failures require distinct statuses and responses."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "genai-security-privacy",
+    "direction": "ai-system-testing",
+    "order": 11,
+    "translations": {
+      "uk": {
+        "title": "Безпека і privacy GenAI",
+        "practice": "Побудуй threat model RAG assistant: користувачі різних tenants, приватні documents, external model і tools. Встав canary secrets тільки в synthetic fixtures та перевір відсутність витоку в output і logs.",
+        "deepDives": [
+          {
+            "title": "Data privacy і governance",
+            "body": "Побудуй data-flow inventory: user input → logging → model provider → tools → evidence storage → evaluation dataset. Для кожного кроку запиши owner, purpose, access, retention і deletion. Privacy controls мають працювати також у traces, debug artifacts, screenshots і exported reports. Видалення основного record не допоможе, якщо копії залишаються в unrestricted evidence bucket.\n\nPseudonymization зменшує прямі identifiers, але mapping table, timestamps, rare job titles і location можуть дозволити re-identification. Для evaluation використовуй synthetic personas, які не копіюють real individuals. Якщо потрібні production samples, визнач lawful/approved processing, мінімізацію й review; конкретні правові вимоги треба окремо перевіряти для jurisdiction і use case.\n\nTraining-data leakage і RAG leakage потребують різних controls. RAG ACL захищає retrieved context, але model weights можуть мати memorized information. Не обіцяй видалення з model лише після очищення vector store. Для suspicious outputs використай controlled probes, incident triage і provider investigation; не збирай реальні secrets для «тесту витоку».\n\nResponsible AI reporting включає intended use, limitations, affected populations, fairness criteria й appeal path. Content moderation scores — тільки один signal. Governance визначає, хто може прийняти residual risk і коли треба зупинити rollout. Security, privacy, fairness і usability взаємодіють: надмірне блокування однієї мови може знизити доступність сервісу навіть без safety incidents."
+          }
+        ]
+      },
+      "en": {
+        "title": "GenAI security and privacy",
+        "practice": "Threat-model a RAG assistant with tenants, private documents, external models and tools. Put canary secrets only in synthetic fixtures and verify no output or log leakage.",
+        "deepDives": [
+          {
+            "title": "Data privacy and governance",
+            "body": "Inventory the data flow: user input → logging → model provider → tools → evidence storage → evaluation dataset. For each step record owners, purposes, access, retention and deletion. Apply privacy controls to traces, debug artifacts, screenshots and exported reports too. Deleting primary records is insufficient if unrestricted evidence buckets retain copies.\n\nPseudonymization removes direct identifiers but mapping tables, timestamps, rare job titles and locations may allow re-identification. Evaluation should use synthetic personas that do not replicate real individuals. Production samples need lawful/approved processing, minimization and review; validate legal requirements separately for the jurisdiction and use case.\n\nTraining-data and RAG leakage need different controls. RAG ACLs protect retrieved context, but model weights may contain memorized information. Do not promise model deletion after clearing vector stores alone. Investigate suspicious outputs with controlled probes, incident triage and provider support rather than collecting actual secrets for leak tests.\n\nResponsible AI reports include intended use, limitations, affected populations, fairness criteria and appeals. Content moderation scores are only one signal. Governance defines residual-risk authority and rollout-stop conditions. Security, privacy, fairness and usability interact: overblocking one language can reduce accessibility even without safety incidents."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "responsible-ai",
+    "direction": "ai-system-testing",
+    "order": 12,
+    "translations": {
+      "uk": {
+        "title": "Responsible AI",
+        "practice": "Для bilingual assistant обери fairness criterion та slices української/англійської. Оціни false refusals і task success, поясни limitations sample та запиши owner для residual risks.",
+        "deepDives": [
+          {
+            "title": "Fairness і adversarial evaluation",
+            "body": "Bias не завжди означає дискримінацію: систематична перевага певного формату чи мови теж є зміщенням. Fairness потребує нормативного критерію: яка різниця допустима для задачі та чому. Для bilingual assistant можна порівнювати task success на еквівалентних UA/EN queries, але translation quality, domain distribution і sample size мають бути контрольовані. Не вимагай механічно однакового score на непорівнюваних datasets.\n\nДля decision system обирай fairness metrics із stakeholders. Demographic parity порівнює частоту позитивних рішень; equal opportunity — true-positive rate між групами за наявності придатних labels. Критерії можуть конфліктувати; один universal fairness score неможливий. Перевір також intersectional slices, наприклад language × task type, якщо sample дозволяє змістовну оцінку.\n\nAdversarial testing перевіряє failures під навмисною зміною inputs: prompt injection, irrelevant context, malformed tool results або perturbations. Для guardrails вимірюй не лише harmful requests, що пройшли, а й benign requests, які помилково заблоковані. Низький attack success із майже повною відмовою всім користувачам не є хорошою product quality.\n\nРезультат fairness review має описувати data provenance, labels, selected groups, thresholds і limitations. Синтетичний набір не доводить absence of harm для реальних користувачів. Для sensitive attributes потрібні appropriate data governance і purpose; не збирай їх «про всяк випадок». Після релізу review включає complaints, appeals і зміни використання, а не тільки повтор старих tests."
+          }
+        ]
+      },
+      "en": {
+        "title": "Responsible AI",
+        "practice": "For a bilingual assistant choose a fairness criterion and Ukrainian/English slices. Evaluate false refusals and task success, explain sample limitations and assign residual-risk owners.",
+        "deepDives": [
+          {
+            "title": "Fairness and adversarial evaluation",
+            "body": "Bias is not always discrimination: systematically favouring a format or language is also a skew. Fairness needs a normative criterion defining which differences are acceptable and why. For a bilingual assistant compare task success on equivalent Ukrainian/English queries while controlling translation quality, domain distribution and sample size. Do not demand identical scores on incomparable datasets.\n\nSelect decision-system fairness metrics with stakeholders. Demographic parity compares positive-decision rates; equal opportunity compares true-positive rates across groups when appropriate labels exist. Criteria may conflict, so there is no universal fairness score. Evaluate intersectional slices such as language × task type when samples support meaningful conclusions.\n\nAdversarial testing probes failures under intentional input changes, such as injection, irrelevant context, malformed tool results or perturbations. Guardrail evaluation should measure both harmful requests allowed and benign requests incorrectly blocked. Low attack success achieved by refusing almost all users is not good product quality.\n\nFairness reviews should document provenance, labels, selected groups, thresholds and limitations. Synthetic datasets do not prove absence of harm to real users. Sensitive attributes require appropriate governance and purpose rather than collection just in case. Post-release review includes complaints, appeals and changing usage, not merely rerunning old tests."
+          }
+        ]
+      }
+    }
+  }
+]

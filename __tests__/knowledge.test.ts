@@ -1,13 +1,13 @@
-import { getDirectionTranslation, getKnowledgeDirections, getKnowledgeMaterials, getMaterialTranslation } from '../lib/knowledge'
+import { getDirectionTranslation, getKnowledgeCurriculum, getKnowledgeDirections, getKnowledgeMaterials, getKnowledgeReferences, getKnowledgeTopics, getMaterialTranslation } from '../lib/knowledge'
 import type { KnowledgeMaterial } from '../types/knowledge'
 
 describe('Knowledge Base content', () => {
-  it('contains the twelve requested directions in a stable order', () => {
+  it('contains the published directions and AI system testing learning path in a stable order', () => {
     const directions = getKnowledgeDirections()
 
-    expect(directions).toHaveLength(12)
-    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    expect(new Set(directions.map(direction => direction.slug)).size).toBe(12)
+    expect(directions).toHaveLength(13)
+    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+    expect(new Set(directions.map(direction => direction.slug)).size).toBe(13)
   })
 
   it('localizes every catalog direction in English and Ukrainian', () => {
@@ -41,19 +41,21 @@ describe('Knowledge Base content', () => {
           expect(translation?.question).toBeTruthy()
           expect(translation?.answer).toBeTruthy()
           if (translation?.answerPoints) expect(translation.answerPoints.length).toBeGreaterThan(1)
-          expect(translation?.examples.length).toBeGreaterThan(0)
-          expect(translation?.exercises.length).toBeGreaterThan(0)
+          if (!material.collections?.includes('ai-system-testing')) {
+            expect(translation?.examples.length).toBeGreaterThan(0)
+            expect(translation?.exercises.length).toBeGreaterThan(0)
+          }
         }
       }
     }
   })
 
   it('uses globally unique material ids', () => {
-    const ids = getKnowledgeDirections().flatMap(direction =>
+    const ids = getKnowledgeDirections().filter(direction => direction.slug !== 'ai-system-testing').flatMap(direction =>
       getKnowledgeMaterials(direction.slug).map(material => material.id),
     )
 
-    expect(ids).toHaveLength(126)
+    expect(ids).toHaveLength(221)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -63,8 +65,8 @@ describe('Knowledge Base content', () => {
     const levelOrder = { Junior: 0, Middle: 1, Senior: 2 } as const
     const materialLevels = materials.map(material => material.level ? levelOrder[material.level] : 3)
 
-    expect(materials).toHaveLength(27)
-    expect(new Set(materials.map(material => material.id)).size).toBe(27)
+    expect(materials).toHaveLength(44)
+    expect(new Set(materials.map(material => material.id)).size).toBe(44)
     expect(materialLevels).toEqual([...materialLevels].sort((a, b) => a - b))
     expect(materials.some(material => material.level === 'Junior')).toBe(true)
     expect(materials.some(material => material.level === 'Middle')).toBe(true)
@@ -75,8 +77,53 @@ describe('Knowledge Base content', () => {
       for (const lang of ['en', 'uk'] as const) {
         const translation = getMaterialTranslation(material, lang)
         expect(translation?.answer).toBeTruthy()
-        expect(translation?.examples.length).toBeGreaterThan(0)
-        expect(translation?.exercises.length).toBeGreaterThan(0)
+        if (!material.collections?.includes('ai-system-testing')) {
+          expect(translation?.examples.length).toBeGreaterThan(0)
+          expect(translation?.exercises.length).toBeGreaterThan(0)
+        }
+      }
+    }
+  })
+
+  it('publishes the complete bilingual AI system testing curriculum without duplicating storage', () => {
+    const topics = getKnowledgeTopics('ai-system-testing')
+    const materials = getKnowledgeMaterials('ai-system-testing')
+    const curriculum = getKnowledgeCurriculum('ai-system-testing')
+
+    expect(topics).toHaveLength(12)
+    expect(topics.map(topic => topic.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    expect(materials).toHaveLength(95)
+    expect(new Set(materials.map(material => material.id)).size).toBe(95)
+    expect(materials.every(material => material.direction !== 'ai-system-testing')).toBe(true)
+    expect(materials.every(material => material.collections?.includes('ai-system-testing'))).toBe(true)
+    expect(materials.every(material => topics.some(topic => topic.id === material.topic))).toBe(true)
+    expect(curriculum?.reviewedAt).toBe('2026-10-06')
+    expect(curriculum?.translations.uk.completion.Senior).toBeTruthy()
+    expect(curriculum?.translations.en.completion.Senior).toBeTruthy()
+
+    for (const topic of topics) {
+      expect(topic.translations.uk.title).toBeTruthy()
+      expect(topic.translations.en.title).toBeTruthy()
+      expect(topic.translations.uk.practice).toBeTruthy()
+      expect(topic.translations.en.practice).toBeTruthy()
+    }
+    expect(topics.flatMap(topic => topic.translations.en.deepDives ?? [])).toHaveLength(10)
+    expect(topics.flatMap(topic => topic.translations.uk.deepDives ?? [])).toHaveLength(10)
+    expect(topics.flatMap(topic => topic.translations.en.codeExamples ?? [])).toHaveLength(6)
+    expect(topics.flatMap(topic => topic.translations.uk.codeExamples ?? [])).toHaveLength(6)
+  })
+
+  it('resolves every AI system testing source to an official or primary reference', () => {
+    const references = getKnowledgeReferences()
+    const referenceIds = new Set(references.map(reference => reference.id))
+    const materials = getKnowledgeMaterials('ai-system-testing')
+
+    expect(new Set(references.map(reference => reference.id)).size).toBe(references.length)
+    for (const material of materials) {
+      for (const lang of ['en', 'uk'] as const) {
+        const translation = getMaterialTranslation(material, lang)
+        expect(translation?.sources?.length).toBeGreaterThan(0)
+        expect(translation?.sources?.every(source => referenceIds.has(source))).toBe(true)
       }
     }
   })

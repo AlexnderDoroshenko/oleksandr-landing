@@ -1,0 +1,281 @@
+[
+  {
+    "id": "AIQA-03-01",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим AI, ML і Deep Learning відрізняються?",
+        "answer": "AI — широка область систем для задач, які потребують інтелектуальної поведінки. ML вивчає patterns із data, а не лише explicit rules. Deep Learning — ML із багатошаровими neural networks. Rule-based agent теж може належати до AI; не кожна AI система є LLM.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "How do AI, ML and Deep Learning differ?",
+        "answer": "AI broadly concerns systems performing tasks requiring intelligent behaviour. ML learns patterns from data rather than relying only on explicit rules. Deep Learning is ML using multilayer neural networks. A rule-based agent may also be AI; not every AI system is an LLM.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-02",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке tokens і context window та як вони впливають на якість?",
+        "answer": "Token — одиниця tokenizer, не обов’язково слово. Context window обмежує обсяг доступного контексту; конкретний budget input/output залежить від моделі/API. Довгі histories можуть обрізатися або summaries втрачати деталі. Перевір position effects, multilingual text, tool outputs і явні limits; велике window не гарантує attention до всіх фактів.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "What are tokens and context windows and how do they affect quality?",
+        "answer": "A token is a tokenizer unit, not necessarily a word. The context window limits available context; input/output budgeting depends on the model/API. Long histories may be truncated or summaries lose detail. Test position effects, multilingual text, tool outputs and explicit limits; a large window does not guarantee attention to every fact.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-03",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим completion model відрізняється від assistant і які model families знати?",
+        "answer": "Completion описує генерацію продовження; chat/instruction interfaces задають ролі й task-following. Assistant також може означати application з tools і memory, а не окрему архітектуру. Приклади families/providers: OpenAI, Gemini, Claude, Llama, Mistral, DeepSeek, Phi. Обирай за evals, hosting, license, privacy й cost, не за назвою.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "How do completion models and assistants differ and which families matter?",
+        "answer": "Completion describes continuation generation; chat/instruction interfaces introduce roles and task following. Assistant may mean an application with tools and memory rather than a distinct architecture. Examples include OpenAI, Gemini, Claude, Llama, Mistral, DeepSeek and Phi. Select through evals, hosting, licence, privacy and cost rather than branding.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-04",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке AI guardrails?",
+        "answer": "Guardrails — конкретні обмеження й перевірки inputs, outputs і actions: schema, policy, permissions, budgets, moderation. Вони зменшують визначені ризики, але можуть мати false positives/negatives. Відмова unsafe action має контролюватися application, а не лише текстовою інструкцією моделі.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "What are AI guardrails?",
+        "answer": "Guardrails are concrete input, output and action constraints/checks: schema, policy, permissions, budgets and moderation. They reduce specified risks but can have false positives/negatives. The application should enforce denial of unsafe actions rather than relying only on model instructions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-05",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Чим encoder, decoder і Transformer відрізняються та що таке embeddings?",
+        "answer": "Transformer — architecture family з attention. Encoder часто формує contextual representations; autoregressive decoder генерує наступні tokens; encoder-decoder поєднує encoding та generation. Embedding — vector representation, де similarity може відображати learned relations. Це не гарантія однакового змісту чи factual correctness; оцінюй embedding на domain data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "How do encoders, decoders and Transformers differ and what are embeddings?",
+        "answer": "Transformer is an architecture family using attention. Encoders often produce contextual representations; autoregressive decoders generate subsequent tokens; encoder-decoder models combine encoding and generation. An embedding is a vector representation whose similarity may reflect learned relations. It does not guarantee equivalent meaning or factual correctness; evaluate embeddings on domain data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-06",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які типи ML і що потрібно для on-prem LLM?",
+        "answer": "Supervised ML навчається на labeled targets; unsupervised — шукає structure без таких labels; reinforcement learning оптимізує behaviour через rewards. On-prem потребує перевірки license, RAM/VRAM, quantization, serving, concurrency, security й updates. Вимірюй throughput, latency, memory та quality на своїх задачах.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "What ML types exist and what is needed for on-prem LLM hosting?",
+        "answer": "Supervised ML learns from labelled targets; unsupervised ML finds structure without those labels; reinforcement learning optimizes behaviour through rewards. On-prem hosting needs licence checks, RAM/VRAM, quantization, serving, concurrency, security and updates. Measure throughput, latency, memory and quality on your tasks.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-07",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Чим guardrails відрізняються від загальної AI safety?",
+        "answer": "Guardrails — operational controls у конкретній системі. AI safety ширша: training choices, alignment, evaluations, misuse analysis, governance та incident response. Не прирівнюй content filter до безпеки всього продукту; перевір обходи, помилкові блокування й fail-open behaviour.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "How do guardrails differ from broader AI safety?",
+        "answer": "Guardrails are operational controls in a specific system. AI safety is broader: training choices, alignment, evaluations, misuse analysis, governance and incident response. Do not equate a content filter with overall product safety; test bypasses, false blocks and fail-open behaviour.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-08",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як перевіряти training і боротися з overfitting та underfitting?",
+        "answer": "Розділяй train/validation/test із захистом від leakage, дублювання й temporal overlap. Overfitting: модель добре працює на train, гірше узагальнює; underfitting: не відтворює потрібні закономірності. Допомагають appropriate capacity, regularization, data quality, early stopping і tuning. Перевір independent test set, slices і production shift.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "How are training and overfitting or underfitting validated?",
+        "answer": "Separate train/validation/test while preventing leakage, duplicates and temporal overlap. Overfitting means good training performance but poor generalization; underfitting means failure to learn necessary patterns. Appropriate capacity, regularization, data quality, early stopping and tuning can help. Check independent test sets, slices and production shifts.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-03-09",
+    "direction": "ai-llm-rag-agents",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "ai-ml-fundamentals",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Що включає ефективний guardrail framework?",
+        "answer": "Risk inventory, policies, scoped permissions, input/context screening, output/schema checks, action authorization, human escalation, audit, telemetry й incident handling. Визнач thresholds і false-positive costs. Тестуй комбінацію model + tools + data, version policies і перевір drift; окремий moderator не замінює access control.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      },
+      "en": {
+        "question": "What belongs in an effective guardrail framework?",
+        "answer": "Include a risk inventory, policies, scoped permissions, input/context screening, output/schema checks, action authorization, human escalation, audit, telemetry and incident handling. Define thresholds and false-positive costs. Test model + tools + data together, version policies and monitor drift; a moderator does not replace access control.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S28"
+        ]
+      }
+    }
+  }
+]

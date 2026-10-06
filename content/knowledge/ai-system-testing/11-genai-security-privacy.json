@@ -1,0 +1,157 @@
+[
+  {
+    "id": "AIQA-11-01",
+    "direction": "security-devsecops",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-security-privacy",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як забезпечити privacy під час deployment LLM?",
+        "answer": "Мінімізуй дані, визнач purpose/retention, model-provider data flow, encryption і access scopes; перевір processing terms і residency requirements. Redact logs і eval samples, контролюй deletion/backups. On-prem не гарантує privacy: admin access, logs, telemetry і tools теж можуть витікати. Threat model охоплює весь workflow.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      },
+      "en": {
+        "question": "How is privacy protected when deploying an LLM?",
+        "answer": "Minimize data and define purpose/retention, provider data flows, encryption and access scopes; check processing terms and residency requirements. Redact logs/eval samples and control deletion/backups. On-prem hosting does not guarantee privacy: admin access, logs, telemetry and tools may leak. Threat-model the whole workflow.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-11-02",
+    "direction": "security-devsecops",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-security-privacy",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які основні threats і що таке jailbreaking?",
+        "answer": "Threats: prompt injection, sensitive disclosure, poisoning, unsafe output handling, excessive agency і resource abuse. Jailbreaking намагається обійти model policies; injection змінює поведінку через untrusted instructions. Mitigate із scoped tools, validation, isolation, access control і monitoring. Фільтр чи system prompt самостійно не забезпечує захист.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      },
+      "en": {
+        "question": "What are major threats and what is jailbreaking?",
+        "answer": "Threats include prompt injection, sensitive disclosure, poisoning, unsafe output handling, excessive agency and resource abuse. Jailbreaking attempts to bypass model policies; injection redirects behaviour through untrusted instructions. Mitigate with scoped tools, validation, isolation, access control and monitoring. Filters or system prompts alone are insufficient.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-11-03",
+    "direction": "security-devsecops",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-security-privacy",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як реалізувати RAG access control?",
+        "answer": "Перевір identity й permissions до видачі chunks у model context; фільтруй tenant/document ACL на retrieval й enforce authorization для tools. Scope caches і memory за користувачем/tenant, обробляй revocation. Test forbidden retrieval, metadata leaks і cross-tenant similarity results. Не покладайся на «не показуй документ» у prompt.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      },
+      "en": {
+        "question": "How is RAG access control implemented?",
+        "answer": "Check identity/permissions before chunks enter model context; filter tenant/document ACLs during retrieval and enforce tool authorization. Scope caches/memory by user/tenant and handle revocation. Test forbidden retrieval, metadata leaks and cross-tenant similarity results. Do not rely on a prompt saying not to reveal a document.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-11-04",
+    "direction": "security-devsecops",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-security-privacy",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як зменшити витік із training data?",
+        "answer": "Не включай unnecessary secrets/private records у training; використовуй data review, deduplication, privacy-aware training де доречно й memorization probes на approved synthetic canaries. Output filtering — додатковий control, не guarantee. Видалення з RAG index не видаляє learned information з weights; retraining/unlearning потребують окремої перевірки.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      },
+      "en": {
+        "question": "How is leakage from training data reduced?",
+        "answer": "Exclude unnecessary secrets/private records from training; use data review, deduplication, privacy-aware training where appropriate and memorization probes on approved synthetic canaries. Output filtering is an additional control, not a guarantee. Removing RAG records does not remove learned information from weights; retraining/unlearning needs separate validation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-11-05",
+    "direction": "security-devsecops",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-security-privacy",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Що таке data poisoning і як його попереджати?",
+        "answer": "Poisoning — навмисне внесення шкідливих data у training, feedback або knowledge corpus. Перевір provenance, ingestion permissions, review, anomalies й integrity; version datasets і підтримуй rollback. Test altered documents, poisoned feedback і false references у sandbox. Content validation не означає, що всі факти в source правдиві.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      },
+      "en": {
+        "question": "What is data poisoning and how is it prevented?",
+        "answer": "Poisoning deliberately introduces harmful data into training, feedback or knowledge corpora. Check provenance, ingestion permissions, review, anomalies and integrity; version datasets and maintain rollback. Test altered documents, poisoned feedback and false references in a sandbox. Content validation does not prove every source fact true.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S12",
+          "S13"
+        ]
+      }
+    }
+  }
+]

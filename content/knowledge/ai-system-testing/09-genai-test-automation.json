@@ -1,0 +1,212 @@
+[
+  {
+    "id": "AIQA-09-01",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим GenAI automation відрізняється і як перевірити output correctness?",
+        "answer": "Output variable, oracle часто неповний, model/provider можуть змінюватися, а live runs дорогі. Перевір deterministic facts/schema/actions code assertions; semantic quality — rubric, human labels і calibrated judge. Зберігай versions і evidence. Правильне formatting, similarity чи впевнене пояснення не доводять correctness.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How does GenAI automation differ and how is output correctness checked?",
+        "answer": "Outputs vary, oracles are often incomplete, models/providers may change and live runs are costly. Use code assertions for deterministic facts/schema/actions and rubrics, human labels and calibrated judges for semantic quality. Preserve versions and evidence. Formatting, similarity or confident explanations do not prove correctness.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-09-02",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Для чого similarity search у GenAI QA?",
+        "answer": "Воно шукає близькі vector representations для retrieval, deduplication і semantic comparison. Це інструмент, не oracle: «дозволено» та «не дозволено» можуть бути близькими. Для чисел, negation, entities і permissions використовуй targeted assertions; thresholds калібруй на labeled pairs.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "What is similarity search used for in GenAI QA?",
+        "answer": "It finds nearby vector representations for retrieval, deduplication and semantic comparison. It is a tool, not an oracle: allowed and not allowed may be close. Use targeted assertions for numbers, negation, entities and permissions; calibrate thresholds on labelled pairs.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-09-03",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як тестувати variability і порівнювати model versions?",
+        "answer": "Використовуй однакові cases, configurations і repeated runs; paired analysis показує виграші/регресії по cases і slices. Record seed, але не вважай guarantee. Оцінюй variance, task success, critical errors, latency/cost і uncertainty. При малому sample не оголошуй статистичну перевагу без підстав.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How are variability and model versions tested?",
+        "answer": "Use identical cases, configurations and repeated runs; paired analysis exposes wins/regressions by case and slice. Record seeds without treating them as guarantees. Assess variance, task success, critical errors, latency/cost and uncertainty. Do not claim statistical superiority from small samples without justification.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-09-04",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які semantic metrics автоматизувати?",
+        "answer": "Embedding cosine similarity, token overlap та model-based rubric можуть допомогти, але вимірюють різне. Exact match корисний для IDs/enum, token overlap не відображає всю семантику, cosine не доводить truth. Поєднуй domain validators, factual checks і human calibration; reporting має пояснювати metric limitations.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "Which semantic metrics can be automated?",
+        "answer": "Embedding cosine similarity, token overlap and model-based rubrics can help but measure different things. Exact match suits IDs/enums, token overlap misses some semantics and cosine does not prove truth. Combine domain validators, factual checks and human calibration; explain metric limitations in reports.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-09-05",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як автоматизувати multi-agent workflows і CI evaluation?",
+        "answer": "Перевір task graph, roles, handoffs, tool arguments, termination та final environment state. PR gate: contracts і deterministic tests; sampled live eval; nightly — broad quality/security suites. Version model/prompt/data/tools і зберігай per-case evidence. Hard gate для privacy/unsafe actions; aggregate quality порівнюй із approved baseline.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How are multi-agent workflows and CI evaluations automated?",
+        "answer": "Test task graphs, roles, handoffs, tool arguments, termination and final environment state. PR gates include contracts, deterministic tests and sampled live evals; nightly runs cover broad quality/security suites. Version models/prompts/data/tools and retain per-case evidence. Hard-gate privacy/unsafe actions and compare aggregate quality with approved baselines.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-09-06",
+    "direction": "llmops-evaluation-observability",
+    "collections": [
+      "ai-system-testing"
+    ],
+    "topic": "genai-test-automation",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як інтегрувати guardrail tests і online evaluation?",
+        "answer": "У controlled dataset включи direct/indirect injection, unsafe requests і benign near-misses. Перевір blocked actions, leakage і false refusals. Online eval використовує privacy-safe samples, telemetry, user feedback і delayed labels; shadow evaluators не виконують додаткові side effects. Моніторинг доповнює offline gates, а rollout має rollback criteria.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How are guardrail tests and online evaluation integrated?",
+        "answer": "Controlled datasets should include direct/indirect injection, unsafe requests and benign near-misses. Check blocked actions, leakage and false refusals. Online evaluation uses privacy-safe samples, telemetry, user feedback and delayed labels; shadow evaluators must not execute extra side effects. Monitoring complements offline gates and rollouts need rollback criteria.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  }
+]
