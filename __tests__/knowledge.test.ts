@@ -112,7 +112,12 @@ describe('Knowledge Base content', () => {
     expect(materials.filter(material => material.level === 'Junior')).toHaveLength(29)
     expect(materials.filter(material => material.level === 'Middle')).toHaveLength(43)
     expect(materials.filter(material => material.level === 'Senior')).toHaveLength(21)
-    expect(materials.filter(material => !material.aliases).length + materials.flatMap(material => material.aliases ?? []).length).toBe(95)
+    const sourceIds = [
+      ...materials.filter(material => !material.aliases).map(material => material.id),
+      ...materials.flatMap(material => material.aliases ?? []),
+    ]
+    expect(sourceIds).toHaveLength(95)
+    expect(new Set(sourceIds).size).toBe(95)
     expect(curriculum?.reviewedAt).toBe('2026-10-06')
     expect(curriculum?.translations.uk.completion.Senior).toBeTruthy()
     expect(curriculum?.translations.en.completion.Senior).toBeTruthy()
