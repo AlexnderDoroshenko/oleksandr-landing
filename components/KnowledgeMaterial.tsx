@@ -1,21 +1,23 @@
 import { getMaterialTranslation } from '../lib/knowledge'
 import type { Language } from '../types/post'
-import type { KnowledgeMaterial } from '../types/knowledge'
+import type { KnowledgeMaterial, KnowledgeReference } from '../types/knowledge'
 
 type Labels = {
   answer: string
   examples: string
   exercises: string
   missingTranslation: string
+  sources?: string
 }
 
 type Props = {
   material: KnowledgeMaterial
   lang: Language
   labels: Labels
+  references?: KnowledgeReference[]
 }
 
-export default function KnowledgeMaterialView({ material, lang, labels }: Props) {
+export default function KnowledgeMaterialView({ material, lang, labels, references = [] }: Props) {
   const content = getMaterialTranslation(material, lang)
 
   if (!content) {
@@ -24,7 +26,7 @@ export default function KnowledgeMaterialView({ material, lang, labels }: Props)
     </article>
   }
 
-  return <details className="knowledge-material" data-material-id={material.id}>
+  return <details className="knowledge-material" id={material.id} data-material-id={material.id}>
     <summary>
       <span>{content.question}</span>
       {material.level && <span className="knowledge-level">{material.level}</span>}
@@ -37,6 +39,13 @@ export default function KnowledgeMaterialView({ material, lang, labels }: Props)
           {content.answerPoints.map(point => <li key={point}>{point}</li>)}
         </ul>}
       </section>
+      {content.sources && content.sources.length > 0 && <section className="knowledge-sources">
+        <h3>{labels.sources ?? 'Sources'}</h3>
+        <ul>{content.sources.map(sourceId => {
+          const reference = references.find(item => item.id === sourceId)
+          return <li key={sourceId}>{reference ? <a href={reference.url} target="_blank" rel="noreferrer">{reference.id}: {reference.title}{reference.version ? ` (${reference.version})` : ''}</a> : sourceId}</li>
+        })}</ul>
+      </section>}
       {content.examples.length > 0 && <section>
         <h3>{labels.examples}</h3>
         <ul>{content.examples.map(example => <li key={example}>{example}</li>)}</ul>

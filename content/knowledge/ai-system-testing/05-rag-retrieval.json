@@ -1,0 +1,86 @@
+[
+  {
+    "id": "AIQA-05-02",
+    "direction": "ai-system-testing",
+    "topic": "rag-retrieval",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Як перевіряти grounding, truncation, cache і stale sources?",
+        "answer": "Grounding перевіряй claim → supporting passage, а не лише існування URL. Додай факт на початок/кінець довгого context, змінений source і invalidated cache. Перевір document/version IDs, timestamp, retrieval access і cache key з user scope. Grounded answer може повторювати помилкове source, тому factual truth перевіряй окремо.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      },
+      "en": {
+        "question": "How are grounding, truncation, caches and stale sources checked?",
+        "answer": "Check grounding as claim → supporting passage rather than URL existence alone. Add facts at the start/end of long contexts, changed sources and invalidated caches. Check document/version IDs, timestamps, retrieval access and user-scoped cache keys. Grounded answers may repeat false sources, so verify factual truth separately.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-05-04",
+    "direction": "ai-system-testing",
+    "topic": "rag-retrieval",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як перевірити faithfulness і безпечно змінити pipeline?",
+        "answer": "Розбий answer на claims, знайди support/contradictions, рахуй supported claims і citation coverage для claims, що потребують source. Перевір sample людиною. Version chunker, embeddings, corpus, index і reranker; при зміні embedding зазвичай потрібна reindex. A/B порівнюй на однакових queries, перевір TTL/invalidation і rollback.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      },
+      "en": {
+        "question": "How are faithfulness and pipeline changes evaluated safely?",
+        "answer": "Split answers into claims, inspect support/contradictions, count supported claims and citation coverage for source-requiring claims. Review samples with humans. Version the chunker, embeddings, corpus, index and reranker; changing embeddings usually requires reindexing. Compare A/B variants on identical queries and test TTL/invalidation and rollback.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-05-05",
+    "direction": "ai-system-testing",
+    "topic": "rag-retrieval",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як відокремити retrieval failure від generation failure?",
+        "answer": "Запускай retrieval-only eval; generator тестуй також із curated context. Relevant passage відсутній — retrieval/ingestion issue; passage присутній, answer wrong — context construction або generation. Додай no-answer, conflict, multilingual і ACL slices. Track quality, freshness, latency/cost і coverage незалежно; source truth не випливає з faithfulness.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      },
+      "en": {
+        "question": "How are retrieval and generation failures separated?",
+        "answer": "Run retrieval-only evaluation and test the generator with curated contexts too. Missing relevant passages suggest retrieval/ingestion issues; present passages with wrong answers suggest context construction or generation issues. Add no-answer, conflict, multilingual and ACL slices. Track quality, freshness, latency/cost and coverage independently; faithfulness does not establish source truth.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S15",
+          "S22"
+        ]
+      }
+    }
+  }
+]

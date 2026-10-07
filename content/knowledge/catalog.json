@@ -178,5 +178,20 @@
         "description": "LLM quality evaluation, experiments, monitoring, and control of AI system behaviour."
       }
     }
+  },
+  {
+    "slug": "ai-system-testing",
+    "order": 13,
+    "status": "published",
+    "translations": {
+      "uk": {
+        "title": "Тестування AI-систем",
+        "description": "Двомовний навчальний маршрут із 12 тем: від тестового процесу й Python до RAG, MCP, агентів, evaluation, безпеки та Responsible AI."
+      },
+      "en": {
+        "title": "AI System Testing",
+        "description": "A bilingual learning path across 12 topics, from test process and Python to RAG, MCP, agents, evaluation, security, and Responsible AI."
+      }
+    }
   }
 ]

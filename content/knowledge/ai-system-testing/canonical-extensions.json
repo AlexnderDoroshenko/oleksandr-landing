@@ -1,0 +1,47 @@
+[
+  {
+    "id": "effective-test-case",
+    "uk": "Для AI case фіксуйте versioned input/context, допустимі варіанти, заборонені твердження, rubric, model/prompt/data versions та потрібне evidence.",
+    "en": "For an AI case, record versioned input/context, acceptable alternatives, prohibited claims, the rubric, model/prompt/data versions, and required evidence."
+  },
+  {
+    "id": "test-basis-oracle",
+    "uk": "Для відкритої AI-задачі oracle часто є набором constraints, підтверджених фактів, допустимих outcomes і rubric, а не одним exact string.",
+    "en": "For an open-ended AI task, the oracle is often a set of constraints, supported facts, acceptable outcomes, and a rubric rather than one exact string."
+  },
+  {
+    "id": "defect-report",
+    "uk": "Для AI-дефекту додайте prompt, model, retrieval snapshot, parameters і повторюваність, але не зберігайте secrets або недозволені персональні дані.",
+    "en": "For an AI defect, add the prompt, model, retrieval snapshot, parameters, and repeatability without storing secrets or unauthorised personal data."
+  },
+  {
+    "id": "severity-priority",
+    "uk": "Низька частота AI-помилки не зменшує severity витоку даних або неавторизованої дії; оцінюйте шкоду окремо від reproducibility.",
+    "en": "A low AI-failure frequency does not reduce the severity of data leakage or an unauthorised action; assess harm separately from reproducibility."
+  },
+  {
+    "id": "test-types",
+    "uk": "Для AI functional checks охоплюють response, retrieval, tool use, permissions і fallback; performance, security, fairness та robustness залишаються окремими quality aspects.",
+    "en": "For AI, functional checks cover responses, retrieval, tool use, permissions, and fallback; performance, security, fairness, and robustness remain separate quality aspects."
+  },
+  {
+    "id": "entry-exit-criteria",
+    "uk": "AI entry/exit criteria мають називати versioned datasets, oracle/rubric, approved thresholds, повторні runs і owners критичних residual risks.",
+    "en": "AI entry and exit criteria should name versioned datasets, the oracle/rubric, approved thresholds, repeated runs, and owners of critical residual risks."
+  },
+  {
+    "id": "test-strategy",
+    "uk": "AI strategy також визначає model/prompt/data change policy, live-evaluation budget, judge calibration, nondeterminism handling і hard safety gates.",
+    "en": "An AI strategy also defines model/prompt/data change policy, live-evaluation budgets, judge calibration, nondeterminism handling, and hard safety gates."
+  },
+  {
+    "id": "metrics-context",
+    "uk": "Для AI показуйте denominator і uncertainty окремо для task success, factual errors, groundedness, unsafe actions, latency/cost та user/data slices; один aggregate score не доводить readiness.",
+    "en": "For AI, show denominators and uncertainty separately for task success, factual errors, groundedness, unsafe actions, latency/cost, and user/data slices; one aggregate score does not establish readiness."
+  },
+  {
+    "id": "risk-based-testing",
+    "uk": "AI risk analysis враховує oracle ambiguity, labeling effort, model/provider changes, repeated runs, access boundaries та шкоду від помилкових tool actions.",
+    "en": "AI risk analysis accounts for oracle ambiguity, labelling effort, model/provider changes, repeated runs, access boundaries, and harm from incorrect tool actions."
+  }
+]

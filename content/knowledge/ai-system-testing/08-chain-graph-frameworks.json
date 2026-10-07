@@ -1,0 +1,130 @@
+[
+  {
+    "id": "AIQA-08-01",
+    "direction": "ai-system-testing",
+    "topic": "chain-graph-frameworks",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Який мінімальний pipeline тестувати в LangChain або LlamaIndex?",
+        "answer": "Input → prompt template → optional retriever → model adapter → parser/validator. Автоматизуй missing template variable і invalid structured output; також перевір, що source IDs збережені. LangChain/LlamaIndex — implementation choices; frameworks не замінюють oracle і test strategy.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      },
+      "en": {
+        "question": "Which minimal pipeline should be tested in LangChain or LlamaIndex?",
+        "answer": "Input → prompt template → optional retriever → model adapter → parser/validator. Automate missing-template-variable and invalid-structured-output cases; also verify preserved source IDs. LangChain/LlamaIndex are implementation choices; frameworks do not replace an oracle or test strategy.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-08-03",
+    "direction": "ai-system-testing",
+    "topic": "chain-graph-frameworks",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Коли один або кілька agents у AutoGen або CrewAI і які tests?",
+        "answer": "Один agent: simple task success і controlled failure за unavailable tool. Кілька: correct handoff із preserved task ID і denied cross-role action. Використовуй multi-agent лише за потреби coordination/capabilities; назва framework не є аргументом. API й support status перевір перед implementation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      },
+      "en": {
+        "question": "When should AutoGen or CrewAI use one or several agents and what tests apply?",
+        "answer": "One agent: simple-task success and controlled failure when a tool is unavailable. Several agents: correct handoff preserving task IDs and denied cross-role actions. Use multi-agent only when coordination/capabilities require it; branding is not justification. Check APIs and support status before implementation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-08-04",
+    "direction": "ai-system-testing",
+    "topic": "chain-graph-frameworks",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як варіювати retrieval settings і тестувати multi-step graph?",
+        "answer": "Порівнюй chunk size/overlap, embeddings, top_k і reranker на versioned golden set; змінюй один фактор або контрольований experiment. Для graph перевір input/state schemas, transitions, checkpoints, resume, timeouts і error edges. Assert final state і no repeated side effects; record quality, latency/cost та failures.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      },
+      "en": {
+        "question": "How are retrieval settings varied and multi-step graphs tested?",
+        "answer": "Compare chunk size/overlap, embeddings, top_k and rerankers on versioned golden sets; change one factor or run a controlled experiment. For graphs test input/state schemas, transitions, checkpoints, resume, timeouts and error edges. Assert final state and no repeated side effects; record quality, latency/cost and failures.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-08-05",
+    "direction": "ai-system-testing",
+    "topic": "chain-graph-frameworks",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як налаштувати roles, allowlists, termination і mocks?",
+        "answer": "Enforce tools на host/backend, max turns, deadlines, token/cost budgets і cancellation. Stop token не замінює workflow termination. Mock adapters із valid, malformed, delayed і error results; ізолюй time/randomness. Contract tests із real services запускай окремо: mocks можуть розійтися з provider behaviour.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      },
+      "en": {
+        "question": "How are roles, allowlists, termination and mocks configured?",
+        "answer": "Enforce tools at the host/backend with max turns, deadlines, token/cost budgets and cancellation. Stop tokens do not replace workflow termination. Mock adapters with valid, malformed, delayed and error results; isolate time/randomness. Run real-service contract tests separately because mocks may diverge from provider behaviour.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S17",
+          "S24",
+          "S25",
+          "S26"
+        ]
+      }
+    }
+  }
+]

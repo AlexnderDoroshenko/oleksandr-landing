@@ -1,0 +1,98 @@
+[
+  {
+    "id": "AIQA-10-02",
+    "direction": "ai-system-testing",
+    "topic": "evaluation-golden-data",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як оцінювати RAG і які evaluation frameworks існують?",
+        "answer": "Розділяй retrieval, generation і whole-system outcomes. Приклади frameworks/platforms: Ragas, DeepEval, OpenAI Evals/API evals, LangSmith, Langfuse. Вони різняться datasets, judges, tracing і supported metrics; це не взаємозамінні guarantees. Обирай за потрібними assertions, privacy, reproducibility і можливістю export raw results. Станом на 2026-10-06 OpenAI переводить користувачів із застарілої Evals platform до Datasets/новіших evaluation workflows; перед інтеграцією перевіряй актуальну сторінку deprecations.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How is RAG evaluated and which evaluation frameworks exist?",
+        "answer": "Separate retrieval, generation and whole-system outcomes. Examples include Ragas, DeepEval, OpenAI Evals/API evals, LangSmith and Langfuse. They differ in datasets, judges, tracing and metrics; they are not interchangeable guarantees. Choose by required assertions, privacy, reproducibility and raw-result export. As of 2026-10-06, OpenAI is moving users away from the deprecated Evals platform toward Datasets/newer evaluation workflows; check the current deprecations page before integration.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-04",
+    "direction": "ai-system-testing",
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Які metrics для multi-agent і multiturn MCP assistant?",
+        "answer": "Task success = successful scenarios / evaluated scenarios; unauthorized-action rate = offending scenarios / evaluated scenarios. Також termination rate, handoff validity, correct tool/arguments, retries, recovery, latency/cost. Capture events і final state; custom code evaluators у обраному framework обчислюють flags/rates. Judge оцінює communication quality; labels задають допустимі альтернативні trajectories.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "Which metrics apply to multi-agent and multiturn MCP assistants?",
+        "answer": "Task success = successful scenarios / evaluated scenarios; unauthorized-action rate = offending scenarios / evaluated scenarios. Also track termination, valid handoffs, correct tools/arguments, retries, recovery and latency/cost. Capture events and final state; custom code evaluators compute flags/rates. Judges assess communication quality; labels allow alternative valid trajectories.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-10-06",
+    "direction": "ai-system-testing",
+    "topic": "evaluation-golden-data",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як створити golden data для personal assistant chat?",
+        "answer": "Використовуй fictitious personas, consent-safe tasks і isolated tools: scheduling, search, clarification, preference changes. Задай conversation history, time/timezone, доступні tools/data, expected state changes і forbidden actions. Include conflicting dates, memory deletion і cross-user attempts. Labels для кожного turn і фіналу не повинні містити реальні private data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      },
+      "en": {
+        "question": "How is golden data created for a personal assistant chat?",
+        "answer": "Use fictitious personas, consent-safe tasks and isolated tools for scheduling, search, clarification and preference changes. Specify history, time/timezone, tools/data, expected state changes and forbidden actions. Include conflicting dates, memory deletion and cross-user attempts. Per-turn and final labels must not contain real private data.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S14",
+          "S15",
+          "S16",
+          "S18"
+        ]
+      }
+    }
+  }
+]

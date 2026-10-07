@@ -1,0 +1,184 @@
+[
+  {
+    "id": "AIQA-06-01",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке AI agent та observe think act reflect loop?",
+        "answer": "Agent обирає дії для досягнення goal за observations. Observe читає state; think/plan обирає наступний крок; act викликає tool; reflect оцінює результат. Це концептуальна модель, не вимога показувати private reasoning. Перевір observable actions, result і stop conditions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "What is an AI agent and the observe think act reflect loop?",
+        "answer": "An agent selects actions toward a goal using observations. Observe reads state; think/plan selects the next step; act calls a tool; reflect evaluates the result. This is a conceptual model, not a requirement to expose private reasoning. Test observable actions, outcomes and stop conditions.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-02",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Яку memory зберігати?",
+        "answer": "Short-term state містить поточний task і intermediate results; episodic memory — минулі runs; semantic memory — facts/knowledge, іноді через vector index. Persist лише потрібне з provenance, scope, TTL і deletion. Не зберігай secrets або необмежений raw scratchpad; перевір cross-user isolation і outdated memory.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "What memory should be persisted?",
+        "answer": "Short-term state contains the current task and intermediate results; episodic memory records past runs; semantic memory holds facts/knowledge, sometimes in a vector index. Persist only what is needed with provenance, scope, TTL and deletion. Avoid secrets or unbounded raw scratchpads; test cross-user isolation and outdated memory.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-04",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Які patterns комунікації між agents?",
+        "answer": "Direct messaging адресує конкретного agent; blackboard використовує спільний state; request/response чекає reply; pub/sub поширює events. Define sender, task/run IDs, schema, delivery semantics і timeouts. Не допускай, щоб shared state дозволяв читання чужих задач або затирання evidence.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "Which agent communication patterns exist?",
+        "answer": "Direct messaging addresses a particular agent; a blackboard shares state; request/response awaits a reply; pub/sub distributes events. Define sender, task/run IDs, schema, delivery semantics and timeouts. Shared state must not allow cross-task reads or evidence overwrites.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-05",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які компоненти й типи agentic systems?",
+        "answer": "Components: perception/context, reasoning/planning, tools/actions, memory, policies і feedback. Classic types: reflex, model-based, goal-based, utility-based; це навчальна класифікація, не перелік сучасних libraries. Agentic systems самостійно обирають частину кроків, але автономність має бути bounded permissions і budgets.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "What components and types characterize agentic systems?",
+        "answer": "Components include perception/context, reasoning/planning, tools/actions, memory, policies and feedback. Classical types are reflex, model-based, goal-based and utility-based; this is a teaching taxonomy rather than a list of modern libraries. Agentic systems select some steps autonomously but need bounded permissions and budgets.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-06",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як реалізувати й протестувати communication protocol?",
+        "answer": "Використовуй typed envelopes, correlation/task IDs, versioning, deadline, deduplication і explicit ownership. Тестуй duplicate/out-of-order events, missing responses, partial completion та competing writes. Request delivery не означає виконання; acknowledgments і business results мають різні semantics.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "How is agent communication implemented and tested?",
+        "answer": "Use typed envelopes, correlation/task IDs, versioning, deadlines, deduplication and explicit ownership. Test duplicate/out-of-order events, missing responses, partial completion and competing writes. Delivery does not imply execution; acknowledgments and business results have different semantics.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-07",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як керувати cooperation, competition й human oversight?",
+        "answer": "Cooperation потребує shared goal і чітких handoffs; competition/debate може давати alternatives, але consensus не доводить correctness. Визнач authority, escalation, approval для high-impact actions і cost budget. Перевір, що agent не може обійти approval іншою delegation path; людина бачить конкретну дію та evidence.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "How are cooperation, competition and human oversight managed?",
+        "answer": "Cooperation needs a shared goal and clear handoffs; competition/debate can produce alternatives, but consensus does not prove correctness. Define authority, escalation, approval for high-impact actions and cost budgets. Test that delegation cannot bypass approval; humans must see the concrete action and evidence.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-06-08",
+    "direction": "ai-system-testing",
+    "topic": "agents-coordination",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як тестувати complex agent behaviour й unexpected situations?",
+        "answer": "Оцінюй task completion, правильний tool/arguments, state changes, termination, recovery і forbidden actions. Inject unavailable tools, empty context, contradictory data, cancellation, repeated calls і budget exhaustion. Validate final state, не лише final text. Зберігай sanitized trace; unsafe action — hard failure навіть за правильного фінального answer.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      },
+      "en": {
+        "question": "How are complex agent behaviour and unexpected situations tested?",
+        "answer": "Evaluate task completion, correct tools/arguments, state changes, termination, recovery and forbidden actions. Inject unavailable tools, empty context, contradictory data, cancellation, repeated calls and budget exhaustion. Validate final state rather than final text alone. Keep sanitized traces; unsafe actions are hard failures even if the final answer is correct.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S23"
+        ]
+      }
+    }
+  }
+]

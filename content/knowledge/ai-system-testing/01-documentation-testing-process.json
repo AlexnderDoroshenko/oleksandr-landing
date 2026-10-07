@@ -1,0 +1,210 @@
+[
+  {
+    "id": "AIQA-01-01",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Що таке піраміда тестової документації?",
+        "answer": "Це зручна ієрархія: політика та стратегія → план → сценарії й cases → дані та procedures → execution evidence і звіти. Це не універсальний стандарт і не test pyramid за рівнями автоматизації. Для AI додай rubric, dataset card і версії моделей.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "What is the test documentation pyramid?",
+        "answer": "It is a useful hierarchy: policy and strategy → plan → scenarios and cases → data and procedures → execution evidence and reports. It is neither a universal standard nor the automation test pyramid. Add an evaluation rubric, dataset card and model versions for AI.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-06",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Junior",
+    "translations": {
+      "uk": {
+        "question": "Чим TMS відрізняється від bug tracker?",
+        "answer": "TMS керує test assets, suites, runs, coverage та results. Bug tracker керує дефектами, triage і workflow виправлення. Інтеграція забезпечує traceability case → run → defect → fix; можливості систем можуть перетинатися.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How does a TMS differ from a bug tracker?",
+        "answer": "A TMS manages test assets, suites, runs, coverage and results. A bug tracker manages defects, triage and the fixing workflow. Integration provides case → run → defect → fix traceability; product capabilities can overlap.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-08",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як структурувати suites у CI/CD?",
+        "answer": "PR: unit, schema, prompt rendering, mock tools і короткі critical evals. Merge: integration з реальними test dependencies. Nightly: ширший golden set, robustness і repeated runs. Release: risk slices, security, load та human review. Production: monitoring/canary. Задай окремі budgets і gates.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How should CI/CD suites be structured?",
+        "answer": "PR: unit, schema, prompt rendering, mocked tools and small critical evals. Merge: integration with real test dependencies. Nightly: broader golden sets, robustness and repeated runs. Release: risk slices, security, load and human review. Production: monitoring/canary. Define separate budgets and gates.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-09",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Як оптимізувати regression у великому проєкті?",
+        "answer": "Мапуй зміни на ризики й coverage, прибирай дублікати, ізолюй flaky, розділяй швидкі й дорогі suites та паралель дані. Зберігай critical smoke і періодичний повний набір. Для AI кешуй лише там, де це не приховує зміну моделі; version cache keys і dataset.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How can regression be optimized in a large project?",
+        "answer": "Map changes to risks and coverage, remove duplicates, isolate flaky tests, separate fast and costly suites and isolate parallel data. Retain critical smoke and periodic full runs. For AI cache only where it cannot hide model changes; version cache keys and datasets.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-10",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Які test techniques корисні для AI?",
+        "answer": "Equivalence classes для мов/ролей/типів задач; boundaries для context і tool limits; decision tables для policies; state transitions для agents; pairwise для конфігурацій. Metamorphic перевіряє очікувані relations, adversarial — стійкість. Property-based tests перевіряють invariants; кожен relation треба обґрунтувати.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "Which test techniques are useful for AI?",
+        "answer": "Use equivalence classes for languages/roles/tasks, boundaries for context and tool limits, decision tables for policies, state transitions for agents and pairwise for configurations. Metamorphic tests check expected relations; adversarial tests probe robustness. Property-based tests check invariants; justify every relation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-11",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Middle",
+    "translations": {
+      "uk": {
+        "question": "Чим bias і fairness testing відрізняються від adversarial testing?",
+        "answer": "Bias — систематичне зміщення; fairness оцінює обґрунтованість відмінностей між групами за визначеним критерієм. Adversarial testing навмисно змінює inputs, щоб спричинити небажану поведінку. Вони перетинаються, але різняться метою. Fairness metrics і групи мають відповідати контексту задачі.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How do bias and fairness testing differ from adversarial testing?",
+        "answer": "Bias is systematic skew; fairness assesses whether group differences are justified under a defined criterion. Adversarial testing deliberately perturbs inputs to induce undesired behaviour. They overlap but have different objectives. Fairness metrics and groups must match the task context.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-14",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як FRD і TRD впливають на планування?",
+        "answer": "Якщо FRD означає Functional Requirements Document, він задає behaviours і business rules; Technical Requirements Document описує interfaces, architecture і constraints. Абревіатури треба узгодити. З них виводимо scenarios, test levels, dependencies та NFR checks. Суперечності й нетестовані вимоги уточнюємо до implementation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How do FRD and TRD affect test planning?",
+        "answer": "If FRD means Functional Requirements Document, it defines behaviours and business rules; a Technical Requirements Document describes interfaces, architecture and constraints. Agree on abbreviations first. Derive scenarios, test levels, dependencies and NFR checks. Resolve contradictions and untestable requirements before implementation.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  },
+  {
+    "id": "AIQA-01-15",
+    "direction": "ai-system-testing",
+    "topic": "documentation-testing-process",
+    "level": "Senior",
+    "translations": {
+      "uk": {
+        "question": "Як звітувати management про progress і results?",
+        "answer": "Status report — виконане/заплановане, blockers і forecast; completion report — coverage, results, residual risks і release recommendation; incident report — impact і actions. Для PO/management потрібні ризики й рішення; engineering — evidence і diagnosis. Показуй denominator, timeframe, baseline, critical failures, flaky, latency/cost та sample uncertainty.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      },
+      "en": {
+        "question": "How should progress and results be reported to management?",
+        "answer": "A status report covers completed/planned work, blockers and forecast; a completion report covers coverage, results, residual risks and release recommendations; an incident report covers impact and actions. PO/management need risks and decisions; engineering needs evidence and diagnosis. Show denominators, timeframes, baselines, critical failures, flakiness, latency/cost and sample uncertainty.",
+        "examples": [],
+        "exercises": [],
+        "sources": [
+          "S27"
+        ]
+      }
+    }
+  }
+]

@@ -36,7 +36,7 @@ export function useLanguage(defaultLang: Language = DEFAULT_LANG) {
     setLangState(newLang)
     localStorage.setItem(STORAGE_KEY, newLang)
     void router.replace(
-      { pathname: router.pathname, query: { ...router.query, lang: newLang } },
+      { pathname: router.pathname, query: { ...router.query, lang: newLang }, hash: window.location.hash },
       undefined,
       { shallow: true, scroll: false },
     )
