@@ -11,7 +11,7 @@ const profile = {
     metaDescription: 'Senior AQA Engineer and Automation Team Lead focused on reliable delivery, test architecture, and secure software.',
     nav: ['Experience', 'Expertise', 'Projects', 'Knowledge Base', 'Blog', 'Contact'],
     eyebrow: 'Senior AQA Engineer · Automation Team Lead',
-    headline: 'I build quality systems that help teams ship with confidence.',
+    headline: 'I build quality systems that help teams update with confidence.',
     intro: 'Over 6 years in software quality — from hands-on automation and CI/CD to test strategy, mentoring, and technical leadership.',
     availability: 'Based in Ukraine · Open to remote collaboration',
     primaryCta: 'Let’s talk', secondaryCta: 'View experience',
