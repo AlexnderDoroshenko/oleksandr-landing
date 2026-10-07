@@ -18,13 +18,13 @@ self.__BUILD_MANIFEST = {
     "static/chunks/1ms-8j6ae86fg.js"
   ],
   "/knowledge": [
-    "static/chunks/390_18z-4kagw.js"
+    "static/chunks/0duxmjaryz317.js"
   ],
   "/knowledge/[direction]": [
-    "static/chunks/3bfb2kiuy3e-l.js"
+    "static/chunks/36s1ejv4b6bx6.js"
   ],
   "/knowledge/ai-system-testing/[section]": [
-    "static/chunks/2-u34ripql34g.js"
+    "static/chunks/078gdc82nf_mm.js"
   ],
   "__rewrites": {
     "afterFiles": [],
