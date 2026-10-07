@@ -193,5 +193,20 @@
         "description": "A bilingual learning path across 12 topics, from test process and Python to RAG, MCP, agents, evaluation, security, and Responsible AI."
       }
     }
+  },
+  {
+    "slug": "cybersecurity-handbook",
+    "order": 14,
+    "status": "published",
+    "translations": {
+      "uk": {
+        "title": "Кібербезпека за ролями",
+        "description": "Окремі навчальні блоки з основ кібербезпеки, аналітики, SOC, аудиту й compliance, адміністрування та penetration testing."
+      },
+      "en": {
+        "title": "Cybersecurity by role",
+        "description": "Separate learning blocks for cybersecurity foundations, security analysis, SOC, audit and compliance, administration, and penetration testing."
+      }
+    }
   }
 ]

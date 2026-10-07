@@ -82,7 +82,7 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
           const topicContent = topic.translations[lang]
           const topicMaterials = materials.filter(material => material.topic === topic.id)
           return <section className="knowledge-topic" id={`topic-${topic.id}`} key={topic.id} aria-labelledby={`topic-title-${topic.id}`}>
-            <header><p className="section-index">{String(topic.order).padStart(2, '0')} / 12</p><h2 id={`topic-title-${topic.id}`}>{topicContent.title}</h2></header>
+            <header><p className="section-index">{String(topic.order).padStart(2, '0')} / {topics.length}</p><h2 id={`topic-title-${topic.id}`}>{topicContent.title}</h2></header>
             {topicContent.practice && <aside className="knowledge-practice"><h3>{copy.practice}</h3><p>{topicContent.practice}</p></aside>}
             <div className="knowledge-material-list">{topicMaterials.map(material => <KnowledgeMaterialView key={material.id} material={material} lang={lang} labels={copy} references={references} />)}</div>
             {topicContent.deepDives?.map(deepDive => <article className="knowledge-deep-dive" key={deepDive.title}><p className="section-index">{copy.deepDive}</p><h3>{deepDive.title}</h3>{deepDive.body.split('\n\n').map(paragraph => <p key={paragraph}>{paragraph}</p>)}</article>)}

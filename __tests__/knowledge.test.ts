@@ -5,9 +5,9 @@ describe('Knowledge Base content', () => {
   it('contains the published directions and AI system testing learning path in a stable order', () => {
     const directions = getKnowledgeDirections()
 
-    expect(directions).toHaveLength(13)
-    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
-    expect(new Set(directions.map(direction => direction.slug)).size).toBe(13)
+    expect(directions).toHaveLength(14)
+    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+    expect(new Set(directions.map(direction => direction.slug)).size).toBe(14)
   })
 
   it('localizes every catalog direction in English and Ukrainian', () => {
@@ -55,7 +55,7 @@ describe('Knowledge Base content', () => {
       getKnowledgeMaterials(direction.slug).map(material => material.id),
     )
 
-    expect(ids).toHaveLength(126)
+    expect(ids).toHaveLength(144)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -147,6 +147,21 @@ describe('Knowledge Base content', () => {
         expect(translation?.sources?.every(source => referenceIds.has(source))).toBe(true)
       }
     }
+  })
+
+  it('publishes six bilingual cybersecurity role blocks without duplicate material ids', () => {
+    const topics = getKnowledgeTopics('cybersecurity-handbook')
+    const materials = getKnowledgeMaterials('cybersecurity-handbook')
+
+    expect(topics).toHaveLength(6)
+    expect(topics.map(topic => topic.order)).toEqual([1, 2, 3, 4, 5, 6])
+    expect(materials).toHaveLength(18)
+    expect(new Set(materials.map(material => material.id)).size).toBe(18)
+    expect(materials.filter(material => material.level === 'Junior')).toHaveLength(6)
+    expect(materials.filter(material => material.level === 'Middle')).toHaveLength(6)
+    expect(materials.filter(material => material.level === 'Senior')).toHaveLength(6)
+    expect(materials.every(material => topics.some(topic => topic.id === material.topic))).toBe(true)
+    expect(topics.every(topic => topic.translations.uk.practice && topic.translations.en.practice)).toBe(true)
   })
 
   it('does not silently fall back when a material translation is missing', () => {
