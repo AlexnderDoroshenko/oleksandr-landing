@@ -23,6 +23,8 @@ import aiSystemTesting11Data from '../content/knowledge/ai-system-testing/11-gen
 import aiSystemTesting12Data from '../content/knowledge/ai-system-testing/12-responsible-ai.json'
 import cybersecurityTopicsData from '../content/knowledge/cybersecurity-handbook/topics.json'
 import cybersecurityMaterialsData from '../content/knowledge/cybersecurity-handbook/materials.json'
+import cybersecurityAiAgentData from '../content/knowledge/cybersecurity-handbook/ai-agent-materials.json'
+import cybersecurityReferencesData from '../content/knowledge/cybersecurity-handbook/references.json'
 import type { Language } from '../types/post'
 import type { KnowledgeCurriculum, KnowledgeDirection, KnowledgeMaterial, KnowledgeReference, KnowledgeTopic, LocalizedDirection, LocalizedMaterial } from '../types/knowledge'
 
@@ -61,7 +63,21 @@ const aiSystemTestingMaterials = [
   ...(aiSystemTesting11Data as KnowledgeMaterial[]),
   ...(aiSystemTesting12Data as KnowledgeMaterial[]),
 ]
-const cybersecurityMaterials = cybersecurityMaterialsData as KnowledgeMaterial[]
+const cybersecurityMaterials = [
+  ...(cybersecurityMaterialsData as KnowledgeMaterial[]),
+  ...(cybersecurityAiAgentData as KnowledgeMaterial[]),
+]
+const cybersecuritySources: Record<string, string[]> = {
+  'security-foundations': ['CY-NIST-CSF', 'CY-CIS'],
+  'security-analyst': ['CY-NIST-CSF', 'CY-CIS', 'CY-ATTACK'],
+  'soc-analyst': ['CY-NIST-IR', 'CY-ATTACK'],
+  'audit-compliance': ['CY-ISO', 'CY-GDPR', 'CY-AICPA'],
+  'security-administration': ['CY-CIS', 'CY-NIST-CSF'],
+  'penetration-testing': ['CY-WSTG', 'CY-ASVS'],
+  'ai-security': ['CY-OWASP-AGENT', 'CY-OWASP-LLM', 'CY-ATLAS'],
+  'agent-protocol-security': ['CY-ACP', 'CY-ACP-TOOLS', 'CY-MCP', 'CY-A2A', 'CY-OAUTH'],
+  'security-glossary': ['CY-NIST-CSF', 'CY-CIS'],
+}
 const reusedMappings = aiSystemTestingReusedData as Array<{ canonicalId: string; topic: string; aliases: string[] }>
 const topicReferenceIds: Record<string, string[]> = {
   'documentation-testing-process': ['S27'],
@@ -107,7 +123,13 @@ export function getKnowledgeMaterials(direction: string): KnowledgeMaterial[] {
         }),
       ]
     : direction === 'cybersecurity-handbook'
-      ? cybersecurityMaterials
+      ? cybersecurityMaterials.map(material => ({
+          ...material,
+          translations: {
+            uk: { ...material.translations.uk!, sources: cybersecuritySources[material.topic!] },
+            en: { ...material.translations.en!, sources: cybersecuritySources[material.topic!] },
+          },
+        }))
       : baseMaterials.filter(material => material.direction === direction)
 
   return materials
@@ -127,7 +149,10 @@ export function getKnowledgeTopics(direction: string): KnowledgeTopic[] {
 }
 
 export function getKnowledgeReferences(): KnowledgeReference[] {
-  return aiSystemTestingReferencesData as KnowledgeReference[]
+  return [
+    ...(aiSystemTestingReferencesData as KnowledgeReference[]),
+    ...(cybersecurityReferencesData as KnowledgeReference[]),
+  ]
 }
 
 export function getKnowledgeCurriculum(direction: string): KnowledgeCurriculum | null {

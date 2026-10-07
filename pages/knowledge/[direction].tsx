@@ -74,6 +74,7 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
       </nav>}
 
       {translation && topics.length > 0 && <>
+        {direction.slug === 'cybersecurity-handbook' && <p className="knowledge-related-path"><Link href={{ pathname: '/knowledge/ai-system-testing', query: { lang } }}>{lang === 'uk' ? 'Пов’язаний маршрут: Тестування AI-систем →' : 'Related path: AI System Testing →'}</Link></p>}
         <nav className="knowledge-topic-nav" aria-label={copy.topics}>
           <p className="section-index">{copy.topics}</p>
           <ol>{topics.map(topic => <li key={topic.id}><a href={`#topic-${topic.id}`}><span>{String(topic.order).padStart(2, '0')}</span>{topic.translations[lang].title}</a></li>)}</ol>

@@ -201,11 +201,11 @@
     "translations": {
       "uk": {
         "title": "Кібербезпека за ролями",
-        "description": "Окремі навчальні блоки з основ кібербезпеки, аналітики, SOC, аудиту й compliance, адміністрування та penetration testing."
+        "description": "Окремі навчальні блоки з основ кібербезпеки, аналітики, SOC, аудиту, адміністрування, penetration testing, безпеки AI-систем та агентних протоколів."
       },
       "en": {
         "title": "Cybersecurity by role",
-        "description": "Separate learning blocks for cybersecurity foundations, security analysis, SOC, audit and compliance, administration, and penetration testing."
+        "description": "Separate learning blocks for cybersecurity foundations, security analysis, SOC, audit, administration, penetration testing, AI security, and agent protocols."
       }
     }
   }

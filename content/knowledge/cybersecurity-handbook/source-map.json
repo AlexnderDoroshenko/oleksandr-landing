@@ -1,0 +1,8 @@
+[
+  {"section":"1","topic":"security-foundations","mappings":[{"materialId":"cyber-foundations-core","questions":[1,2,3,4,5,6,7,8,16,17]},{"materialId":"cyber-foundations-access-network","questions":[9,12,14,15,18]},{"materialId":"cyber-foundations-incidents","questions":[10,11,13,19,20]}]},
+  {"section":"2","topic":"security-analyst","mappings":[{"materialId":"security-analyst-frameworks-risk","questions":[1,2,17,18]},{"materialId":"security-analyst-intelligence","questions":[3,4,5,6,7,8,10]},{"materialId":"security-analyst-operations","questions":[9,11,12,13,14,15,16,19,20]}]},
+  {"section":"3","topic":"soc-analyst","mappings":[{"materialId":"soc-telemetry-triage","questions":[1,2,3,4,5,6,13,14]},{"materialId":"soc-detection-investigation","questions":[9,10,11,12,16,19]},{"materialId":"soc-response-engineering","questions":[7,8,15,17,18,20]}]},
+  {"section":"4","topic":"audit-compliance","mappings":[{"materialId":"audit-scope-evidence","questions":[2,3,4,8,14]},{"materialId":"audit-privacy-resilience","questions":[1,5,6,9,10,11,12,15,17,18]},{"materialId":"audit-findings-assurance","questions":[7,13,16,19,20]}]},
+  {"section":"5","topic":"security-administration","mappings":[{"materialId":"admin-access-network","questions":[1,2,3,4,5,6,11,12]},{"materialId":"admin-hardening-lifecycle","questions":[7,8,9,10,13,14,19]},{"materialId":"admin-data-observability-recovery","questions":[15,16,17,18,20]}]},
+  {"section":"6","topic":"penetration-testing","mappings":[{"materialId":"pentest-scope-recon","questions":[1,2,3,4,9,13,19,20]},{"materialId":"pentest-web-identity","questions":[5,6,7,8,11,14,15]},{"materialId":"pentest-validation-reporting","questions":[10,12,16,17,18]}]}
+]

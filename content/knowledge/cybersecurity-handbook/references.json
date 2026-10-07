@@ -1,0 +1,19 @@
+[
+  {"id":"CY-NIST-CSF","title":"NIST Cybersecurity Framework 2.0","url":"https://www.nist.gov/cyberframework","version":"2.0"},
+  {"id":"CY-NIST-IR","title":"NIST SP 800-61 Rev. 3: Incident Response","url":"https://csrc.nist.gov/pubs/sp/800/61/r3/final","version":"2025"},
+  {"id":"CY-CIS","title":"CIS Critical Security Controls","url":"https://www.cisecurity.org/controls","version":"8.1"},
+  {"id":"CY-ATTACK","title":"MITRE ATT&CK","url":"https://attack.mitre.org/"},
+  {"id":"CY-WSTG","title":"OWASP Web Security Testing Guide","url":"https://owasp.org/www-project-web-security-testing-guide/"},
+  {"id":"CY-ASVS","title":"OWASP Application Security Verification Standard","url":"https://owasp.org/www-project-application-security-verification-standard/"},
+  {"id":"CY-ISO","title":"ISO/IEC 27001 information security management","url":"https://www.iso.org/standard/27001","version":"2022"},
+  {"id":"CY-GDPR","title":"EU General Data Protection Regulation","url":"https://eur-lex.europa.eu/eli/reg/2016/679/oj","version":"2016/679"},
+  {"id":"CY-AICPA","title":"AICPA SOC 2 Trust Services Criteria","url":"https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022","version":"2017 criteria, 2022 revised points of focus"},
+  {"id":"CY-OWASP-AGENT","title":"OWASP Top 10 for Agentic Applications","url":"https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/","version":"2026"},
+  {"id":"CY-OWASP-LLM","title":"OWASP GenAI Security Project","url":"https://genai.owasp.org/","version":"2026"},
+  {"id":"CY-ATLAS","title":"MITRE ATLAS","url":"https://atlas.mitre.org/"},
+  {"id":"CY-MCP","title":"Model Context Protocol security best practices","url":"https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices","version":"2026-07-28"},
+  {"id":"CY-A2A","title":"Agent2Agent protocol specification","url":"https://a2a-protocol.org/latest/specification/","version":"1.0.0"},
+  {"id":"CY-ACP","title":"Agent Client Protocol overview","url":"https://agentclientprotocol.com/protocol/v1/overview","version":"v1"},
+  {"id":"CY-ACP-TOOLS","title":"Agent Client Protocol tool calls","url":"https://agentclientprotocol.com/protocol/v1/tool-calls","version":"v1"},
+  {"id":"CY-OAUTH","title":"RFC 9700 OAuth 2.0 Security Best Current Practice","url":"https://www.rfc-editor.org/rfc/rfc9700.html","version":"2025"}
+]

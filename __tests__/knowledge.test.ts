@@ -1,5 +1,6 @@
 import { getDirectionTranslation, getKnowledgeCurriculum, getKnowledgeDirections, getKnowledgeMaterials, getKnowledgeReferences, getKnowledgeTopics, getMaterialTranslation } from '../lib/knowledge'
 import type { KnowledgeMaterial } from '../types/knowledge'
+import cybersecuritySourceMap from '../content/knowledge/cybersecurity-handbook/source-map.json'
 
 describe('Knowledge Base content', () => {
   it('contains the published directions and AI system testing learning path in a stable order', () => {
@@ -55,7 +56,7 @@ describe('Knowledge Base content', () => {
       getKnowledgeMaterials(direction.slug).map(material => material.id),
     )
 
-    expect(ids).toHaveLength(144)
+    expect(ids).toHaveLength(153)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -149,19 +150,36 @@ describe('Knowledge Base content', () => {
     }
   })
 
-  it('publishes six bilingual cybersecurity role blocks without duplicate material ids', () => {
+  it('publishes bilingual cybersecurity role, AI, protocol and glossary blocks without duplicate ids', () => {
     const topics = getKnowledgeTopics('cybersecurity-handbook')
     const materials = getKnowledgeMaterials('cybersecurity-handbook')
 
-    expect(topics).toHaveLength(6)
-    expect(topics.map(topic => topic.order)).toEqual([1, 2, 3, 4, 5, 6])
-    expect(materials).toHaveLength(18)
-    expect(new Set(materials.map(material => material.id)).size).toBe(18)
-    expect(materials.filter(material => material.level === 'Junior')).toHaveLength(6)
-    expect(materials.filter(material => material.level === 'Middle')).toHaveLength(6)
-    expect(materials.filter(material => material.level === 'Senior')).toHaveLength(6)
+    expect(topics).toHaveLength(9)
+    expect(topics.map(topic => topic.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    expect(materials).toHaveLength(27)
+    expect(new Set(materials.map(material => material.id)).size).toBe(27)
+    expect(materials.filter(material => material.level === 'Junior')).toHaveLength(7)
+    expect(materials.filter(material => material.level === 'Middle')).toHaveLength(12)
+    expect(materials.filter(material => material.level === 'Senior')).toHaveLength(8)
     expect(materials.every(material => topics.some(topic => topic.id === material.topic))).toBe(true)
     expect(topics.every(topic => topic.translations.uk.practice && topic.translations.en.practice)).toBe(true)
+    const references = new Set(getKnowledgeReferences().map(reference => reference.id))
+    for (const material of materials) {
+      expect(material.translations.uk?.sources).toEqual(material.translations.en?.sources)
+      expect(material.translations.en?.sources?.every(source => references.has(source))).toBe(true)
+    }
+  })
+
+  it('maps all 120 handbook questions once to a cybersecurity material', () => {
+    const materials = new Map(getKnowledgeMaterials('cybersecurity-handbook').map(material => [material.id, material]))
+    expect(cybersecuritySourceMap).toHaveLength(6)
+    for (const section of cybersecuritySourceMap) {
+      const questionNumbers = section.mappings.flatMap(mapping => {
+        expect(materials.get(mapping.materialId)?.topic).toBe(section.topic)
+        return mapping.questions
+      })
+      expect([...questionNumbers].sort((a, b) => a - b)).toEqual(Array.from({ length: 20 }, (_, index) => index + 1))
+    }
   })
 
   it('does not silently fall back when a material translation is missing', () => {
