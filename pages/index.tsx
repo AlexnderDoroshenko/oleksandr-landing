@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import LanguageSelector from '../components/LanguageSelector'
+import ResumeDownload from '../components/ResumeDownload'
 import { useLanguage } from '../hooks/useLanguage'
 import { getAllPostMetas } from '../lib/posts'
 import type { PostMeta } from '../lib/posts'
@@ -106,7 +107,7 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow"><span aria-hidden="true" />{copy.eyebrow}</p><h1>{copy.headline}</h1><p className="hero-intro">{copy.intro}</p>
-          <div className="hero-actions"><a className="button button-primary" href="mailto:doroshenkoaldm@gmail.com">{copy.primaryCta}<span aria-hidden="true">↗</span></a><a className="button button-secondary" href="#experience">{copy.secondaryCta}</a></div>
+          <div className="hero-actions"><a className="button button-primary" href="mailto:doroshenkoaldm@gmail.com">{copy.primaryCta}<span aria-hidden="true">↗</span></a><a className="button button-secondary" href="#experience">{copy.secondaryCta}</a><ResumeDownload uiLanguage={lang} /></div>
           <p className="availability">{copy.availability}</p>
         </div>
         <div className="portrait-wrap">
