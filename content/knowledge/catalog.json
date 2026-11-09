@@ -208,5 +208,20 @@
         "description": "Separate learning blocks for cybersecurity foundations, security analysis, SOC, audit, administration, penetration testing, AI security, and agent protocols."
       }
     }
+  },
+  {
+    "slug": "accessibility-testing",
+    "order": 15,
+    "status": "published",
+    "translations": {
+      "uk": {
+        "title": "Тестування доступності",
+        "description": "WCAG 2.2 AA, семантика, клавіатура, контраст, reflow, ручний аудит та автоматизовані перевірки з посиланнями на першоджерела."
+      },
+      "en": {
+        "title": "Accessibility testing",
+        "description": "WCAG 2.2 AA, semantics, keyboard use, contrast, reflow, manual audits and automated checks with links to primary sources."
+      }
+    }
   }
 ]

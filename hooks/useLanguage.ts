@@ -18,6 +18,10 @@ export function useLanguage(defaultLang: Language = DEFAULT_LANG) {
   const [lang, setLangState] = useState<Language>(defaultLang)
 
   useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
+
+  useEffect(() => {
     const queryLang = router.query.lang
 
     if (queryLang === 'en' || queryLang === 'uk') {

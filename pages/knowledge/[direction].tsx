@@ -46,8 +46,10 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
   const translation = getDirectionTranslation(direction, lang)
   const title = translation?.title ?? (lang === 'uk' ? 'Переклад готується' : 'Translation in preparation')
 
-  return <><Head><title>{title} | {lang === 'uk' ? 'База знань' : 'Knowledge Base'}</title></Head><main className="inner-page knowledge-page">
+  return <><Head><title>{title} | {lang === 'uk' ? 'База знань' : 'Knowledge Base'}</title></Head><div className="inner-page knowledge-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="knowledge" />
+    <main id="main-content" tabIndex={-1}>
     <article className="knowledge-direction-shell">
       <Link className="article-back" href={{ pathname: '/knowledge', query: { lang } }}>← {copy.back}</Link>
       <header className="knowledge-direction-header">
@@ -102,7 +104,8 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
         <span>{copy.comingSoon}</span>
       </aside>
     </article>
-  </main></>
+    </main>
+  </div></>
 }
 
 export async function getStaticPaths() {

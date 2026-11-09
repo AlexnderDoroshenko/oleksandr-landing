@@ -25,6 +25,9 @@ import cybersecurityTopicsData from '../content/knowledge/cybersecurity-handbook
 import cybersecurityMaterialsData from '../content/knowledge/cybersecurity-handbook/materials.json'
 import cybersecurityAiAgentData from '../content/knowledge/cybersecurity-handbook/ai-agent-materials.json'
 import cybersecurityReferencesData from '../content/knowledge/cybersecurity-handbook/references.json'
+import accessibilityMaterialsData from '../content/knowledge/accessibility/materials.json'
+import accessibilityTopicsData from '../content/knowledge/accessibility/topics.json'
+import accessibilityReferencesData from '../content/knowledge/accessibility/references.json'
 import type { Language } from '../types/post'
 import type { KnowledgeCurriculum, KnowledgeDirection, KnowledgeMaterial, KnowledgeReference, KnowledgeTopic, LocalizedDirection, LocalizedMaterial } from '../types/knowledge'
 
@@ -67,6 +70,7 @@ const cybersecurityMaterials = [
   ...(cybersecurityMaterialsData as KnowledgeMaterial[]),
   ...(cybersecurityAiAgentData as KnowledgeMaterial[]),
 ]
+const accessibilityMaterials = accessibilityMaterialsData as KnowledgeMaterial[]
 const cybersecuritySources: Record<string, string[]> = {
   'security-foundations': ['CY-NIST-CSF', 'CY-CIS'],
   'security-analyst': ['CY-NIST-CSF', 'CY-CIS', 'CY-ATTACK'],
@@ -93,6 +97,7 @@ const topicReferenceIds: Record<string, string[]> = {
 const topics = [
   ...(aiSystemTestingTopicsData as KnowledgeTopic[]),
   ...(cybersecurityTopicsData as KnowledgeTopic[]),
+  ...(accessibilityTopicsData as KnowledgeTopic[]),
 ]
 
 export function getKnowledgeDirections(): KnowledgeDirection[] {
@@ -130,7 +135,9 @@ export function getKnowledgeMaterials(direction: string): KnowledgeMaterial[] {
             en: { ...material.translations.en!, sources: cybersecuritySources[material.topic!] },
           },
         }))
-      : baseMaterials.filter(material => material.direction === direction)
+      : direction === 'accessibility-testing'
+        ? accessibilityMaterials
+        : baseMaterials.filter(material => material.direction === direction)
 
   return materials
     .sort((a, b) => (a.level ? levelOrder[a.level] : 3) - (b.level ? levelOrder[b.level] : 3))
@@ -152,6 +159,7 @@ export function getKnowledgeReferences(): KnowledgeReference[] {
   return [
     ...(aiSystemTestingReferencesData as KnowledgeReference[]),
     ...(cybersecurityReferencesData as KnowledgeReference[]),
+    ...(accessibilityReferencesData as KnowledgeReference[]),
   ]
 }
 

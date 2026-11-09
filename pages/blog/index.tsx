@@ -12,13 +12,16 @@ export default function Blog({ posts }: { posts: PostMeta[] }) {
     ? { title: 'Нотатки про якість та інженерію.', intro: 'Практичні спостереження про автоматизацію, процеси, безпеку та створення програмного забезпечення.', empty: 'Поки що немає записів.' }
     : { title: 'Notes on quality and engineering.', intro: 'Practical observations on automation, process, security, and building software.', empty: 'No posts yet.' }
 
-  return <><Head><title>{lang === 'uk' ? 'Блог' : 'Blog'} | Oleksandr Doroshenko</title></Head><main className="inner-page">
+  return <><Head><title>{lang === 'uk' ? 'Блог' : 'Blog'} | Oleksandr Doroshenko</title></Head><div className="inner-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="blog" />
+    <main id="main-content" tabIndex={-1}>
     <section className="inner-hero blog-hero"><p className="section-index">02 / BLOG</p><h1>{copy.title}</h1><p>{copy.intro}</p></section>
     <section className="article-list">{filteredPosts.length === 0 ? <p className="empty-state">{copy.empty}</p> : filteredPosts.map((post, index) => <article key={post.slug}>
       <span>0{index + 1}</span><div><p className="post-date">{post.date}</p><h2><Link href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>{post.title}</Link></h2>{post.summary && <p className="post-summary">{post.summary}</p>}</div><Link aria-label={post.title} href={{ pathname: `/blog/${post.slug}`, query: { lang } }}>↗</Link>
     </article>)}</section>
-  </main></>
+    </main>
+  </div></>
 }
 
 export async function getStaticProps() { return { props: { posts: getAllPostMetas() } } }

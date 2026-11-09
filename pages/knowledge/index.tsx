@@ -44,8 +44,10 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
   const { lang, setLang } = useLanguage('en')
   const copy = pageCopy[lang]
 
-  return <><Head><title>{copy.metaTitle}</title></Head><main className="inner-page knowledge-page">
+  return <><Head><title>{copy.metaTitle}</title></Head><div className="inner-page knowledge-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="knowledge" />
+    <main id="main-content" tabIndex={-1}>
     <section className="inner-hero knowledge-hero">
       <p className="section-index">{copy.eyebrow}</p>
       <h1>{copy.title}</h1>
@@ -80,7 +82,8 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
       <div><p className="section-index">QUIZ</p><h2>{copy.quizTitle}</h2><p>{copy.quizText}</p></div>
       <span>{copy.quizStatus}</span>
     </aside>
-  </main></>
+    </main>
+  </div></>
 }
 
 export async function getStaticProps() {

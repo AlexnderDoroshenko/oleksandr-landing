@@ -28,8 +28,10 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
   return (
-    <><Head><title>{post.title} | Oleksandr Doroshenko</title></Head><main className="inner-page article-page">
+    <><Head><title>{post.title} | Oleksandr Doroshenko</title></Head><div className="inner-page article-page">
+      <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
       <SiteHeader lang={lang} onLanguageChange={setLang} section="blog" />
+      <main id="main-content" tabIndex={-1}>
       <article className="article-shell">
         <Link className="article-back" href={{ pathname: '/blog', query: { lang } }}>← {lang === 'uk' ? 'До блогу' : 'Back to blog'}</Link>
         <div className="article-title-row"><div><p className="section-index">BLOG / {post.date}</p><h1>{post.title}</h1></div></div>
@@ -39,7 +41,8 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
           <Link href={{ pathname: `/blog/${nextPost.slug}`, query: { lang } }}><span>{nextPost.title}</span><span aria-hidden="true">→</span></Link>
         </nav>}
       </article>
-    </main></>
+      </main>
+    </div></>
   )
 }
 

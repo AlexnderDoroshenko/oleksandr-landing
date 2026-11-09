@@ -15,6 +15,9 @@ tsconfig.tsbuildinfo
 
 # ─── Testing / coverage ───────────────────────────────────────────────────────
 coverage/
+test-results/
+playwright-report/
+accessibility-reports/
 
 # ─── OS & editor artefacts ────────────────────────────────────────────────────
 .DS_Store

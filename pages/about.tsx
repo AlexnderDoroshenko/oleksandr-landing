@@ -37,11 +37,14 @@ export default function About() {
       'At UPITec I helped establish testing processes from scratch. Beyond my core work, I contribute to volunteer projects, NiceDice, and QualityForge.',
     ],
   }
-  return <><Head><title>{lang === 'uk' ? 'Про мене' : 'About'} | Oleksandr Doroshenko</title></Head><main className="inner-page">
+  return <><Head><title>{lang === 'uk' ? 'Про мене' : 'About'} | Oleksandr Doroshenko</title></Head><div className="inner-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="about" />
+    <main id="main-content" tabIndex={-1}>
     <section className="inner-hero"><p className="section-index">01 / {lang === 'uk' ? 'ПРО МЕНЕ' : 'ABOUT'}</p><h1>{copy.title}</h1><p>{copy.intro}</p></section>
     <section className="fact-grid">{copy.facts.map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</section>
     <section className="inner-section"><div className="inner-section-title"><p className="section-index">02 / PRINCIPLES</p><h2>{copy.principles}</h2></div><div className="principle-list">{copy.items.map(([title, text], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
     <section className="inner-section story-section"><div className="inner-section-title"><p className="section-index">03 / JOURNEY</p><h2>{copy.story}</h2></div><div className="story-copy">{copy.paragraphs.map(p => <p key={p}>{p}</p>)}</div></section>
-  </main></>
+    </main>
+  </div></>
 }

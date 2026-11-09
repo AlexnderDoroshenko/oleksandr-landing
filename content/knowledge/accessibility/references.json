@@ -1,0 +1,11 @@
+[
+  {"id":"AX-WCAG22","title":"W3C Web Content Accessibility Guidelines (WCAG) 2.2","url":"https://www.w3.org/TR/WCAG22/","version":"Recommendation, 12 December 2024"},
+  {"id":"AX-QUICKREF","title":"W3C How to Meet WCAG 2.2 (Quick Reference)","url":"https://www.w3.org/WAI/WCAG22/quickref/","version":"WCAG 2.2"},
+  {"id":"AX-REFLOW","title":"W3C Understanding SC 1.4.10 Reflow","url":"https://www.w3.org/WAI/WCAG22/Understanding/reflow.html","version":"WCAG 2.2"},
+  {"id":"AX-TARGET","title":"W3C Understanding SC 2.5.8 Target Size (Minimum)","url":"https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum","version":"WCAG 2.2"},
+  {"id":"AX-FOCUS","title":"W3C Understanding SC 2.4.7 Focus Visible","url":"https://www.w3.org/WAI/WCAG22/Understanding/focus-visible","version":"WCAG 2.2"},
+  {"id":"AX-CONTRAST","title":"W3C Understanding SC 1.4.11 Non-text Contrast","url":"https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast","version":"WCAG 2.2"},
+  {"id":"AX-APG","title":"W3C ARIA Authoring Practices Guide","url":"https://www.w3.org/WAI/ARIA/apg/","version":"current guidance"},
+  {"id":"AX-EVALUATE","title":"W3C WAI Evaluating Web Accessibility Overview","url":"https://www.w3.org/WAI/test-evaluate/","version":"current guidance"},
+  {"id":"AX-PLAYWRIGHT","title":"Playwright Accessibility testing","url":"https://playwright.dev/docs/accessibility-testing","version":"current documentation"}
+]
