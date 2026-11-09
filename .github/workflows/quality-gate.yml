@@ -102,7 +102,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Block newly introduced vulnerable dependencies
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5.0.0
         with:
           fail-on-severity: high
           fail-on-scopes: runtime, development
