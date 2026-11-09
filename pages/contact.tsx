@@ -13,12 +13,15 @@ export default function Contact() {
     text: 'Open to Senior AQA and Automation Lead roles, product collaborations, and thoughtful engineering exchange.',
     location: 'Odesa, Ukraine · Remote collaboration', email: 'Email', social: 'Professional profiles',
   }
-  return <><Head><title>{copy.eyebrow} | Oleksandr Doroshenko</title></Head><main className="inner-page contact-page">
+  return <><Head><title>{copy.eyebrow} | Oleksandr Doroshenko</title></Head><div className="inner-page contact-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="contact" />
+    <main id="main-content" tabIndex={-1}>
     <section className="contact-hero"><p className="section-index">03 / {copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.text}</p><span>{copy.location}</span></section>
     <section className="contact-directory">
       <div><p>{copy.email}</p><a href="mailto:doroshenkoaldm@gmail.com">doroshenkoaldm@gmail.com <span>↗</span></a></div>
       <div><p>{copy.social}</p><a href="https://www.linkedin.com/in/oleksandr-doroshenko-3a426a134" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/AlexnderDoroshenko" target="_blank" rel="noreferrer">GitHub <span>↗</span></a></div>
     </section>
-  </main></>
+    </main>
+  </div></>
 }

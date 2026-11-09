@@ -14,7 +14,7 @@ export default function LanguageSelector({ value, onChange, className = '' }: La
       value={value}
       onChange={(e) => onChange(e.target.value as Language)}
       className={`px-3 py-1 text-gray-900 rounded ${className}`}
-      aria-label="Select language"
+      aria-label={value === 'uk' ? 'Мова сайту' : 'Site language'}
     >
       <option value="en">English</option>
       <option value="uk">Українська</option>

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import LanguageSelector from '../components/LanguageSelector'
 import ResumeDownload from '../components/ResumeDownload'
+import MobileNavigation from '../components/MobileNavigation'
 import { useLanguage } from '../hooks/useLanguage'
 import { getAllPostMetas } from '../lib/posts'
 import type { PostMeta } from '../lib/posts'
@@ -90,10 +91,11 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
 
   return <>
     <Head><title>{copy.metaTitle}</title><meta name="description" content={copy.metaDescription} /></Head>
-    <main className="portfolio-shell">
+    <div className="portfolio-shell">
+      <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
       <header className="site-header">
-        <a className="monogram" href="#top" aria-label="Oleksandr Doroshenko — home">OD<span>.</span></a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
+        <a className="monogram" href="#top" aria-label={lang === 'uk' ? 'OD. — головна' : 'OD. — home'}>OD<span>.</span></a>
+        <nav className="desktop-nav" aria-label={lang === 'uk' ? 'Основна навігація' : 'Primary navigation'}>
           <a href="#experience">{copy.nav[0]}</a>
           <a href="#expertise">{copy.nav[1]}</a>
           <a href="#projects">{copy.nav[2]}</a>
@@ -101,8 +103,18 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
           <Link href={{ pathname: '/blog', query: { lang } }}>{copy.nav[4]}</Link>
           <a href="#contact">{copy.nav[5]}</a>
         </nav>
+        <MobileNavigation lang={lang}>
+          <a href="#experience">{copy.nav[0]}</a>
+          <a href="#expertise">{copy.nav[1]}</a>
+          <a href="#projects">{copy.nav[2]}</a>
+          <Link href={{ pathname: '/knowledge', query: { lang } }}>{copy.nav[3]}</Link>
+          <Link href={{ pathname: '/blog', query: { lang } }}>{copy.nav[4]}</Link>
+          <a href="#contact">{copy.nav[5]}</a>
+        </MobileNavigation>
         <LanguageSelector value={lang} onChange={setLang} className="language-select" />
       </header>
+
+      <main id="main-content" tabIndex={-1}>
 
       <section className="hero" id="top">
         <div className="hero-copy">
@@ -111,7 +123,8 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
           <p className="availability">{copy.availability}</p>
         </div>
         <div className="portrait-wrap">
-          {/* eslint-disable-next-line @next/next/no-img-element */}<img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/avatar.png`} alt="Oleksandr Doroshenko" />
+          {/* The adjacent visible caption already names the portrait. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}<img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/avatar.png`} alt="" />
           <div className="portrait-caption"><span>Oleksandr Doroshenko</span><small>Quality engineering · Odesa, UA</small></div>
         </div>
       </section>
@@ -163,8 +176,9 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
         <div className="contact-links"><a href="mailto:doroshenkoaldm@gmail.com">{copy.email}<span>↗</span></a><a href="https://www.linkedin.com/in/oleksandr-doroshenko-3a426a134" target="_blank" rel="noreferrer">{copy.linkedin}<span>↗</span></a><a href="https://github.com/AlexnderDoroshenko" target="_blank" rel="noreferrer">{copy.github}<span>↗</span></a><Link href={{ pathname: '/blog', query: { lang } }}>{copy.blog}<span>↗</span></Link></div>
       </section>
 
+      </main>
       <footer><span>© {new Date().getFullYear()} Oleksandr Doroshenko</span><span>{copy.footer}</span></footer>
-    </main>
+    </div>
   </>
 }
 

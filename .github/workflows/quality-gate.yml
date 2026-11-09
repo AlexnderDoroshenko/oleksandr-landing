@@ -42,6 +42,57 @@ jobs:
           GITHUB_PAGES: 'true'
         run: npm run build
 
+  accessibility:
+    name: Accessibility browser gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium for browser checks
+        run: npx playwright install --with-deps chromium
+      - name: Build production static site
+        run: npm run build
+      - name: Serve exported site
+        id: serve
+        run: |
+          python3 -m http.server 3100 --bind 127.0.0.1 --directory out > accessibility-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3100/ > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat accessibility-server.log
+          exit 1
+      - name: Run EN/UA route and interaction accessibility checks
+        run: npm run test:a11y
+      - name: Capture Lighthouse trends
+        if: always() && steps.serve.outcome == 'success'
+        run: |
+          mkdir -p accessibility-reports
+          export CHROME_PATH="$(node -p "require('playwright').chromium.executablePath()")"
+          npx lighthouse 'http://127.0.0.1:3100/?lang=en' --only-categories=accessibility --output=json --output-path=accessibility-reports/lighthouse-home-en.json --chrome-flags='--headless --no-sandbox' --quiet
+          npx lighthouse 'http://127.0.0.1:3100/?lang=uk' --only-categories=accessibility --output=json --output-path=accessibility-reports/lighthouse-home-uk.json --chrome-flags='--headless --no-sandbox' --quiet
+      - name: Upload accessibility evidence
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: accessibility-reports
+          path: |
+            test-results/
+            accessibility-reports/
+            accessibility-server.log
+          if-no-files-found: warn
+          retention-days: 30
+
   dependency-review:
     name: Dependency review
     if: github.event_name == 'pull_request'

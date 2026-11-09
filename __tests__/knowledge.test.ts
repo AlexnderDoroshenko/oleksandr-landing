@@ -6,9 +6,9 @@ describe('Knowledge Base content', () => {
   it('contains the published directions and AI system testing learning path in a stable order', () => {
     const directions = getKnowledgeDirections()
 
-    expect(directions).toHaveLength(14)
-    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
-    expect(new Set(directions.map(direction => direction.slug)).size).toBe(14)
+    expect(directions).toHaveLength(15)
+    expect(directions.map(direction => direction.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    expect(new Set(directions.map(direction => direction.slug)).size).toBe(15)
   })
 
   it('localizes every catalog direction in English and Ukrainian', () => {
@@ -56,7 +56,7 @@ describe('Knowledge Base content', () => {
       getKnowledgeMaterials(direction.slug).map(material => material.id),
     )
 
-    expect(ids).toHaveLength(153)
+    expect(ids).toHaveLength(162)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -167,6 +167,30 @@ describe('Knowledge Base content', () => {
     for (const material of materials) {
       expect(material.translations.uk?.sources).toEqual(material.translations.en?.sources)
       expect(material.translations.en?.sources?.every(source => references.has(source))).toBe(true)
+    }
+  })
+
+  it('publishes the accessibility curriculum with equivalent levels and resolvable standards', () => {
+    const topics = getKnowledgeTopics('accessibility-testing')
+    const materials = getKnowledgeMaterials('accessibility-testing')
+    const references = new Map(getKnowledgeReferences().map(reference => [reference.id, reference]))
+
+    expect(topics).toHaveLength(3)
+    expect(materials).toHaveLength(9)
+    expect(new Set(materials.map(material => material.id)).size).toBe(9)
+    for (const level of ['Junior', 'Middle', 'Senior']) {
+      expect(materials.filter(material => material.level === level)).toHaveLength(3)
+    }
+    for (const material of materials) {
+      expect(topics.some(topic => topic.id === material.topic)).toBe(true)
+      expect(material.translations.uk?.sources).toEqual(material.translations.en?.sources)
+      for (const lang of ['uk', 'en'] as const) {
+        const translation = material.translations[lang]
+        expect(translation?.answer.length).toBeGreaterThan(150)
+        expect(translation?.examples.length).toBeGreaterThan(0)
+        expect(translation?.exercises.length).toBeGreaterThan(0)
+        expect(translation?.sources?.every(source => references.get(source)?.url.startsWith('https://'))).toBe(true)
+      }
     }
   })
 

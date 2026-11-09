@@ -40,8 +40,10 @@ export default function AiSystemTestingSection({ section, materials, topics, ref
   const text = copy[lang]
   const title = text.labels[section]
 
-  return <><Head><title>{title} | AI System Testing</title></Head><main className="inner-page knowledge-page">
+  return <><Head><title>{title} | AI System Testing</title></Head><div className="inner-page knowledge-page">
+    <a className="skip-link" href="#main-content">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
     <SiteHeader lang={lang} onLanguageChange={setLang} section="knowledge" />
+    <main id="main-content" tabIndex={-1}>
     <article className="knowledge-direction-shell">
       <Link className="article-back" href={{ pathname: '/knowledge/ai-system-testing', query: { lang } }}>← {text.back}</Link>
       <header className="knowledge-direction-header"><p className="section-index">AI SYSTEM TESTING</p><h1>{title}</h1><p>{text.descriptions[section]}</p></header>
@@ -60,7 +62,8 @@ export default function AiSystemTestingSection({ section, materials, topics, ref
 
       {section === 'python-examples' && topics.flatMap(topic => topic.translations[lang].codeExamples?.map(example => <article className="knowledge-code-example" id={example.id} key={example.id}><h2>{example.title}</h2><pre tabIndex={0}><code>{example.code}</code></pre><p>{example.explanation}</p></article>) ?? [])}
     </article>
-  </main></>
+    </main>
+  </div></>
 }
 
 export function getStaticPaths() {

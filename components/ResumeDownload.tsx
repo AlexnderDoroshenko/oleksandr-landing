@@ -26,6 +26,7 @@ const copy = {
     role: 'Target role',
     language: 'Resume language',
     download: 'Download PDF',
+    resumeLanguage: { en: 'English', uk: 'Ukrainian' },
     roles: { aqa: 'Senior AQA Engineer', sdet: 'Senior SDET', lead: 'QA Automation Lead' },
   },
   uk: {
@@ -34,6 +35,7 @@ const copy = {
     role: 'Цільова роль',
     language: 'Мова резюме',
     download: 'Завантажити PDF',
+    resumeLanguage: { en: 'англійською', uk: 'українською' },
     roles: { aqa: 'Senior AQA Engineer', sdet: 'Senior SDET', lead: 'QA Automation Lead' },
   },
 }
@@ -65,7 +67,7 @@ export default function ResumeDownload({ uiLanguage }: { uiLanguage: Language })
             <button type="button" aria-pressed={resumeLanguage === 'uk'} onClick={() => setResumeLanguage('uk')}>UA</button>
           </div>
         </fieldset>
-        <a className="resume-download-link" href={href} download>
+        <a className="resume-download-link" href={href} download aria-label={`${labels.download} — ${labels.roles[role]}, ${labels.resumeLanguage[resumeLanguage]}`}>
           {labels.download}<span aria-hidden="true">↓</span>
         </a>
       </div>
