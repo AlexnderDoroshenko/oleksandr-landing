@@ -12,7 +12,9 @@
         "test": "jest",
         "test:ai-qa-python": "python3 scripts/verify-ai-qa-python.py",
         "test:coverage": "jest --coverage",
-        "test:a11y": "playwright test"
+        "test:a11y": "playwright test",
+        "test:links": "node scripts/check-links.mjs",
+        "test:links:external": "node scripts/check-links.mjs --external"
     },
     "dependencies": {
         "gray-matter": "^4.0.3",

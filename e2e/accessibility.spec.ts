@@ -98,6 +98,10 @@ test('knowledge practice explains an answer and self-check highlights gaps in bo
   await practice.getByRole('radio').first().check()
   await expect(practice.getByText('Варто повторити')).toBeVisible()
   await expect(practice.getByRole('link', { name: 'Повторити тему' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=uk')
+  await practice.getByRole('link', { name: 'Повторити тему' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/testing-theory\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Теорія тестування' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
 
   const depth = page.locator('#depth')
   for (const card of await depth.locator('.check-card').all()) await card.getByRole('radio', { name: 'Поки не знаю' }).check()
@@ -111,4 +115,6 @@ test('knowledge practice explains an answer and self-check highlights gaps in bo
   await expect(page).toHaveURL(/\/knowledge\/check\/\?lang=en/)
   await expect(report.getByText('Your learning overview')).toBeVisible()
   await expect(report.getByText('Not sure yet').first()).toBeVisible()
+  await expect(page.locator('.check-samples li')).toHaveCount(4)
+  await expect(page.locator('.check-samples a')).toHaveCount(8)
 })

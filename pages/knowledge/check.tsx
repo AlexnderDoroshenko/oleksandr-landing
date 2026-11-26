@@ -11,6 +11,12 @@ import type { Language } from '../../types/post'
 const regions = roadmapData.map(region => ({ id: region.id, title: region.translations }))
 const practiceChecks = knowledgeChecks.filter(check => check.mode === 'practice')
 const depthChecks = knowledgeChecks.filter(check => check.mode === 'depth')
+const officialSamples = [
+  { set: 'A', version: '1.7', questions: '3352', answers: '3357' },
+  { set: 'B', version: '1.7', questions: '3359', answers: '3365' },
+  { set: 'C', version: '1.6', questions: '3369', answers: '3372' },
+  { set: 'D', version: '1.5', questions: '3376', answers: '3380' },
+]
 
 const copy = {
   en: {
@@ -24,7 +30,7 @@ const copy = {
     answered: 'answered', right: 'supported choices', areas: 'Areas to revisit', none: 'No gaps surfaced in this set. Try the practical milestones and external sample exams for broader evidence.',
     allGood: 'No flagged scenario in this area', gap: 'Review the reasoning', reset: 'Start again', official: 'Official sample exams',
     officialIntro: 'For testing fundamentals, ISTQB publishes CTFL 4.0 sample exams A–D and the syllabus. ASTQB provides additional sample exams. These resources cover Foundation Level testing; the questions on this page are original and also cover other areas.',
-    istqb: 'ISTQB CTFL 4.0 syllabus and sample exams', astqb: 'ASTQB Foundation Level practice resources',
+    istqb: 'ISTQB CTFL 4.0 overview', syllabus: 'CTFL syllabus v4.0.1', astqb: 'ASTQB Foundation Level practice resources', questions: 'Questions', answers: 'Answers', sample: 'Sample set',
   },
   uk: {
     meta: 'Закріпити матеріал | Олександр Дорошенко', back: 'База знань', eyebrow: 'ПРАКТИКА / САМОПЕРЕВІРКА',
@@ -37,7 +43,7 @@ const copy = {
     answered: 'відповідей', right: 'обґрунтованих відповідей', areas: 'Області для повторення', none: 'Цей набір не виявив прогалин. Спробуйте практичні майлстоуни та зовнішні зразки іспитів для ширшої перевірки.',
     allGood: 'У цій області немає позначених сценаріїв', gap: 'Розберіть логіку відповіді', reset: 'Почати знову', official: 'Офіційні зразки іспитів',
     officialIntro: 'Для основ тестування ISTQB публікує зразки іспиту CTFL 4.0 A–D і програму, а ASTQB — додаткові зразки. Ці ресурси охоплюють тестування рівня Foundation; питання на цій сторінці авторські й також охоплюють інші області.',
-    istqb: 'Програма й зразки іспитів ISTQB CTFL 4.0', astqb: 'Практичні матеріали ASTQB Foundation Level',
+    istqb: 'Огляд ISTQB CTFL 4.0', syllabus: 'Програма CTFL v4.0.1', astqb: 'Практичні матеріали ASTQB Foundation Level', questions: 'Питання', answers: 'Відповіді', sample: 'Набір',
   },
 }
 
@@ -128,7 +134,10 @@ export default function KnowledgeCheckPage() {
           <button className="check-reset" type="button" onClick={() => { setDepthAnswers({}); setSubmitted(false); requestAnimationFrame(() => document.getElementById('depth')?.scrollIntoView()) }}>{labels.reset}</button>
         </section>}
       </section>
-      <aside className="check-official" aria-labelledby="official-title"><p className="section-index">ISTQB / CTFL 4.0</p><h2 id="official-title">{labels.official}</h2><p>{labels.officialIntro}</p><div><a href="https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/" target="_blank" rel="noopener noreferrer">{labels.istqb} ↗</a><a href="https://astqb.org/resources-test/" target="_blank" rel="noopener noreferrer">{labels.astqb} ↗</a></div></aside>
+      <aside className="check-official" aria-labelledby="official-title"><p className="section-index">ISTQB / CTFL 4.0</p><h2 id="official-title">{labels.official}</h2><p>{labels.officialIntro}</p>
+        <div className="check-official-main"><a href="https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/" target="_blank" rel="noopener noreferrer">{labels.istqb} ↗</a><a href="https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf" target="_blank" rel="noopener noreferrer">{labels.syllabus} ↗</a><a href="https://astqb.org/resources-test/" target="_blank" rel="noopener noreferrer">{labels.astqb} ↗</a></div>
+        <ul className="check-samples">{officialSamples.map(sample => <li key={sample.set}><strong>{labels.sample} {sample.set} · v{sample.version}</strong><a href={`https://istqb.org/?download_id=${sample.questions}&sdm_process_download=1`} target="_blank" rel="noopener noreferrer">{labels.questions} ↗</a><a href={`https://istqb.org/?download_id=${sample.answers}&sdm_process_download=1`} target="_blank" rel="noopener noreferrer">{labels.answers} ↗</a></li>)}</ul>
+      </aside>
     </main>
   </div></>
 }

@@ -70,9 +70,13 @@
 .check-reset { margin-top:1.5rem; }
 .check-official { background:var(--ink); color:white; margin:0 auto 5rem; max-width:1440px; padding:clamp(2rem,5vw,4rem) 5vw; }
 .check-official>p:not(.section-index) { color:#d2d9df; max-width:850px; }
-.check-official>div { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.5rem; }
+.check-official-main { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.5rem; }
 .check-official a { background:var(--accent); color:var(--ink); font-size:.85rem; font-weight:800; min-height:44px; padding:.8rem 1rem; }
 .check-official a:hover { background:#c4ed27; }
+.check-samples { display:grid; gap:.6rem; grid-template-columns:repeat(2,minmax(0,1fr)); list-style:none; margin:2rem 0 0; padding:0; }
+.check-samples li { align-items:center; border:1px solid #6f7b85; display:flex; flex-wrap:wrap; gap:.6rem; min-width:0; padding:.8rem; }
+.check-samples strong { flex:1 0 100%; }
+.check-samples a { min-height:40px; }
 @media(max-width:1050px) { .check-depth-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:720px) {
   .check-hero { padding:2.5rem 1.25rem 3rem; }
@@ -83,4 +87,5 @@
   .check-area { padding:.8rem; }
   .check-card { padding:1rem; }
   .check-official { margin:0 1.25rem 4rem; padding:2rem 1.25rem; }
+  .check-samples { grid-template-columns:1fr; }
 }
