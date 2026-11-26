@@ -106,6 +106,21 @@ test('roadmap progress persists across reload and language switch', async ({ pag
   await expect(page.getByRole('link', { name: 'Study this topic: Testing theory' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=en')
 })
 
+test('knowledge index links navigate by click to the map, a direction, and practice', async ({ page }) => {
+  await page.goto('/knowledge/?lang=uk', { waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Відкрити мапу' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/roadmap\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Зробіть наступний крок видимим.' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Відкрити напрямок' }).first().click()
+  await expect(page).toHaveURL(/\/knowledge\/testing-theory\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Теорія тестування' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Почати практику' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/check\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Закріпити матеріал.' })).toBeVisible()
+})
+
 test('knowledge practice explains an answer and self-check highlights gaps in both languages', async ({ page }) => {
   await page.goto('/knowledge/check/?lang=uk', { waitUntil: 'networkidle' })
   const practice = page.locator('#check-foundation-practice')
