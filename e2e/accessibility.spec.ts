@@ -77,3 +77,17 @@ test('language and resume selector keep a meaningful variant link', async ({ pag
   expect(pdf.status()).toBe(200)
   expect(pdf.headers()['content-type']).toContain('application/pdf')
 })
+
+test('roadmap progress persists across reload and language switch', async ({ page }) => {
+  await page.goto('/knowledge/roadmap/?lang=uk', { waitUntil: 'networkidle' })
+  const firstMilestone = page.getByRole('checkbox', { name: 'Позначити виконаним' }).first()
+  await firstMilestone.check()
+  await expect(page.getByRole('progressbar', { name: 'Ваш прогрес' })).toHaveAttribute('value', '1')
+
+  await page.reload({ waitUntil: 'networkidle' })
+  await expect(page.getByRole('checkbox', { name: 'Виконано' }).first()).toBeChecked()
+  await page.getByRole('combobox', { name: 'Мова сайту' }).selectOption('en')
+  await expect(page).toHaveURL(/\/knowledge\/roadmap\/\?lang=en/)
+  await expect(page.getByRole('progressbar', { name: 'Your progress' })).toHaveAttribute('value', '1')
+  await expect(page.getByRole('link', { name: 'Study this topic: Testing theory' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=en')
+})

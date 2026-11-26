@@ -11,6 +11,9 @@ const pageCopy = {
     eyebrow: '03 / KNOWLEDGE BASE',
     title: 'A practical map for growing as a quality engineer.',
     intro: 'Questions, explanations, examples, and hands-on exercises across testing, automation, delivery, security, cloud, and AI engineering.',
+    roadmapLabel: 'START HERE', roadmapTitle: 'Follow the practical map',
+    roadmapText: 'Explore six connected areas, complete hands-on milestones, and keep evidence of your progress.',
+    roadmapOpen: 'Open the map',
     catalog: 'Directions',
     catalogIntro: 'Start with a published topic or see what is being prepared next.',
     open: 'Open direction',
@@ -27,6 +30,9 @@ const pageCopy = {
     eyebrow: '03 / БАЗА ЗНАНЬ',
     title: 'Практична мапа розвитку інженера з якості.',
     intro: 'Питання, пояснення, приклади та практичні вправи з тестування, автоматизації, delivery, безпеки, cloud та AI engineering.',
+    roadmapLabel: 'ПОЧНІТЬ ТУТ', roadmapTitle: 'Пройдіть практичну мапу',
+    roadmapText: 'Досліджуйте шість пов’язаних областей, виконуйте практичні майлстоуни й зберігайте докази прогресу.',
+    roadmapOpen: 'Відкрити мапу',
     catalog: 'Напрямки',
     catalogIntro: 'Почніть з опублікованої теми або подивіться, що готується далі.',
     open: 'Відкрити напрямок',
@@ -52,6 +58,11 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
       <p className="section-index">{copy.eyebrow}</p>
       <h1>{copy.title}</h1>
       <p>{copy.intro}</p>
+    </section>
+
+    <section className="knowledge-roadmap-invite" aria-labelledby="knowledge-roadmap-title">
+      <div><p className="section-index">{copy.roadmapLabel}</p><h2 id="knowledge-roadmap-title">{copy.roadmapTitle}</h2><p>{copy.roadmapText}</p></div>
+      <Link href={{ pathname: '/knowledge/roadmap', query: { lang } }}>{copy.roadmapOpen}</Link>
     </section>
 
     <section className="knowledge-directory" aria-labelledby="knowledge-catalog-title">

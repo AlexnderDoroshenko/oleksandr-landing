@@ -1,0 +1,158 @@
+[
+  {
+    "id": "foundations",
+    "order": 1,
+    "translations": {
+      "en": { "title": "Quality foundations", "summary": "Learn to turn uncertainty into a test strategy before writing automation." },
+      "uk": { "title": "Фундамент якості", "summary": "Навчіться перетворювати невизначеність на тестову стратегію до написання автоматизації." }
+    },
+    "milestones": [
+      {
+        "id": "test-charter",
+        "directions": ["testing-theory"],
+        "translations": {
+          "en": { "title": "Set a test mission", "action": "Choose one feature. Identify its test basis, three main risks, and release criteria.", "evidence": "A one-page test charter that explains what you will test, why, and when you can stop." },
+          "uk": { "title": "Сформулюйте тестову місію", "action": "Оберіть одну функцію. Визначте тестову основу, три головні ризики та критерії релізу.", "evidence": "Односторінковий тестовий план, який пояснює, що і чому перевіряти та коли можна зупинитися." }
+        }
+      },
+      {
+        "id": "scenario-design",
+        "directions": ["test-design"],
+        "translations": {
+          "en": { "title": "Design a focused suite", "action": "Apply partitions, boundaries, and a state model to the same feature.", "evidence": "A compact scenario set with expected outcomes and a reason for each selected case." },
+          "uk": { "title": "Спроєктуйте сфокусований набір", "action": "Застосуйте класи еквівалентності, межі та модель станів до тієї самої функції.", "evidence": "Компактний набір сценаріїв з очікуваними результатами й поясненням вибору кожного випадку." }
+        }
+      }
+    ]
+  },
+  {
+    "id": "web-data",
+    "order": 2,
+    "translations": {
+      "en": { "title": "Web and data district", "summary": "Follow a user action through the browser, network, API, and stored data." },
+      "uk": { "title": "Область web і даних", "summary": "Простежте дію користувача через браузер, мережу, API та збережені дані." }
+    },
+    "milestones": [
+      {
+        "id": "request-trace",
+        "directions": ["web-http-networking"],
+        "translations": {
+          "en": { "title": "Trace a user journey", "action": "Record the requests behind one journey; inspect status codes, redirects, caching, and authentication.", "evidence": "A request map with three plausible failure points and ways to observe them." },
+          "uk": { "title": "Простежте шлях користувача", "action": "Запишіть запити одного сценарію; перевірте статуси, перенаправлення, кешування й автентифікацію.", "evidence": "Мапа запитів із трьома можливими точками збою та способами їх побачити." }
+        }
+      },
+      {
+        "id": "contract-data",
+        "directions": ["api-sql-data"],
+        "translations": {
+          "en": { "title": "Check the contract and data", "action": "Test valid and invalid API requests, then verify the resulting database invariants.", "evidence": "Reproducible API checks and SQL evidence showing the expected state and two failure cases." },
+          "uk": { "title": "Перевірте контракт і дані", "action": "Протестуйте коректні й некоректні API-запити, а потім перевірте інваріанти даних у базі.", "evidence": "Відтворювані API-перевірки й SQL-докази очікуваного стану та двох помилкових випадків." }
+        }
+      }
+    ]
+  },
+  {
+    "id": "automation",
+    "order": 3,
+    "translations": {
+      "en": { "title": "Automation workshop", "summary": "Build checks that are useful in a team and informative when they fail." },
+      "uk": { "title": "Майстерня автоматизації", "summary": "Створіть перевірки, корисні команді й зрозумілі під час збою." }
+    },
+    "milestones": [
+      {
+        "id": "maintainable-suite",
+        "directions": ["automation-architecture", "typescript-playwright-bdd"],
+        "translations": {
+          "en": { "title": "Build a maintainable suite", "action": "Automate a short critical journey with stable locators, isolated data, and clear failure diagnostics.", "evidence": "A repeatable Playwright smoke suite whose failures point to the affected behavior." },
+          "uk": { "title": "Побудуйте підтримуваний набір", "action": "Автоматизуйте короткий критичний сценарій зі стійкими локаторами, ізольованими даними й чіткою діагностикою.", "evidence": "Відтворюваний smoke-набір Playwright, у якому збої вказують на проблемну поведінку." }
+        }
+      },
+      {
+        "id": "python-utility",
+        "directions": ["python-coding-whiteboard"],
+        "translations": {
+          "en": { "title": "Solve a data task with Python", "action": "Write a small parser or validator for test data and cover edge cases with unit tests.", "evidence": "A runnable script, sample inputs, and tests for empty, malformed, and boundary values." },
+          "uk": { "title": "Розв’яжіть задачу з даними на Python", "action": "Напишіть невеликий парсер або валідатор тестових даних і покрийте крайові випадки unit-тестами.", "evidence": "Виконуваний скрипт, зразки вхідних даних і тести для порожніх, некоректних та граничних значень." }
+        }
+      }
+    ]
+  },
+  {
+    "id": "delivery",
+    "order": 4,
+    "translations": {
+      "en": { "title": "Delivery ridge", "summary": "Connect quality signals to the pipeline and the system that runs in production." },
+      "uk": { "title": "Хребет delivery", "summary": "Поєднайте сигнали якості з пайплайном і системою, що працює у production." }
+    },
+    "milestones": [
+      {
+        "id": "ci-feedback",
+        "directions": ["cicd-docker-kubernetes"],
+        "translations": {
+          "en": { "title": "Move checks into CI", "action": "Run fast checks on each change and retain logs or artifacts when they fail.", "evidence": "A pipeline with a documented trigger, pass criteria, and a visible failure report." },
+          "uk": { "title": "Перенесіть перевірки в CI", "action": "Запускайте швидкі перевірки на кожну зміну й зберігайте логи або артефакти при збої.", "evidence": "Пайплайн із задокументованим тригером, критеріями проходження та видимим звітом про помилку." }
+        }
+      },
+      {
+        "id": "system-risks",
+        "directions": ["system-design-cloud"],
+        "translations": {
+          "en": { "title": "Map system risks", "action": "Draw the service and data boundaries; choose a failure mode that testing should expose.", "evidence": "A system sketch linking one risk, an observable signal, and a mitigation." },
+          "uk": { "title": "Нанесіть ризики системи на схему", "action": "Намалюйте межі сервісів і даних; оберіть збій, який мають виявити перевірки.", "evidence": "Схема системи, що пов’язує один ризик, спостережуваний сигнал і спосіб зменшити наслідки." }
+        }
+      }
+    ]
+  },
+  {
+    "id": "trust",
+    "order": 5,
+    "translations": {
+      "en": { "title": "Trust and inclusion zone", "summary": "Explore security and accessibility as observable product properties." },
+      "uk": { "title": "Зона довіри й доступності", "summary": "Досліджуйте безпеку й доступність як властивості продукту, які можна перевірити." }
+    },
+    "milestones": [
+      {
+        "id": "abuse-cases",
+        "directions": ["security-devsecops", "cybersecurity-handbook"],
+        "translations": {
+          "en": { "title": "Test misuse and access", "action": "Model who can do what, then test three misuse or permission cases without exposing real data.", "evidence": "A small threat model, test results, and a clear account of residual risk." },
+          "uk": { "title": "Перевірте зловживання й доступ", "action": "Змоделюйте, хто що може робити, і перевірте три випадки зловживання або прав доступу без розкриття реальних даних.", "evidence": "Невелика модель загроз, результати перевірок і чіткий опис залишкового ризику." }
+        }
+      },
+      {
+        "id": "accessible-journey",
+        "directions": ["accessibility-testing"],
+        "translations": {
+          "en": { "title": "Verify an accessible journey", "action": "Complete one journey by keyboard; inspect labels, focus, reflow, and an automated scan.", "evidence": "A report separating automated findings from manual observations and remaining uncertainty." },
+          "uk": { "title": "Перевірте доступний сценарій", "action": "Пройдіть один сценарій клавіатурою; перевірте підписи, фокус, адаптивність і автоматичний скан.", "evidence": "Звіт, що відділяє автоматичні знахідки від ручних спостережень і невирішеної невизначеності." }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ai",
+    "order": 6,
+    "translations": {
+      "en": { "title": "AI frontier", "summary": "Treat model behavior as evidence to evaluate, not a promise to trust." },
+      "uk": { "title": "Рубіж AI", "summary": "Розглядайте поведінку моделі як дані для оцінювання, а не обіцянку, якій слід вірити." }
+    },
+    "milestones": [
+      {
+        "id": "ai-evaluation",
+        "directions": ["ai-llm-rag-agents", "ai-system-testing"],
+        "translations": {
+          "en": { "title": "Evaluate grounded answers", "action": "Create a small dataset with supported, unsupported, and ambiguous questions; check answers against sources.", "evidence": "An evaluation sheet with expected evidence, observed output, failure categories, and human review." },
+          "uk": { "title": "Оцініть відповіді з опорою на джерела", "action": "Створіть малий набір підтверджених, непідтверджених і неоднозначних запитань; звірте відповіді з джерелами.", "evidence": "Таблиця оцінювання з очікуваними доказами, фактичними відповідями, категоріями помилок і ручним переглядом." }
+        }
+      },
+      {
+        "id": "ai-observability",
+        "directions": ["llmops-evaluation-observability"],
+        "translations": {
+          "en": { "title": "Monitor a change", "action": "Compare two prompt or model versions using the same cases, cost, latency, and safety observations.", "evidence": "A versioned result table and a decision that explains trade-offs and regressions." },
+          "uk": { "title": "Простежте наслідки зміни", "action": "Порівняйте дві версії промпта або моделі на тих самих кейсах з урахуванням вартості, затримки та безпеки.", "evidence": "Версійна таблиця результатів і рішення з поясненням компромісів та регресій." }
+        }
+      }
+    ]
+  }
+]
