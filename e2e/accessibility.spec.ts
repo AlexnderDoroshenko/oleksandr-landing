@@ -40,7 +40,7 @@ for (const route of routes) for (const lang of languages) {
     expect(violations, JSON.stringify(violations, null, 2)).toEqual([])
     if (testInfo.project.name === 'desktop-chromium') {
       const hrefs = await page.locator('a[href]').evaluateAll(links => links.map(link => link.getAttribute('href') ?? ''))
-      for (const href of new Set(hrefs)) {
+      for (const href of Array.from(new Set(hrefs))) {
         expect(href, `${route} ${lang} has an empty link`).not.toBe('')
         const target = new URL(href, page.url())
         if (target.origin !== new URL(page.url()).origin) continue
