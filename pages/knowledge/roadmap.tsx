@@ -26,6 +26,7 @@ const copy = {
     milestone: 'Milestone', doThis: 'Do this', proof: 'Evidence of completion',
     resources: 'Study this topic', markDone: 'Mark complete', done: 'Completed',
     storage: 'Progress is saved in this browser only. The checkboxes are a personal planning aid, not a skill certification.',
+    practice: 'Reinforce the material', check: 'Check your understanding',
   },
   uk: {
     meta: 'Практична мапа навчання | Олександр Дорошенко',
@@ -37,6 +38,7 @@ const copy = {
     milestone: 'Майлстоун', doThis: 'Завдання', proof: 'Доказ виконання',
     resources: 'Вивчити тему', markDone: 'Позначити виконаним', done: 'Виконано',
     storage: 'Прогрес зберігається лише в цьому браузері. Позначки допомагають планувати навчання і не засвідчують кваліфікацію.',
+    practice: 'Закріпити матеріал', check: 'Перевірити глибину розуміння',
   },
 }
 
@@ -75,6 +77,7 @@ export default function KnowledgeRoadmap({ regions, directions }: Props) {
           <p className="section-index">{labels.eyebrow}</p>
           <h1>{labels.title}</h1>
           <p className="roadmap-intro">{labels.intro}</p>
+          <div className="roadmap-practice-links"><Link href={{ pathname: '/knowledge/check', query: { lang }, hash: 'practice' }}>{labels.practice} →</Link><Link href={{ pathname: '/knowledge/check', query: { lang }, hash: 'depth' }}>{labels.check} →</Link></div>
           <div className="roadmap-progress" aria-label={labels.progress}>
             <div><span>{labels.progress}</span><strong>{completedCount}<span> / {milestoneCount}</span></strong></div>
             <p>{labels.completed}</p>

@@ -20,9 +20,9 @@ const pageCopy = {
     material: 'material',
     materials: 'materials',
     unavailable: 'Translation unavailable',
-    quizTitle: 'Quiz',
-    quizText: 'Short knowledge checks will be added as the collection grows.',
-    quizStatus: 'Coming soon',
+    quizTitle: 'Reinforce the material',
+    quizText: 'Practice one scenario in each area, then check your understanding and find topics to revisit.',
+    quizStatus: 'Start practice',
     statuses: { published: 'Published', template: 'Template available', preparation: 'In preparation' },
   },
   uk: {
@@ -39,9 +39,9 @@ const pageCopy = {
     material: 'матеріал',
     materials: 'матеріали',
     unavailable: 'Переклад недоступний',
-    quizTitle: 'Quiz',
-    quizText: 'Короткі перевірки знань з’являтимуться разом із розвитком колекції.',
-    quizStatus: 'Незабаром',
+    quizTitle: 'Закріпити матеріал',
+    quizText: 'Спробуйте сценарій у кожній області, перевірте розуміння й знайдіть теми для повторення.',
+    quizStatus: 'Почати практику',
     statuses: { published: 'Опубліковано', template: 'Доступний шаблон', preparation: 'Готується' },
   },
 }
@@ -90,8 +90,8 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
     </section>
 
     <aside className="knowledge-quiz" aria-label={copy.quizTitle}>
-      <div><p className="section-index">QUIZ</p><h2>{copy.quizTitle}</h2><p>{copy.quizText}</p></div>
-      <span>{copy.quizStatus}</span>
+      <div><p className="section-index">PRACTICE</p><h2>{copy.quizTitle}</h2><p>{copy.quizText}</p></div>
+      <Link href={{ pathname: '/knowledge/check', query: { lang } }}>{copy.quizStatus} →</Link>
     </aside>
     </main>
   </div></>

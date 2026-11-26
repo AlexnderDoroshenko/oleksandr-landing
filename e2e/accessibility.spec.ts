@@ -91,3 +91,24 @@ test('roadmap progress persists across reload and language switch', async ({ pag
   await expect(page.getByRole('progressbar', { name: 'Your progress' })).toHaveAttribute('value', '1')
   await expect(page.getByRole('link', { name: 'Study this topic: Testing theory' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=en')
 })
+
+test('knowledge practice explains an answer and self-check highlights gaps in both languages', async ({ page }) => {
+  await page.goto('/knowledge/check/?lang=uk', { waitUntil: 'networkidle' })
+  const practice = page.locator('#check-foundation-practice')
+  await practice.getByRole('radio').first().check()
+  await expect(practice.getByText('Варто повторити')).toBeVisible()
+  await expect(practice.getByRole('link', { name: 'Повторити тему' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=uk')
+
+  const depth = page.locator('#depth')
+  for (const card of await depth.locator('.check-card').all()) await card.getByRole('radio', { name: 'Поки не знаю' }).check()
+  await depth.getByRole('button', { name: 'Показати теми для повторення' }).click()
+  const report = page.locator('#check-report')
+  await expect(report).toBeFocused()
+  await expect(report.locator('.check-report-areas section')).toHaveCount(6)
+  await expect(report.getByText('0 / 18')).toBeVisible()
+
+  await page.getByRole('combobox', { name: 'Мова сайту' }).selectOption('en')
+  await expect(page).toHaveURL(/\/knowledge\/check\/\?lang=en/)
+  await expect(report.getByText('Your learning overview')).toBeVisible()
+  await expect(report.getByText('Not sure yet').first()).toBeVisible()
+})
