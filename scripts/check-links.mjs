@@ -23,7 +23,7 @@ async function walk(directory) {
 }
 
 function decodeAttribute(value) {
-  return value.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/gi, "'")
+  return value.replace(/&quot;/g, '"').replace(/&#39;|&#x27;/gi, "'").replace(/&amp;/g, '&')
 }
 
 function exportedFile(url) {
