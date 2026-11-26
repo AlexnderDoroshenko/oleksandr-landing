@@ -38,6 +38,20 @@ for (const route of routes) for (const lang of languages) {
     }))
     await testInfo.attach('axe-results', { body: JSON.stringify({ route, lang, violations }, null, 2), contentType: 'application/json' })
     expect(violations, JSON.stringify(violations, null, 2)).toEqual([])
+    if (testInfo.project.name === 'desktop-chromium') {
+      const hrefs = await page.locator('a[href]').evaluateAll(links => links.map(link => link.getAttribute('href') ?? ''))
+      for (const href of new Set(hrefs)) {
+        expect(href, `${route} ${lang} has an empty link`).not.toBe('')
+        const target = new URL(href, page.url())
+        if (target.origin !== new URL(page.url()).origin) continue
+        const linkedPage = await page.request.get(target.toString())
+        expect(linkedPage.status(), `${route} ${lang}: ${href}`).toBe(200)
+        if (target.hash && linkedPage.headers()['content-type']?.includes('text/html')) {
+          const id = decodeURIComponent(target.hash.slice(1))
+          if (id) expect(await linkedPage.text(), `${route} ${lang}: missing ${target.hash}`).toContain(`id="${id}"`)
+        }
+      }
+    }
   })
 }
 
