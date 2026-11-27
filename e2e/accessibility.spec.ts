@@ -38,6 +38,20 @@ for (const route of routes) for (const lang of languages) {
     }))
     await testInfo.attach('axe-results', { body: JSON.stringify({ route, lang, violations }, null, 2), contentType: 'application/json' })
     expect(violations, JSON.stringify(violations, null, 2)).toEqual([])
+    if (testInfo.project.name === 'desktop-chromium') {
+      const hrefs = await page.locator('a[href]').evaluateAll(links => links.map(link => link.getAttribute('href') ?? ''))
+      for (const href of Array.from(new Set(hrefs))) {
+        expect(href, `${route} ${lang} has an empty link`).not.toBe('')
+        const target = new URL(href, page.url())
+        if (target.origin !== new URL(page.url()).origin) continue
+        const linkedPage = await page.request.get(target.toString())
+        expect(linkedPage.status(), `${route} ${lang}: ${href}`).toBe(200)
+        if (target.hash && linkedPage.headers()['content-type']?.includes('text/html')) {
+          const id = decodeURIComponent(target.hash.slice(1))
+          if (id) expect(await linkedPage.text(), `${route} ${lang}: missing ${target.hash}`).toContain(`id="${id}"`)
+        }
+      }
+    }
   })
 }
 
@@ -76,4 +90,60 @@ test('language and resume selector keep a meaningful variant link', async ({ pag
   const pdf = await page.request.get(await download.getAttribute('href') as string)
   expect(pdf.status()).toBe(200)
   expect(pdf.headers()['content-type']).toContain('application/pdf')
+})
+
+test('roadmap progress persists across reload and language switch', async ({ page }) => {
+  await page.goto('/knowledge/roadmap/?lang=uk', { waitUntil: 'networkidle' })
+  const firstMilestone = page.getByRole('checkbox', { name: 'Позначити виконаним' }).first()
+  await firstMilestone.check()
+  await expect(page.getByRole('progressbar', { name: 'Ваш прогрес' })).toHaveAttribute('value', '1')
+
+  await page.reload({ waitUntil: 'networkidle' })
+  await expect(page.getByRole('checkbox', { name: 'Виконано' }).first()).toBeChecked()
+  await page.getByRole('combobox', { name: 'Мова сайту' }).selectOption('en')
+  await expect(page).toHaveURL(/\/knowledge\/roadmap\/\?lang=en/)
+  await expect(page.getByRole('progressbar', { name: 'Your progress' })).toHaveAttribute('value', '1')
+  await expect(page.getByRole('link', { name: 'Study this topic: Testing theory' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=en')
+})
+
+test('knowledge index links navigate by click to the map, a direction, and practice', async ({ page }) => {
+  await page.goto('/knowledge/?lang=uk', { waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Відкрити мапу' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/roadmap\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Зробіть наступний крок видимим.' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Відкрити напрямок' }).first().click()
+  await expect(page).toHaveURL(/\/knowledge\/testing-theory\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Теорія тестування' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: 'Почати практику' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/check\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Закріпити матеріал.' })).toBeVisible()
+})
+
+test('knowledge practice explains an answer and self-check highlights gaps in both languages', async ({ page }) => {
+  await page.goto('/knowledge/check/?lang=uk', { waitUntil: 'networkidle' })
+  const practice = page.locator('#check-foundation-practice')
+  await practice.getByRole('radio').first().check()
+  await expect(practice.getByText('Варто повторити')).toBeVisible()
+  await expect(practice.getByRole('link', { name: 'Повторити тему' })).toHaveAttribute('href', '/knowledge/testing-theory/?lang=uk')
+  await practice.getByRole('link', { name: 'Повторити тему' }).click()
+  await expect(page).toHaveURL(/\/knowledge\/testing-theory\/\?lang=uk/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Теорія тестування' })).toBeVisible()
+  await page.goBack({ waitUntil: 'networkidle' })
+
+  const depth = page.locator('#depth')
+  for (const card of await depth.locator('.check-card').all()) await card.getByRole('radio', { name: 'Поки не знаю' }).check()
+  await depth.getByRole('button', { name: 'Показати теми для повторення' }).click()
+  const report = page.locator('#check-report')
+  await expect(report).toBeFocused()
+  await expect(report.locator('.check-report-areas section')).toHaveCount(6)
+  await expect(report.getByText('0 / 18')).toBeVisible()
+
+  await page.getByRole('combobox', { name: 'Мова сайту' }).selectOption('en')
+  await expect(page).toHaveURL(/\/knowledge\/check\/\?lang=en/)
+  await expect(report.getByText('Your learning overview')).toBeVisible()
+  await expect(report.getByText('Not sure yet').first()).toBeVisible()
+  await expect(page.locator('.check-samples li')).toHaveCount(4)
+  await expect(page.locator('.check-samples a')).toHaveCount(8)
 })

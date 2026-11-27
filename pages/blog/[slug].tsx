@@ -35,7 +35,7 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
       <article className="article-shell">
         <Link className="article-back" href={{ pathname: '/blog', query: { lang } }}>← {lang === 'uk' ? 'До блогу' : 'Back to blog'}</Link>
         <div className="article-title-row"><div><p className="section-index">BLOG / {post.date}</p><h1>{post.title}</h1></div></div>
-        <div className="article-body">{isBlockPost(post) ? <BlockRenderer blocks={post.blocks} basePath={basePath} /> : <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize((post as LegacyPost).content) }} />}</div>
+        <div className="article-body">{isBlockPost(post) ? <BlockRenderer blocks={post.blocks} basePath={basePath} /> : <div dangerouslySetInnerHTML={{ __html: prefixLocalLinks(DOMPurify.sanitize((post as LegacyPost).content), basePath) }} />}</div>
         {nextPost && <nav className="article-next" aria-label={lang === 'uk' ? 'Наступний пост' : 'Next post'}>
           <p>{lang === 'uk' ? 'Читати наступний пост' : 'Read next post'}</p>
           <Link href={{ pathname: `/blog/${nextPost.slug}`, query: { lang } }}><span>{nextPost.title}</span><span aria-hidden="true">→</span></Link>
@@ -44,6 +44,17 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
       </main>
     </div></>
   )
+}
+
+function prefixLocalLinks(html: string, basePath: string) {
+  if (!basePath) return html
+  
+  return html.replace(/href="(\/[^"]*)/g, (match, path) => {
+    if (!path.startsWith('//')) {
+      return `href="${basePath}${path}`
+    }
+    return match
+  })
 }
 
 export async function getStaticPaths() {

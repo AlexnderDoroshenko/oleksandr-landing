@@ -11,15 +11,18 @@ const pageCopy = {
     eyebrow: '03 / KNOWLEDGE BASE',
     title: 'A practical map for growing as a quality engineer.',
     intro: 'Questions, explanations, examples, and hands-on exercises across testing, automation, delivery, security, cloud, and AI engineering.',
+    roadmapLabel: 'START HERE', roadmapTitle: 'Follow the practical map',
+    roadmapText: 'Explore six connected areas, complete hands-on milestones, and keep evidence of your progress.',
+    roadmapOpen: 'Open the map',
     catalog: 'Directions',
     catalogIntro: 'Start with a published topic or see what is being prepared next.',
     open: 'Open direction',
     material: 'material',
     materials: 'materials',
     unavailable: 'Translation unavailable',
-    quizTitle: 'Quiz',
-    quizText: 'Short knowledge checks will be added as the collection grows.',
-    quizStatus: 'Coming soon',
+    quizTitle: 'Reinforce the material',
+    quizText: 'Practice one scenario in each area, then check your understanding and find topics to revisit.',
+    quizStatus: 'Start practice',
     statuses: { published: 'Published', template: 'Template available', preparation: 'In preparation' },
   },
   uk: {
@@ -27,15 +30,18 @@ const pageCopy = {
     eyebrow: '03 / БАЗА ЗНАНЬ',
     title: 'Практична мапа розвитку інженера з якості.',
     intro: 'Питання, пояснення, приклади та практичні вправи з тестування, автоматизації, delivery, безпеки, cloud та AI engineering.',
+    roadmapLabel: 'ПОЧНІТЬ ТУТ', roadmapTitle: 'Пройдіть практичну мапу',
+    roadmapText: 'Досліджуйте шість пов’язаних областей, виконуйте практичні майлстоуни й зберігайте докази прогресу.',
+    roadmapOpen: 'Відкрити мапу',
     catalog: 'Напрямки',
     catalogIntro: 'Почніть з опублікованої теми або подивіться, що готується далі.',
     open: 'Відкрити напрямок',
     material: 'матеріал',
     materials: 'матеріали',
     unavailable: 'Переклад недоступний',
-    quizTitle: 'Quiz',
-    quizText: 'Короткі перевірки знань з’являтимуться разом із розвитком колекції.',
-    quizStatus: 'Незабаром',
+    quizTitle: 'Закріпити матеріал',
+    quizText: 'Спробуйте сценарій у кожній області, перевірте розуміння й знайдіть теми для повторення.',
+    quizStatus: 'Почати практику',
     statuses: { published: 'Опубліковано', template: 'Доступний шаблон', preparation: 'Готується' },
   },
 }
@@ -52,6 +58,11 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
       <p className="section-index">{copy.eyebrow}</p>
       <h1>{copy.title}</h1>
       <p>{copy.intro}</p>
+    </section>
+
+    <section className="knowledge-roadmap-invite" aria-labelledby="knowledge-roadmap-title">
+      <div><p className="section-index">{copy.roadmapLabel}</p><h2 id="knowledge-roadmap-title">{copy.roadmapTitle}</h2><p>{copy.roadmapText}</p></div>
+      <Link href={{ pathname: '/knowledge/roadmap', query: { lang } }}>{copy.roadmapOpen}</Link>
     </section>
 
     <section className="knowledge-directory" aria-labelledby="knowledge-catalog-title">
@@ -79,8 +90,8 @@ export default function KnowledgeIndex({ directions }: { directions: KnowledgeDi
     </section>
 
     <aside className="knowledge-quiz" aria-label={copy.quizTitle}>
-      <div><p className="section-index">QUIZ</p><h2>{copy.quizTitle}</h2><p>{copy.quizText}</p></div>
-      <span>{copy.quizStatus}</span>
+      <div><p className="section-index">PRACTICE</p><h2>{copy.quizTitle}</h2><p>{copy.quizText}</p></div>
+      <Link href={{ pathname: '/knowledge/check', query: { lang } }}>{copy.quizStatus} →</Link>
     </aside>
     </main>
   </div></>

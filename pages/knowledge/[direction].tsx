@@ -16,7 +16,7 @@ const pageCopy = {
     unavailable: 'This direction is not translated into English yet.',
     missingTranslation: 'This material is not translated into English yet.',
     answer: 'Answer', examples: 'Examples', exercises: 'Practice exercises',
-    quiz: 'Quiz', quizText: 'A knowledge check for this direction is coming soon.', comingSoon: 'Coming soon',
+    quiz: 'Reinforce the material', quizText: 'Try practical scenarios and see which related topics are worth revisiting.', comingSoon: 'Open practice',
     topics: 'Topics', practice: 'Practice', deepDive: 'Detailed discussion', codeExamples: 'Runnable Python examples',
     sources: 'Primary sources',
     learningProject: 'Learning project', completion: 'Completion criteria', reviewed: 'Reviewed',
@@ -30,7 +30,7 @@ const pageCopy = {
     unavailable: 'Цей напрямок ще не перекладено українською.',
     missingTranslation: 'Цей матеріал ще не перекладено українською.',
     answer: 'Відповідь', examples: 'Приклади', exercises: 'Практичні вправи',
-    quiz: 'Quiz', quizText: 'Перевірка знань для цього напрямку з’явиться незабаром.', comingSoon: 'Незабаром',
+    quiz: 'Закріпити матеріал', quizText: 'Спробуйте практичні сценарії й перегляньте пов’язані теми, які варто повторити.', comingSoon: 'Почати практику',
     topics: 'Теми', practice: 'Практика', deepDive: 'Розгорнутий розбір', codeExamples: 'Виконувані приклади Python',
     sources: 'Першоджерела',
     learningProject: 'Навчальний проєкт', completion: 'Критерії готовності', reviewed: 'Перевірено',
@@ -100,8 +100,8 @@ export default function KnowledgeDirectionPage({ direction, materials, topics, r
       </section>}
 
       <aside className="direction-quiz">
-        <div><p className="section-index">QUIZ</p><h2>{copy.quiz}</h2><p>{copy.quizText}</p></div>
-        <span>{copy.comingSoon}</span>
+        <div><p className="section-index">PRACTICE</p><h2>{copy.quiz}</h2><p>{copy.quizText}</p></div>
+        <Link href={{ pathname: '/knowledge/check', query: { lang } }}>{copy.comingSoon} →</Link>
       </aside>
     </article>
     </main>

@@ -41,6 +41,14 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
         run: npm run build
+      - name: Check exported links
+        env:
+          GITHUB_PAGES: 'true'
+        run: npm run test:links
+      - name: Check external links for 404
+        env:
+          GITHUB_PAGES: 'true'
+        run: npm run test:links:external
 
   accessibility:
     name: Accessibility browser gate

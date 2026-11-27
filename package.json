@@ -12,7 +12,9 @@
         "test": "jest",
         "test:ai-qa-python": "python3 scripts/verify-ai-qa-python.py",
         "test:coverage": "jest --coverage",
-        "test:a11y": "playwright test"
+        "test:a11y": "playwright test",
+        "test:links": "node scripts/check-links.mjs",
+        "test:links:external": "node scripts/check-links.mjs --external"
     },
     "dependencies": {
         "gray-matter": "^4.0.3",
@@ -35,8 +37,8 @@
         "@types/react": "^19.2.18",
         "@types/react-dom": "^19.2.4",
         "autoprefixer": "^10.4.15",
-        "jest": "^30.4.2",
-        "jest-environment-jsdom": "^30.4.1",
+        "jest": "^30.5.2",
+        "jest-environment-jsdom": "^30.5.2",
         "lighthouse": "^13.6.0",
         "postcss": "^8.5.10",
         "ts-jest": "^29.4.11",
