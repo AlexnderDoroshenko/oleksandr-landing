@@ -48,7 +48,13 @@ export default function Post({ slug, translations, nextPosts }: PostProps) {
 
 function prefixLocalLinks(html: string, basePath: string) {
   if (!basePath) return html
-  return html.replace(/href="\/(?!\/)/g, `href="${basePath}/`)
+  
+  return html.replace(/href="(\/[^"]*)/g, (match, path) => {
+    if (!path.startsWith('//')) {
+      return `href="${basePath}${path}`
+    }
+    return match
+  })
 }
 
 export async function getStaticPaths() {
